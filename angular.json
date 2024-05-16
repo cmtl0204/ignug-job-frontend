@@ -47,7 +47,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -55,9 +55,36 @@
                   "maximumError": "4kb"
                 }
               ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.production.ts"
+                }
+              ],
               "outputHashing": "all"
             },
-            "development": {
+            "test": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "local": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
@@ -71,11 +98,14 @@
             "production": {
               "buildTarget": "ignug-job-frontend:build:production"
             },
-            "development": {
-              "buildTarget": "ignug-job-frontend:build:development"
+            "test": {
+              "buildTarget": "ignug-job-frontend:build:test"
+            },
+            "local": {
+              "buildTarget": "ignug-job-frontend:build:local"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "local"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
