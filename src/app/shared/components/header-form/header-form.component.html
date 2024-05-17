@@ -1,0 +1,11 @@
+<div class="grid ml-2">
+  @if (id === RoutesEnum.NEW) {
+    <button pButton label="Crear" [icon]="PrimeIcons.PLUS" class="p-button-success p-button-text"></button>
+  } @else {
+    <button pButton label="Editar" [icon]="PrimeIcons.PENCIL" class="p-button-text"></button>
+  }
+<!--  <small-->
+<!--    class="ml-3 mt-2"-->
+<!--    [innerHTML]="this.messageService.requiredFields"-->
+<!--  ></small>-->
+</div>

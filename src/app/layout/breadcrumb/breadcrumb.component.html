@@ -1,0 +1,7 @@
+@if (items.length) {
+  <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+}
+
+@if (coreService.isLoading) {
+  <app-progress-bar></app-progress-bar>
+}
