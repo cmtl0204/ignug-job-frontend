@@ -1,5 +1,5 @@
 import {AbstractControl, Validators} from '@angular/forms';
-import {AuthHttpService} from "@services/auth";
+import {AuthHttpService} from "@servicesApp/auth";
 import {map} from "rxjs/operators";
 
 export class CustomValidators {

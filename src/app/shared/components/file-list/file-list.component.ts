@@ -2,7 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {ConfirmationService, MenuItem, PrimeIcons} from "primeng/api";
 import {CatalogueModel, ColumnModel, FileModel, PaginatorModel} from "@models/core";
-import {CoreService, FilesHttpService, MessageService, OverlaysService} from "@services/core";
+import {CoreService, MessageService, OverlaysService} from "@servicesApp/core";
+import {FilesHttpService} from "@servicesHttp/core";
 
 @Component({
   selector: 'app-file-list',

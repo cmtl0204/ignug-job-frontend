@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PrimeIcons} from "primeng/api";
-import {FilesHttpService, MessageService} from "@services/core";
+import {FilesHttpService} from "@servicesHttp/core";
+import {MessageService} from "@servicesApp/core";
 import {CatalogueModel} from "@models/core";
 import {FormControl, Validators} from "@angular/forms";
 

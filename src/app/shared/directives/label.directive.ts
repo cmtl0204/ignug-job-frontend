@@ -11,9 +11,7 @@ export class LabelDirective implements OnInit {
   @Input() label: string = '';
 
   @Input() set required(value: AbstractControl) {
-    if (value) {
-      this._required = value.hasValidator(Validators.required);
-    }
+    this._required = value?.hasValidator(Validators.required);
   }
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
@@ -30,7 +28,7 @@ export class LabelDirective implements OnInit {
   }
 
   setFieldRequired() {
-    this.nativeElement.innerText = this.label+ ':';
+    this.nativeElement.innerText = this.label + ':';
     const i = this.renderer.createElement('i');
     i.innerText = '*';
     this.renderer.addClass(i, 'p-error');

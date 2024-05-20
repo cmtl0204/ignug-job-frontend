@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {environment} from '@env/environment';
 import {ServerResponse} from '@models/http-response';
-import {MessageService} from '@services/core';
+import {MessageService} from '@servicesApp/core';
 import {CatalogueModel} from '@models/core';
 import {CatalogueTypeEnum} from "@shared/enums";
 

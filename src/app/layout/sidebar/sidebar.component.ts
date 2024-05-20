@@ -1,8 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {MenuItem, PrimeIcons} from 'primeng/api';
-import {AuthHttpService, AuthService, MenusHttpService} from "@services/auth";
+import {AuthHttpService, AuthService, MenusHttpService} from "@servicesApp/auth";
 import {MenuModel} from "@models/auth";
-import {CoreService, MessageService, RoutesService} from "@services/core";
+import {CoreService, MessageService, RoutesService} from "@servicesApp/core";
 
 @Component({
   selector: 'app-sidebar',

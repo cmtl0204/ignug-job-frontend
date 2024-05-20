@@ -6,7 +6,7 @@ import {map} from 'rxjs/operators';
 import {MessageService as MessageServicePn} from 'primeng/api';
 import { FileModel} from "@models/core";
 import {ServerResponse} from '@models/http-response';
-import {CoreService, MessageService} from '@services/core';
+import {CoreService, MessageService} from '@servicesApp/core';
 import {CoreMessageEnum} from "@shared/enums";
 
 @Injectable({

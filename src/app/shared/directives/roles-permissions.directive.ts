@@ -1,6 +1,6 @@
 import {Directive, ElementRef, Input, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
 import {PermissionModel, RoleModel, UserModel} from '@models/auth';
-import {AuthService} from '@services/auth';
+import {AuthService} from '@servicesApp/auth';
 
 @Directive({
   selector: '[appRolesPermissions]'

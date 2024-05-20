@@ -6,7 +6,7 @@ import {map} from 'rxjs/operators';
 import {CreateRoleDto, RoleModel, UpdateRoleDto} from '@models/auth';
 import {PaginatorModel} from "@models/core";
 import {ServerResponse} from '@models/http-response';
-import {CoreService, MessageService} from '@services/core';
+import {CoreService, MessageService} from '@servicesApp/core';
 
 @Injectable({
   providedIn: 'root'

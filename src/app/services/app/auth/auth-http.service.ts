@@ -6,14 +6,10 @@ import {catchError, map, tap} from 'rxjs/operators';
 import {environment} from '@env/environment';
 import {LoginModel, PasswordChangeModel, PasswordResetModel, UpdateUserDto, UserModel} from '@models/auth';
 import {LoginResponse, ServerResponse} from '@models/http-response';
-import {AuthService} from '@services/auth';
-import {
-  CataloguesHttpService,
-  CoreService,
-  LocationsHttpService,
-  MessageService,
-} from '@services/core';
-import {RoutesService} from "@services/core/routes.service";
+import {AuthService} from '@servicesApp/auth';
+import {CoreService, MessageService} from '@servicesApp/core';
+import {RoutesService} from "@servicesApp/core";
+import {CataloguesHttpService, LocationsHttpService} from "@servicesHttp/core";
 import {RolePipe} from "@shared/pipes";
 
 @Injectable({

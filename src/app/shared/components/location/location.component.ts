@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {CoreService, MessageService} from "@services/core";
+import {CoreService, MessageService} from "@servicesApp/core";
 
 @Component({
   selector: 'app-location',

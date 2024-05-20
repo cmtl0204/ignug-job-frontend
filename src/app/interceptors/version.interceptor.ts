@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {tap} from "rxjs/operators";
-import {AuthService} from '@services/auth';
-import {CataloguesHttpService, CoreService, MessageService} from "@services/core";
+import {CoreService, MessageService} from "@servicesApp/core";
 import {ServerResponse} from "@models/http-response";
 
 @Injectable()
@@ -32,12 +31,12 @@ export class VersionInterceptor implements HttpInterceptor {
                 this.coreService.updateSystem();
               } else if (version != this.coreService.version) {
                 if (version != this.coreService.version) {
-                  this.messageService.questionVersion(version)
-                    .then((result) => {
-                      if (result.isConfirmed) {
-                        this.coreService.updateSystem();
-                      }
-                    });
+                  // this.messageService.questionVersion(version)
+                  //   .then(result => {
+                  //     if (result.isConfirmed) {
+                  //       this.coreService.updateSystem();
+                  //     }
+                  //   });
                 }
               }
             }

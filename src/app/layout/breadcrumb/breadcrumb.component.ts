@@ -1,8 +1,8 @@
 import {Component, inject, ViewEncapsulation} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {MenuItem, PrimeIcons} from 'primeng/api';
-import {BreadcrumbService, CoreService, RoutesService} from '@services/core';
-import {AuthHttpService, AuthService} from "@services/auth";
+import {BreadcrumbService, CoreService, RoutesService} from '@servicesApp/core';
+import {AuthHttpService, AuthService} from "@servicesApp/auth";
 import {environment} from "@env/environment";
 import {Router} from "@angular/router";
 
@@ -14,7 +14,7 @@ import {Router} from "@angular/router";
 })
 export class BreadcrumbComponent {
   protected readonly PrimeIcons = PrimeIcons;
-  protected readonly HOST_URL: string = environment.HOST_URL;
+  protected readonly HOST_URL: string = environment.API_URL;
   protected subscription: Subscription;
   protected items: MenuItem[] = [];
   protected home: MenuItem;

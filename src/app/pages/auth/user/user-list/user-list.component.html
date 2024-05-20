@@ -1,0 +1,137 @@
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <button pButton type="button"
+            (click)="redirectCreateForm()"
+            [icon]="IconButtonActionEnum.CREATE"
+            [label]="LabelButtonActionEnum.CREATE"
+            [loading]="coreService.isLoading"
+            [ngClass]="[ClassButtonActionEnum.CREATE]"></button>
+    <button pButton type="button"
+            (click)="findUsers()"
+            [icon]="IconButtonActionEnum.SYNC"
+            [label]="LabelButtonActionEnum.SYNC"
+            [loading]="coreService.isLoading"
+            [ngClass]="[ClassButtonActionEnum.SYNC,'ml-2']"></button>
+    @if (selectedItems.length > 0) {
+      <button pButton type="button"
+              (click)="removeAll()"
+              [icon]="PrimeIcons.TRASH"
+              [label]="LabelButtonActionEnum.DELETE"
+              [loading]="coreService.isLoading"
+              [ngClass]="[ClassButtonActionEnum.DELETE,'ml-2']"></button>
+    }
+  </div>
+  <div class="p-toolbar-group-right">
+
+  </div>
+</p-toolbar>
+
+<p-paginator
+  [rows]="paginator.limit"
+  [totalRecords]="paginator.totalItems"
+  (onPageChange)="paginate($event)"></p-paginator>
+
+<p-table
+  dataKey="id"
+  styleClass="p-datatable-striped"
+  [value]="items"
+  [columns]="columns"
+  [loading]="coreService.isLoading"
+  [(selection)]="selectedItems">
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <h1>{{ BreadcrumbEnum.USERS }}</h1>
+      <div class="p-input-icon-right ml-auto">
+        <p-inputGroup>
+          <button type="button" pButton [icon]="PrimeIcons.SEARCH"></button>
+          <input type="text"
+                 pInputText
+                 [formControl]="search"
+                 placeholder="Buscar...">
+        </p-inputGroup>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width: 3rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      @for (col of columns; track col) {
+        <th [pSortableColumn]="col.field">
+          {{ col.header }}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      }
+      <th class="text-center">
+        Acciones
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+    <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+      @if (rowData['id'] !== authService.auth.id) {
+        <td>
+          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+        </td>
+      } @else {
+        <td>
+        </td>
+      }
+
+      @for (col of columns; track col) {
+        <td>
+          <!--Objects-->
+          @if (rowData[col.field]?.id) {
+            @switch (col.field) {
+              @case ('object') {
+                {{ rowData[col.field].name }}
+              }
+            }
+          }
+
+          <!--Fields-->
+          @if (!rowData[col.field]?.id) {
+            @switch (col.field) {
+              @default {
+                {{ rowData[col.field] }}
+              }
+              @case ('roles') {
+                @for (role of rowData[col.field]; track role.id) {
+                  <p-tag severity="info" [value]="role.name" class="mr-1"></p-tag>
+                }
+              }
+              @case ('suspendedAt') {
+                @if (rowData.suspendedAt) {
+                  <p-tag severity="danger" value="Suspendido" class="mr-1"></p-tag>
+                }
+              }
+            }
+          }
+        </td>
+      }
+      <td class="text-center">
+        @if (rowData['id'] !== authService.auth.id) {
+          <button type="button" pButton [icon]="PrimeIcons.ELLIPSIS_V" (click)="selectItem(rowData)"></button>
+        } @else {
+          Usuario Actual
+        }
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage" let-columns>
+    <tr>
+      <td [attr.colspan]="columns.length">
+        {{ messageService.paginatorNoRecordsFound }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    {{ messageService.paginatorTotalRegisters(paginator.totalItems) }}
+  </ng-template>
+</p-table>
+
+<app-button-action [buttonActions]="buttonActions"
+                   [enabled]="isButtonActions"
+                   (isHide)="isButtonActions=!$event">
+</app-button-action>

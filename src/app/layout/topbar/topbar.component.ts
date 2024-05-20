@@ -1,8 +1,8 @@
 import {Component, inject, ViewEncapsulation} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {MenuItem, MenuItemCommandEvent, PrimeIcons} from 'primeng/api';
-import {BreadcrumbService, CoreService, RoutesService} from '@services/core';
-import {AuthHttpService, AuthService, MenusHttpService} from "@services/auth";
+import {BreadcrumbService, CoreService, RoutesService} from '@servicesApp/core';
+import {AuthHttpService, AuthService, MenusHttpService} from "@servicesApp/auth";
 import {environment} from "@env/environment";
 import {MenuModel} from "@models/auth";
 

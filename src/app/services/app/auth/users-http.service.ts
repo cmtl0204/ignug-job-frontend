@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {CreateUserDto, UpdateUserDto, UserModel} from '@models/auth';
 import {ServerResponse} from '@models/http-response';
-import {MessageService} from "@services/core";
+import {MessageService} from "@servicesApp/core";
 
 @Injectable({
   providedIn: 'root'
