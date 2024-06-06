@@ -1,5 +1,3 @@
-import {PrimeIcons} from "primeng/api";
-
 export enum IdButtonActionEnum {
   APPROVED = 'approved',
   REJECTED = 'rejected',

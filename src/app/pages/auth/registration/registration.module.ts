@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {AuthenticationRoutingModule} from './authentication-routing.module';
+import {RegistrationRoutingModule} from './registration-routing.module';
 import {ReactiveFormsModule} from "@angular/forms";
 
 import {DividerModule} from "primeng/divider";
@@ -13,22 +13,23 @@ import {RippleModule} from "primeng/ripple";
 
 import {SharedModule} from "@shared/shared.module";
 
-import {LoginComponent} from "./login/login.component";
-import {PasswordChangeComponent} from "./password-change/password-change.component";
-import {PasswordResetComponent} from "./password-reset/password-reset.component";
-import {RoleSelectComponent} from "./role-select/role-select.component";
 import {DropdownModule} from "primeng/dropdown";
 import {MessageModule} from "primeng/message";
 import {PanelModule} from "primeng/panel";
 import {AvatarModule} from "primeng/avatar";
+import {ProfessionalComponent} from './professional/professional.component';
+import {CompanyComponent} from './company/company.component';
+import {RegistrationComponent} from './registration.component';
+import {ToolbarModule} from "primeng/toolbar";
+import {OverlayPanelModule} from "primeng/overlaypanel";
 
 
 @NgModule({
-  declarations: [LoginComponent, PasswordChangeComponent, PasswordResetComponent, RoleSelectComponent],
-  exports: [PasswordChangeComponent],
+  declarations: [ProfessionalComponent, CompanyComponent, RegistrationComponent],
+  exports: [],
   imports: [
     CommonModule,
-    AuthenticationRoutingModule,
+    RegistrationRoutingModule,
     ReactiveFormsModule,
     SharedModule,
     ButtonModule,
@@ -43,7 +44,9 @@ import {AvatarModule} from "primeng/avatar";
     MessageModule,
     PanelModule,
     AvatarModule,
+    ToolbarModule,
+    OverlayPanelModule,
   ]
 })
-export class AuthenticationModule {
+export class RegistrationModule {
 }

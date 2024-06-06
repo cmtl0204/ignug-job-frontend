@@ -1,8 +1,9 @@
 body {
-  background-image: url("/assets/images/pages/auth/login/password-reset.jpg");
+  background-image: url("/assets/images/pages/auth/login/c.webp");
   //background-repeat: no-repeat;
   background-size: cover;
 }
+
 
 .p-panel-content {
   opacity: 90%;
@@ -14,4 +15,10 @@ body {
 
 .p-panel-footer {
   opacity: 80%;
+}
+
+.panel {
+  position: absolute;
+  bottom: 50%;
+  width: 100%;
 }

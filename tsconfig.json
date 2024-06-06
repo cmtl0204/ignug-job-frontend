@@ -29,6 +29,9 @@
       "@env/*": [
         "./src/environments/*"
       ],
+      "@guards/*": [
+        "./src/app/guards/*"
+      ],
       "@layout": [
         "./src/app/layout"
       ],

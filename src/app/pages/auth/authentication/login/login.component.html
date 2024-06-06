@@ -1,14 +1,19 @@
-<div class="login-page">
-  <div class="login-form">
-    <div class="panel-auth">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid">
-        <div class="field text-center">
-          <img src="assets/images/logo/logo-sm.png" alt="">
-          <h2>{{ authService.system }}</h2>
+<div class="grid">
+  <p-panel class="col-12 xl:col-4 lg:col-4 md:col-6 sm:col-12">
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center gap-2">
+        <span class="font-bold">{{ authService.system }}</span>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid grid">
+        <div class="field col-12 text-center">
+          <h2>Ingreso al Sistema</h2>
         </div>
 
-        <div class="field">
-          <label for="username" appLabel label="Usuario" [required]="usernameField"></label>
+        <div class="field col-12">
+          <label for="username" appLabel [label]="LoginFormEnum.username" [required]="usernameField"></label>
           <input pInputText id="username" formControlName="username">
           <small appErrorMessage
                  [errors]="usernameField.errors"
@@ -17,8 +22,8 @@
           </small>
         </div>
 
-        <div class="field">
-          <label for="password" appLabel label="Contraseña" [required]="passwordField"></label>
+        <div class="field col-12">
+          <label for="password" appLabel [label]="LoginFormEnum.password" [required]="passwordField"></label>
           <p-password id="password" formControlName="password" [feedback]="false"></p-password>
           <small appErrorMessage
                  [errors]="passwordField.errors"
@@ -28,30 +33,35 @@
         </div>
 
         @if (coreService.isLoading) {
-          <div class="field">
+          <div class="field col-12">
             <app-progress-bar [message]="messageService.progressBarLogin"></app-progress-bar>
           </div>
         }
 
-        <div class="field">
+        <div class="field col-12">
           <button pButton pRipple
                   label="Continuar"
                   [icon]="PrimeIcons.SIGN_IN"></button>
         </div>
-
-        <div class="formgrid grid">
-          <div class="field xl:col-6 lg:col-6 md:col-12 sm:col-12">
-            <button pButton pRipple type="button" label="Recuperar contraseña"
-                    class="p-button-info"
-                    icon="pi pi-key" (click)="redirectPasswordReset()"></button>
-          </div>
-          <div class="field xl:col-6 lg:col-6 md:col-12 sm:col-12">
-            <button pButton pRipple type="button" label="Manuales"
-                    class="p-button-warning"
-                    icon="pi pi-book" (click)="redirectPasswordReset()"></button>
-          </div>
-        </div>
       </form>
-    </div>
-  </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <div class="flex flex-wrap align-items-center justify-content-between gap-3">
+        <button pButton pRipple
+                type="button"
+                class="w-full p-button-info"
+                [icon]="PrimeIcons.KEY"
+                label="Recuperar Contraseña"
+                (click)="redirectPasswordReset()"></button>
+
+        <button pButton pRipple
+                type="button"
+                class="w-full p-button-success"
+                [icon]="PrimeIcons.PLUS"
+                label="Crear Cuenta"
+                (click)="redirectRegistration()"></button>
+      </div>
+    </ng-template>
+  </p-panel>
 </div>

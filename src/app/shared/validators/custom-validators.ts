@@ -11,11 +11,10 @@ export class CustomValidators {
   }
 
   static passwordMatchValidator(control: AbstractControl) {
-    const newPassword: string = control.get('newPassword')?.value; // get password from our password form control
-    const passwordConfirmation: string = control.get('passwordConfirmation')?.value; // get password from our confirmPassword form control
-    // compare is the password math
-    if (newPassword !== passwordConfirmation) {
-      // if they don't match, set an error in our confirmPassword form control
+    const passwordNew: string = control.get('passwordNew')?.value;
+    const passwordConfirmation: string = control.get('passwordConfirmation')?.value;
+
+    if (passwordNew !== passwordConfirmation) {
       control.get('passwordConfirmation')?.setErrors({noPasswordMatch: true});
       return { noPasswordMatch: true };
     } else {

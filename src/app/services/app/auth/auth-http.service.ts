@@ -59,18 +59,17 @@ export class AuthHttpService {
       );
   }
 
-  login(credentials: LoginModel): Observable<ServerResponse> {
+  login(credentials: LoginModel): Observable<LoginResponse> {
     const url = `${this.API_URL}/login`;
 
     this.findCatalogues();
     this.findLocations();
 
-    return this.httpClient.post<ServerResponse>(url, credentials)
+    return this.httpClient.post<LoginResponse>(url, credentials)
       .pipe(
         map(response => {
-          this.authService.token = response.data.accessToken;
+          this.authService.token = response.data.token;
           this.authService.auth = response.data.user;
-          this.authService.roles = response.data.user.roles;
           return response;
         })
       );
@@ -125,10 +124,6 @@ export class AuthHttpService {
         map(response => {
           this.messageService.success(response);
           return response;
-        }),
-        catchError(error => {
-          this.authService.removeLogin();
-          return throwError(error);
         })
       );
   }

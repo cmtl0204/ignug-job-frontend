@@ -27,11 +27,7 @@ export class TopbarComponent {
 
   constructor() {
     if (this.authService.auth) {
-      if (this.authService.fiscalYear) {
-        this.nickname = `${this.authService.auth.name} ${this.authService.auth.lastname} - ${this.authService.role.name} - ${this.authService.fiscalYear.year}`;
-      } else {
-        this.nickname = `${this.authService.auth.name} ${this.authService.auth.lastname} - ${this.authService.role.name}`;
-      }
+      this.nickname = `${this.authService.auth.name} ${this.authService.auth.lastname} - ${this.authService.role.name}`;
     }
 
     // this.home = {label: 'Home', icon: PrimeIcons.HOME, routerLink: `/core/dashboards/${this.authService.role?.code}`};

@@ -56,6 +56,7 @@ import {DialogModule} from "primeng/dialog";
 import {ButtonActionComponent} from './components/button-action/button-action.component';
 import {MapComponent} from './components/map/map.component';
 import { MenuModule } from 'primeng/menu';
+import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { MenuModule } from 'primeng/menu';
     EnabledPipe,
     EnabledSeverityPipe,
     YesNoPipe,
+    MessageDialogComponent,
   ],
   exports: [
     SkeletonComponent,
@@ -121,7 +123,8 @@ import { MenuModule } from 'primeng/menu';
     EnabledPipe,
     EnabledSeverityPipe,
     YesNoPipe,
-    MenuModule
+    MenuModule,
+    MessageDialogComponent
   ],
   imports: [
     CommonModule,

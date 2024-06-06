@@ -1,14 +1,19 @@
-<div class="login-page">
-  <div class="login-form">
-    <div class="p-fluid panel-auth">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="field text-center">
-          <img src="assets/images/logo/logo-sm.png" alt="">
-          <h1>Seleccione un Rol</h1>
+<div class="grid">
+  <p-panel class="col-12 xl:col-4 lg:col-4 md:col-6 sm:col-12">
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center gap-2">
+        <span class="font-bold">{{ authService.system }}</span>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid grid">
+        <div class="field col-12 text-center">
+          <h2>Seleccione un Rol</h2>
         </div>
 
-        <div class="field">
-          <label for="role" appLabel label="Seleccione un Rol" [required]="roleField"></label>
+        <div class="field col-12">
+          <label for="role" appLabel [label]="LoginFormEnum.roleSelect" [required]="roleField"></label>
           <p-dropdown id="role"
                       formControlName="role"
                       dataKey="id"
@@ -25,61 +30,23 @@
           </small>
         </div>
 
-        @if (unitField.hasValidator(Validators.required)) {
-          <div class="field">
-            <label for="unit" appLabel label="Seleccione una Unidad" [required]="unitField"></label>
-            <p-dropdown id="unit"
-                        formControlName="unit"
-                        dataKey="id"
-                        [options]="units"
-                        optionLabel="name"
-                        [filter]="true"
-                        filterBy="name"
-                        placeholder="Seleccione...">
-            </p-dropdown>
-            <small appErrorMessage
-                   [errors]="roleField.errors"
-                   [touched]="roleField.touched"
-                   [dirty]="roleField.dirty">
-            </small>
-          </div>
-        }
-
-        @if (fiscalYearField.hasValidator(Validators.required)) {
-        <div class="field">
-          <label for="fiscalYear" appLabel label="Seleccione un año fiscal" [required]="fiscalYearField"></label>
-          <p-dropdown id="fiscalYear"
-                      formControlName="fiscalYear"
-                      dataKey="id"
-                      [options]="fiscalYears"
-                      optionLabel="name"
-                      [filter]="true"
-                      filterBy="name"
-                      placeholder="Seleccione...">
-          </p-dropdown>
-          <small appErrorMessage
-                 [errors]="roleField.errors"
-                 [touched]="roleField.touched"
-                 [dirty]="roleField.dirty">
-          </small>
-        </div>
-        }
-
-        <div class="field">
+        <div class="field col-12">
           <button pButton pRipple
                   label="Continuar"
                   [icon]="PrimeIcons.SIGN_IN"></button>
         </div>
-
-        <div class="field">
-          <button pButton pRipple type="button"
-                  class="p-button-outlined"
-                  label="Regresar al login"
-                  [icon]="PrimeIcons.ARROW_LEFT"
-                  (click)="routesService.login()"></button>
-        </div>
       </form>
-    </div>
-  </div>
-</div>
+    </ng-template>
 
+    <ng-template pTemplate="footer">
+      <div class="flex flex-wrap align-items-center justify-content-between gap-3">
+        <button pButton pRipple
+                type="button"
+                class="p-button-secondary p-button-raised w-full"
+                [icon]="PrimeIcons.ARROW_LEFT"
+                label="Regresar al Login"
+                (click)="redirectLogin()"></button>
+      </div>
+    </ng-template>
+  </p-panel>
+</div>

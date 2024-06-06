@@ -1,35 +1,42 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PrimeIcons} from "primeng/api";
 import {AuthHttpService, AuthService} from '@servicesApp/auth';
 import {CoreService, MessageService, RoutesService} from '@servicesApp/core';
+import {LoginFormEnum} from "@shared/enums";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class LoginComponent implements OnInit {
-  protected readonly PrimeIcons = PrimeIcons;
-  form: FormGroup;
+  //Services
+  protected readonly authService = inject(AuthService);
+  private readonly authHttpService = inject(AuthHttpService);
+  protected readonly coreService = inject(CoreService);
+  private readonly formBuilder = inject(FormBuilder);
+  public readonly messageService = inject(MessageService);
+  private readonly routesService = inject(RoutesService);
 
-  constructor(private formBuilder: FormBuilder,
-              private authHttpService: AuthHttpService,
-              protected coreService: CoreService,
-              public messageService: MessageService,
-              protected authService: AuthService,
-              private routesService: RoutesService) {
-    this.form = this.newForm();
+  //Form
+  protected form!: FormGroup;
+
+  //Enums
+  protected readonly PrimeIcons = PrimeIcons;
+  protected readonly LoginFormEnum = LoginFormEnum;
+
+  constructor() {
+    this.buildForm();
   }
 
   ngOnInit(): void {
-
   }
 
-  newForm(): FormGroup {
-    return this.formBuilder.group({
+  buildForm() {
+    this.form = this.formBuilder.group({
       // username: ['reviewer', [Validators.required]],
       username: [null, [Validators.required]],
       // password: ['12345678', [Validators.required]],
@@ -65,6 +72,10 @@ export class LoginComponent implements OnInit {
   /** Redirects **/
   redirectPasswordReset() {
     this.routesService.passwordReset();
+  }
+
+  redirectRegistration() {
+    this.routesService.registration();
   }
 
   /** Getters **/

@@ -1,0 +1,94 @@
+<div class="grid">
+  <div class="col-12 xl:col-8 lg:col-8 md:col-10 sm:col-12 xl:col-offset-2 lg:col-offset-2 md:col-offset-1">
+
+    <app-skeleton *ngIf="coreService.isLoading" [type]="SkeletonEnum.CARD"></app-skeleton>
+
+    <p-toolbar *ngIf="!coreService.isLoading">
+      <div class="p-toolbar-group-left">
+        <app-header-form [id]="'new'"></app-header-form>
+      </div>
+      <div class="p-toolbar-group-right">
+        <button pButton pRipple type="button"
+                (click)="redirectRegistration()"
+                [icon]="IconButtonActionEnum.CANCEL"
+                [label]="LabelButtonActionEnum.CANCEL"
+                [loading]="coreService.isLoading"
+                [ngClass]="[ClassButtonActionEnum.CANCEL]"></button>
+        <p-divider layout="vertical"></p-divider>
+        <button pButton pRipple type="button"
+                (click)="onSubmit()"
+                [icon]="IconButtonActionEnum.SAVE"
+                [label]="LabelButtonActionEnum.SAVE"
+                [loading]="coreService.isLoading"
+                [ngClass]="[ClassButtonActionEnum.SAVE]"></button>
+      </div>
+    </p-toolbar>
+
+    <p-panel *ngIf="!coreService.isLoading">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid grid">
+        <!-- denomination & name & shortName -->
+        <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="tradeName" [label]="CompanyRegistrationFormEnum.tradeName"
+                 [required]="tradeNameField"></label>
+          <input pInputText type="text" id="tradeName" formControlName="tradeName"/>
+          <small appErrorMessage
+                 [errors]="tradeNameField.errors"
+                 [touched]="tradeNameField.touched"
+                 [dirty]="tradeNameField.dirty">
+          </small>
+        </div>
+
+        <div class="field col-12 xl:col-3 lg:col-3 md:col-3 sm:col-12">
+          <label appLabel for="web" [label]="CompanyRegistrationFormEnum.web" [required]="webField"></label>
+          <app-help-field (mouseenter)="opDenominationField.toggle($event)"
+                          (mouseleave)="opDenominationField.hide()"></app-help-field>
+          <input pInputText type="text" id="web" formControlName="web"/>
+          <small appErrorMessage
+                 [errors]="webField.errors"
+                 [touched]="webField.touched"
+                 [dirty]="webField.dirty">
+          </small>
+        </div>
+
+        <div class="field col-12 xl:col-3 lg:col-3 md:col-3 sm:col-12">
+          <label appLabel for="personTypeId" [label]="CompanyRegistrationFormEnum.personType"
+                 [required]="personTypeIdField"></label>
+          <input pInputText type="text" id="personTypeId" formControlName="personTypeId"/>
+          <small appErrorMessage
+                 [errors]="personTypeIdField.errors"
+                 [touched]="personTypeIdField.touched"
+                 [dirty]="personTypeIdField.dirty">
+          </small>
+        </div>
+      </form>
+    </p-panel>
+  </div>
+</div>
+
+<p-overlayPanel #opWebField>
+  <ng-template pTemplate="content">
+    <h3>Ejemplos:</h3>
+    <p-divider></p-divider>
+    <ul>
+      <li>https://midominio.com</li>
+    </ul>
+  </ng-template>
+</p-overlayPanel>
+
+<p-overlayPanel #opDenominationField>
+  <ng-template pTemplate="content">
+    <h3>Ejemplos:</h3>
+    <p-divider></p-divider>
+    <ul>
+      <li>Universidad</li>
+      <li>Escuela Politécnica</li>
+      <li>Instituto Superior Tecnológico</li>
+    </ul>
+  </ng-template>
+</p-overlayPanel>
+
+<p-overlayPanel #opPhoneField>
+  <ng-template pTemplate="content">
+    <p>Incluir código provincial</p>
+  </ng-template>
+</p-overlayPanel>

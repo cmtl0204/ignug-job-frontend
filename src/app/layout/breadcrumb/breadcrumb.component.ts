@@ -29,11 +29,7 @@ export class BreadcrumbComponent {
 
   constructor() {
     if (this.authService.auth) {
-      if (this.authService.fiscalYear) {
-        this.nickname = `${this.authService.auth.identification} - ${this.authService.role.name} - ${this.authService.fiscalYear.year}`;
-      } else {
-        this.nickname = `${this.authService.auth.identification} - ${this.authService.role.name}`;
-      }
+      this.nickname = `${this.authService.auth.identification} - ${this.authService.role.name}`;
     }
 
     this.subscription = this.breadcrumbService.itemsHandler.subscribe(response => {

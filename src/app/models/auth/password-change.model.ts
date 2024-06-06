@@ -1,5 +1,5 @@
 export interface PasswordChangeModel {
   confirmationPassword?: string;
-  oldPassword?: string;
-  newPassword?: string;
+  passwordOld?: string;
+  passwordNew?: string;
 }

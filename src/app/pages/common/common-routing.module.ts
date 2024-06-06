@@ -6,8 +6,6 @@ import {ForbiddenComponent} from './forbidden/forbidden.component';
 import {UnauthorizedComponent} from './unauthorized/unauthorized.component';
 import {InternalServerErrorComponent} from './internal-server-error/internal-server-error.component'
 
-import {ExitGuard, RoleGuard} from '@shared/guards';
-
 const routes: Routes = [
   {
     path: '403', component: ForbiddenComponent

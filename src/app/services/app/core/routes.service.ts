@@ -303,4 +303,16 @@ export class RoutesService {
     this.router.navigateByUrl(`/password-reset`);
   }
 
+  registration() {
+    this.router.navigateByUrl(`/auth/registrations`);
+  }
+
+  professionalRegistration() {
+    this.router.navigateByUrl(`/auth/registrations/professionals`);
+  }
+
+  companyRegistration() {
+    this.router.navigateByUrl(`/auth/registrations/companies`);
+  }
+
 }
