@@ -57,6 +57,7 @@ import {ButtonActionComponent} from './components/button-action/button-action.co
 import {MapComponent} from './components/map/map.component';
 import { MenuModule } from 'primeng/menu';
 import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
+import { MessageConfirmDialogComponent } from './components/message-confirm-dialog/message-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { MessageDialogComponent } from './components/message-dialog/message-dial
     EnabledSeverityPipe,
     YesNoPipe,
     MessageDialogComponent,
+    MessageConfirmDialogComponent,
   ],
   exports: [
     SkeletonComponent,
@@ -124,7 +126,8 @@ import { MessageDialogComponent } from './components/message-dialog/message-dial
     EnabledSeverityPipe,
     YesNoPipe,
     MenuModule,
-    MessageDialogComponent
+    MessageDialogComponent,
+    MessageConfirmDialogComponent
   ],
   imports: [
     CommonModule,

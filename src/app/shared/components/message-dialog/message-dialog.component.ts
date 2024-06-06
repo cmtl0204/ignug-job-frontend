@@ -1,5 +1,5 @@
-import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
-import {CoreService, MessageDialogService} from '@servicesApp/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
+import {MessageDialogService} from '@servicesApp/core';
 import {PrimeIcons} from "primeng/api";
 
 type Severity = 'success' | 'info' | 'warning' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast';
@@ -11,7 +11,6 @@ type Severity = 'success' | 'info' | 'warning' | 'danger' | 'help' | 'primary' |
 })
 export class MessageDialogComponent {
   protected readonly messageDialogService = inject(MessageDialogService);
-  @Output() isModalVisible = new EventEmitter();
   protected readonly Array = Array;
   protected readonly PrimeIcons = PrimeIcons;
 }

@@ -4,16 +4,30 @@ import {default as Swal} from 'sweetalert2';
 import {PaginatorModel} from '@models/core';
 import {ServerResponse} from '@models/http-response';
 import {CoreService} from "@servicesApp/core/core.service";
-type Severity = 'success' | 'info' | 'warning' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast';
+
+type Severity =
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'danger'
+  | 'help'
+  | 'primary'
+  | 'secondary'
+  | 'contrast'
+  | null
+  | undefined;
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageDialogService {
   private _modalVisible: boolean = false;
+  private _modalConfirmVisible: boolean = false;
   private _modalTitle: string = '';
-  private _modalSeverity: Severity = 'info';
+  private _modalAcceptSeverity: Severity = null;
+  private _modalRejectSeverity: Severity = 'danger';
   private _modalMessage: string | string[] = '';
+  private _modalResult: boolean = false;
 
   constructor() {
   }
@@ -63,7 +77,7 @@ export class MessageDialogService {
     if (Array.isArray(message)) message.sort();
 
     this._modalVisible = true;
-    this._modalSeverity = 'danger';
+    this._modalAcceptSeverity = 'danger';
     this._modalTitle = title;
     this._modalMessage = message;
   }
@@ -72,7 +86,7 @@ export class MessageDialogService {
     if (Array.isArray(message)) message.sort();
 
     this._modalVisible = true;
-    this._modalSeverity = 'danger';
+    this._modalAcceptSeverity = 'danger';
     this._modalTitle = 'Existen errores en los siguientes campos';
     this._modalMessage = message;
   }
@@ -91,17 +105,11 @@ export class MessageDialogService {
     });
   }
 
-  questionDelete(title = '¿Está seguro de eliminar?', text = 'No podrá recuperar esta información!') {
-    return Swal.fire({
-      title,
-      text,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: '<i class="pi pi-trash"> Si, eliminar</i>',
-      cancelButtonText: 'Cancelar'
-    });
+  questionDelete(title = '¿Está seguro de eliminar?', message = 'No podrá recuperar esta información!') {
+    this._modalConfirmVisible = true;
+    this._modalRejectSeverity = 'danger';
+    this._modalTitle = title;
+    this._modalMessage = message;
   }
 
   questionOnExit(title = '¿Está seguro de salir?', text = 'Se perderá la información que no haya guardado!') {
@@ -206,8 +214,12 @@ export class MessageDialogService {
     return this._modalMessage;
   }
 
-  get modalSeverity(): Severity  {
-    return this._modalSeverity;
+  get modalAcceptSeverity(): Severity {
+    return this._modalAcceptSeverity;
+  }
+
+  get modalRejectSeverity(): Severity {
+    return this._modalRejectSeverity;
   }
 
   get modalVisible(): boolean {
@@ -216,5 +228,21 @@ export class MessageDialogService {
 
   set modalVisible(value: boolean) {
     this._modalVisible = value;
+  }
+
+  get modalConfirmVisible(): boolean {
+    return this._modalConfirmVisible;
+  }
+
+  set modalConfirmVisible(value: boolean) {
+    this._modalConfirmVisible = value;
+  }
+
+  get modalResult(): boolean {
+    return this._modalResult;
+  }
+
+  set modalResult(value: boolean) {
+    this._modalResult = value;
   }
 }

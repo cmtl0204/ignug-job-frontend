@@ -9,6 +9,9 @@ import {
   LabelButtonActionEnum,
   SkeletonEnum
 } from "@shared/enums";
+import {
+  MessageConfirmDialogComponent
+} from "@shared/components/message-confirm-dialog/message-confirm-dialog.component";
 
 @Component({
   selector: 'app-company',
@@ -93,7 +96,8 @@ export class CompanyComponent {
 
   /** Redirects **/
   redirectRegistration() {
-    this.routesService.registration();
+    this.messageDialogService.questionDelete();
+    // this.routesService.registration();
   }
 
   /** Getters **/
