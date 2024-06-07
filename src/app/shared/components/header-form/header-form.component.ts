@@ -10,11 +10,13 @@ import {RoutesEnum} from "@shared/enums";
 export class HeaderFormComponent {
   protected readonly PrimeIcons = PrimeIcons;
   @Input() id: string | null = null;
-  @Input() panelHeader: string | null = null;
+  @Input() label: string  = 'Crear';
+  @Input() icon: string  = PrimeIcons.PLUS;
+  protected message: string = `Todos los campos con <b class="p-error">*</b> son obligatorios.`;
 
   constructor() {
 
   }
 
-    protected readonly RoutesEnum = RoutesEnum;
+  protected readonly RoutesEnum = RoutesEnum;
 }

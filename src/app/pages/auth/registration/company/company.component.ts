@@ -27,7 +27,7 @@ export class CompanyComponent {
   public readonly messageService = inject(MessageService);
   public readonly messageDialogService = inject(MessageDialogService);
   private readonly routesService = inject(RoutesService);
-
+  private modalResult$ = this.messageDialogService.modalResult$;
   //Form
   protected form!: FormGroup;
   private formErrors: string[] = [];
@@ -75,7 +75,7 @@ export class CompanyComponent {
       this.register();
     } else {
       this.form.markAllAsTouched();
-      this.messageDialogService.fieldErrors( this.formErrors);
+      this.messageDialogService.fieldErrors(this.formErrors);
       // this.messageDialogService.errorCustom('Verifique los datos','Revise los campos');
     }
   }
@@ -96,7 +96,11 @@ export class CompanyComponent {
 
   /** Redirects **/
   redirectRegistration() {
-    this.messageDialogService.questionDelete();
+    this.messageDialogService.questionDelete().subscribe(result => {
+      if (result) {
+        this.routesService.registration();
+      }
+    });
     // this.routesService.registration();
   }
 

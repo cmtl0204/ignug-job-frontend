@@ -5,7 +5,7 @@
 
     <p-toolbar *ngIf="!coreService.isLoading">
       <div class="p-toolbar-group-left">
-        <app-header-form [id]="'new'"></app-header-form>
+        <app-header-form [id]="'new'" label="Registro" [icon]="PrimeIcons.FILE_EDIT"></app-header-form>
       </div>
       <div class="p-toolbar-group-right">
         <button pButton pRipple type="button"

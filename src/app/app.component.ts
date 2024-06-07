@@ -7,6 +7,6 @@ import {environment} from "../environments/environment";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'ignug-job-frontend';
+  title = 'Bolsa de Empleo';
   env = environment.API_URL;
 }

@@ -1,26 +1,28 @@
-<p-dialog [modal]="true"
-          [(visible)]="messageDialogService.modalConfirmVisible"
-          [style]="{ width: '30rem' }"
-          [closable]="false">
+<p-dialog
+  [modal]="true"
+  [(visible)]="messageDialogService.modalConfirmVisible"
+  [style]="{ width: '30rem' }"
+  [closable]="false">
   <ng-template pTemplate="header">
-    Menasje de Confirmación
+    {{ messageDialogService.modalTitle }}
   </ng-template>
 
   <ng-template pTemplate="content">
-    <h3 class="text-center">{{ messageDialogService.modalTitle }}</h3>
-
-    <p-divider></p-divider>
-
-    <p>{{ messageDialogService.modalMessage }}</p>
-
+    <div class="text-center">
+      <i [ngClass]="[PrimeIcons.TRASH]" style="font-size: 3rem; color: red"></i>
+      <h2>{{ messageDialogService.modalMessage }}</h2>
+    </div>
   </ng-template>
 
   <ng-template pTemplate="footer">
     <div class="flex justify-content-center gap-2">
-      <p-button label="Sí" [severity]="messageDialogService.modalAcceptSeverity"
-                (click)="messageDialogService.modalVisible=false; messageDialogService.modalResult=true"/>
+      <p-button label="Sí"
+                [severity]="messageDialogService.modalAcceptSeverity"
+                (click)="accept()"/>
       <p-button label="No" [severity]="messageDialogService.modalRejectSeverity"
-                (click)="messageDialogService.modalVisible=false; messageDialogService.modalResult=false"/>
+                (click)="reject()"/>
     </div>
   </ng-template>
 </p-dialog>
+
+<p-toast key="messageConfirm"/>

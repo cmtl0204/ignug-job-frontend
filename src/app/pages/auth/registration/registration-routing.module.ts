@@ -6,14 +6,17 @@ import {RegistrationComponent} from "./registration.component";
 
 const routes: Routes = [
   {
+    title:'Registration',
     path: '',
     component: RegistrationComponent
   },
   {
+    title:'Professionals Registration',
     path: 'professionals',
     component: ProfessionalComponent
   },
   {
+    title:'Companies Registration',
     path: 'companies',
     component: CompanyComponent
   },

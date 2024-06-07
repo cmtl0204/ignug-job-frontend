@@ -4,6 +4,8 @@ import {default as Swal} from 'sweetalert2';
 import {PaginatorModel} from '@models/core';
 import {ServerResponse} from '@models/http-response';
 import {CoreService} from "@servicesApp/core/core.service";
+import {BehaviorSubject, Observable} from "rxjs";
+import {MessageService} from "primeng/api";
 
 type Severity =
   | 'success'
@@ -21,13 +23,23 @@ type Severity =
   providedIn: 'root'
 })
 export class MessageDialogService {
+  private readonly messageService = inject(MessageService);
   private _modalVisible: boolean = false;
   private _modalConfirmVisible: boolean = false;
   private _modalTitle: string = '';
   private _modalAcceptSeverity: Severity = null;
   private _modalRejectSeverity: Severity = 'danger';
   private _modalMessage: string | string[] = '';
-  private _modalResult: boolean = false;
+  private _modalResult = new BehaviorSubject<boolean>(false);
+  public modalResult$ = this._modalResult.asObservable();
+
+  accept(): void {
+    this._modalResult.next(true);
+  }
+
+  reject(): void {
+    this._modalResult.next(false);
+  }
 
   constructor() {
   }
@@ -86,7 +98,7 @@ export class MessageDialogService {
     if (Array.isArray(message)) message.sort();
 
     this._modalVisible = true;
-    this._modalAcceptSeverity = 'danger';
+    this._modalAcceptSeverity = 'secondary';
     this._modalTitle = 'Existen errores en los siguientes campos';
     this._modalMessage = message;
   }
@@ -106,10 +118,15 @@ export class MessageDialogService {
   }
 
   questionDelete(title = '¿Está seguro de eliminar?', message = 'No podrá recuperar esta información!') {
+    this._modalResult.next(false);
+
     this._modalConfirmVisible = true;
+    this._modalAcceptSeverity = 'primary';
     this._modalRejectSeverity = 'danger';
     this._modalTitle = title;
     this._modalMessage = message;
+
+    return this.modalResult$;
   }
 
   questionOnExit(title = '¿Está seguro de salir?', text = 'Se perderá la información que no haya guardado!') {
@@ -150,60 +167,17 @@ export class MessageDialogService {
     });
   }
 
-  get requiredFields(): string {
-    return `Todos los campos con <b class="p-error">*</b> son obligatorios.`;
+  showSuccess() {
+    this.messageService.add({
+      key: 'messageConfirm',
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Message Content'
+    });
   }
 
-  paginatorTotalRegisters(totalItems: number): string {
-    return 'En total hay ' + (totalItems) + ' registros.';
-  }
-
-  get paginatorNoRecordsFound(): string {
-    return 'No se encontraron registros.';
-  }
-
-  get buttonFormSaveOrUpdate(): string {
-    return `Guardar`;
-  }
-
-  get buttonFormClose(): string {
-    return `Cerrar`;
-  }
-
-  get progressBarProcess(): string {
-    return `Procesando...`;
-  }
-
-  get progressBarSaveOrUpdate(): string {
-    return `Guardando...`;
-  }
-
-  get progressBarDownload(): string {
-    return `Descargando...`;
-  }
-
-  get progressBarUpload(): string {
-    return `Cargando...`;
-  }
-
-  get progressBarLogin(): string {
-    return `Ingresando...`;
-  }
-
-  get progressBarRequestPasswordReset(): string {
-    return `Enviando correo...`;
-  }
-
-  get progressBarDelete(): string {
-    return `Eliminando...`;
-  }
-
-  get messageSuccessDelete(): string {
-    return `Se eliminó correctamente`;
-  }
-
-  get exceededMaxAttempts(): string {
-    return 'Exceeded the maximum number of attempts allowed';
+  showError() {
+    this.messageService.add({key: 'messageConfirm', severity: 'error', summary: 'Error', detail: 'Message Content'});
   }
 
   get modalTitle(): string {
@@ -236,13 +210,5 @@ export class MessageDialogService {
 
   set modalConfirmVisible(value: boolean) {
     this._modalConfirmVisible = value;
-  }
-
-  get modalResult(): boolean {
-    return this._modalResult;
-  }
-
-  set modalResult(value: boolean) {
-    this._modalResult = value;
   }
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {MessageDialogService} from '@servicesApp/core';
 import {PrimeIcons} from "primeng/api";
 
@@ -13,4 +13,6 @@ export class MessageDialogComponent {
   protected readonly messageDialogService = inject(MessageDialogService);
   protected readonly Array = Array;
   protected readonly PrimeIcons = PrimeIcons;
+
+
 }

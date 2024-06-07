@@ -39,6 +39,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {SidebarModule} from "primeng/sidebar";
 import {BadgeModule} from "primeng/badge";
 import {PanelMenuModule} from "primeng/panelmenu";
+import {ThemeComponent} from "./layout/theme/theme.component";
 
 registerLocaleData(localEs, 'es');
 
@@ -52,6 +53,7 @@ registerLocaleData(localEs, 'es');
     SidebarComponent,
     TopbarComponent,
     AboutComponent,
+    ThemeComponent,
   ],
   imports: [
     BrowserModule,

@@ -58,6 +58,7 @@ import {MapComponent} from './components/map/map.component';
 import { MenuModule } from 'primeng/menu';
 import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
 import { MessageConfirmDialogComponent } from './components/message-confirm-dialog/message-confirm-dialog.component';
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -129,34 +130,35 @@ import { MessageConfirmDialogComponent } from './components/message-confirm-dial
     MessageDialogComponent,
     MessageConfirmDialogComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    SkeletonModule,
-    TableModule,
-    ProgressBarModule,
-    PaginatorModule,
-    ToolbarModule,
-    ButtonModule,
-    RippleModule,
-    InputTextModule,
-    TooltipModule,
-    FileUploadModule,
-    MessageModule,
-    InputTextareaModule,
-    DividerModule,
-    CardModule,
-    OverlayPanelModule,
-    TagModule,
-    PanelMenuModule,
-    SidebarModule,
-    SpeedDialModule,
-    ConfirmPopupModule,
-    ConfirmDialogModule,
-    PanelModule,
-    DialogModule,
-    MenuModule
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        SkeletonModule,
+        TableModule,
+        ProgressBarModule,
+        PaginatorModule,
+        ToolbarModule,
+        ButtonModule,
+        RippleModule,
+        InputTextModule,
+        TooltipModule,
+        FileUploadModule,
+        MessageModule,
+        InputTextareaModule,
+        DividerModule,
+        CardModule,
+        OverlayPanelModule,
+        TagModule,
+        PanelMenuModule,
+        SidebarModule,
+        SpeedDialModule,
+        ConfirmPopupModule,
+        ConfirmDialogModule,
+        PanelModule,
+        DialogModule,
+        MenuModule,
+        ToastModule
+    ],
   providers: [ConfirmationService]
 })
 export class SharedModule {
