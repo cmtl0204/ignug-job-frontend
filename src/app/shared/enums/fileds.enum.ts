@@ -33,3 +33,8 @@ export enum UsersFormEnum {
   bloodType = 'Tipo de sangre',
   ethnicOrigin = 'Etnia',
 }
+
+export const CompanyRegistrationFormEnum2 = [{
+  tradeName: 'Correo electrónico',
+  personTypeId: 'Número de documento',
+}];

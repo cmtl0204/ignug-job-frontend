@@ -98,7 +98,7 @@ export class MessageDialogService {
     if (Array.isArray(message)) message.sort();
 
     this._modalVisible = true;
-    this._modalAcceptSeverity = 'secondary';
+    this._modalAcceptSeverity = 'info';
     this._modalTitle = 'Existen errores en los siguientes campos';
     this._modalMessage = message;
   }

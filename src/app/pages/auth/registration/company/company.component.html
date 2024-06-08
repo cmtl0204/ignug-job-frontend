@@ -1,6 +1,5 @@
 <div class="grid">
   <div class="col-12 xl:col-8 lg:col-8 md:col-10 sm:col-12 xl:col-offset-2 lg:col-offset-2 md:col-offset-1">
-
     <app-skeleton *ngIf="coreService.isLoading" [type]="SkeletonEnum.CARD"></app-skeleton>
 
     <p-toolbar *ngIf="!coreService.isLoading">
@@ -28,7 +27,8 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid grid">
         <!-- denomination & name & shortName -->
         <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
-          <label appLabel for="tradeName" [label]="CompanyRegistrationFormEnum.tradeName"
+          <label appLabel for="tradeName"
+                 [label]="CompanyRegistrationFormEnum.tradeName"
                  [required]="tradeNameField"></label>
           <input pInputText type="text" id="tradeName" formControlName="tradeName"/>
           <small appErrorMessage
@@ -40,9 +40,12 @@
 
         <div class="field col-12 xl:col-3 lg:col-3 md:col-3 sm:col-12">
           <label appLabel for="web" [label]="CompanyRegistrationFormEnum.web" [required]="webField"></label>
+
           <app-help-field (mouseenter)="opDenominationField.toggle($event)"
                           (mouseleave)="opDenominationField.hide()"></app-help-field>
+
           <input pInputText type="text" id="web" formControlName="web"/>
+
           <small appErrorMessage
                  [errors]="webField.errors"
                  [touched]="webField.touched"
@@ -53,7 +56,28 @@
         <div class="field col-12 xl:col-3 lg:col-3 md:col-3 sm:col-12">
           <label appLabel for="personTypeId" [label]="CompanyRegistrationFormEnum.personType"
                  [required]="personTypeIdField"></label>
-          <input pInputText type="text" id="personTypeId" formControlName="personTypeId"/>
+
+          <p-dropdown
+            id="personTypeId"
+            [options]="personTypes"
+            formControlName="personTypeId"
+            optionLabel="name"
+            optionValue="id"
+            [filter]="true"
+            filterBy="name"
+            placeholder="Seleccione">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center gap-2">
+                <div>{{ selectedOption.name }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                <div>{{ item.name }}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+
           <small appErrorMessage
                  [errors]="personTypeIdField.errors"
                  [touched]="personTypeIdField.touched"

@@ -4,14 +4,12 @@ import {CoreService, MessageDialogService, MessageService, RoutesService} from "
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PrimeIcons} from "primeng/api";
 import {
-  ClassButtonActionEnum, CompanyRegistrationFormEnum,
+  ClassButtonActionEnum, CompanyRegistrationFormEnum, CompanyRegistrationFormEnum2,
   IconButtonActionEnum,
   LabelButtonActionEnum,
   SkeletonEnum
 } from "@shared/enums";
-import {
-  MessageConfirmDialogComponent
-} from "@shared/components/message-confirm-dialog/message-confirm-dialog.component";
+import {CatalogueModel} from "@models/core";
 
 @Component({
   selector: 'app-company',
@@ -27,10 +25,11 @@ export class CompanyComponent {
   public readonly messageService = inject(MessageService);
   public readonly messageDialogService = inject(MessageDialogService);
   private readonly routesService = inject(RoutesService);
-  private modalResult$ = this.messageDialogService.modalResult$;
+
   //Form
   protected form!: FormGroup;
   private formErrors: string[] = [];
+  protected personTypes: CatalogueModel[] = [{id: '1', name: 'cat1'}, {id: '2', name: 'cat2'}];
 
   //Enums
   protected readonly PrimeIcons = PrimeIcons;
@@ -40,16 +39,12 @@ export class CompanyComponent {
   protected readonly ClassButtonActionEnum = ClassButtonActionEnum;
   protected readonly CompanyRegistrationFormEnum = CompanyRegistrationFormEnum;
 
-  //Flags
-  protected isModalVisible: boolean = false;
-  protected modalTitle: string = '';
-  protected modalMessage: string = '';
-
   constructor() {
     this.buildForm();
   }
 
   ngOnInit(): void {
+    this.form.patchValue({personTypeId:'2'})
   }
 
   buildForm() {
@@ -76,7 +71,6 @@ export class CompanyComponent {
     } else {
       this.form.markAllAsTouched();
       this.messageDialogService.fieldErrors(this.formErrors);
-      // this.messageDialogService.errorCustom('Verifique los datos','Revise los campos');
     }
   }
 

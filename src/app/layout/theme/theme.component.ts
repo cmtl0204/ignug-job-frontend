@@ -265,12 +265,13 @@ export class ThemeComponent implements OnInit {
       },
       {
         label: 'Arya',
-        items: [{
-          label: 'arya-blue',
-          icon: '',
-          color: 'light-blue',
-          command: () => this.changeTheme('arya-blue')
-        },
+        items: [
+          {
+            label: 'arya-blue',
+            icon: '',
+            color: 'light-blue',
+            command: () => this.changeTheme('arya-blue')
+          },
           {
             label: 'arya-green',
             icon: '',
