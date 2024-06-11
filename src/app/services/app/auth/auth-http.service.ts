@@ -32,7 +32,7 @@ export class AuthHttpService {
 
   signup(userData: UserModel): Observable<UserModel> {
     const url = `${this.API_URL}/patients/users`;
-
+    console.log('signup');
     // //this.appService.presentLoading();
     return this.httpClient.post<ServerResponse>(url, userData)
       .pipe(
@@ -41,7 +41,7 @@ export class AuthHttpService {
           return response.data;
         }),
         tap(() => {
-          this.router.navigateByUrl('/login')
+          this.router.navigateByUrl('/login');
         })
       );
   }
@@ -92,6 +92,7 @@ export class AuthHttpService {
   }
 
   signOut(): void {
+    console.log('signOut');
     this.authService.removeLogin();
     this.messageService.successCustom('Cerrar Sesión', 'Se cerró correctamente');
     this.router.navigate(['/login']);

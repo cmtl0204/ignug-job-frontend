@@ -12,7 +12,17 @@ const routes: Routes = [
         title: 'Admin',
         loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
       },
+      // {
+      //   path: 'core',
+      //   title: 'Core',
+      //   loadChildren: () => import('./pages/core/core.module').then(m => m.CoreModule),
+      // },
     ]
+  },
+  {
+    path: 'core',
+    title: 'Core',
+    loadChildren: () => import('./pages/core/core.module').then(m => m.CoreModule),
   },
   {
     path: 'auth',

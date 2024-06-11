@@ -29,8 +29,8 @@ export class RoutesService {
   }
 
   /** Planner Role **/
-  get projectsList(): string {
-    return this.core + 'planner/projects';
+  academicFormationList(){
+    this.router.navigate([this.core + 'professionals/1/academic-formations']);
   }
 
   projectsForm(id: string): string {

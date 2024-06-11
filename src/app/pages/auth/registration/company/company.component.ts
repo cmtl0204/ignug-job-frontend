@@ -1,37 +1,42 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {AuthHttpService, AuthService} from "@servicesApp/auth";
-import {CoreService, MessageDialogService, MessageService, RoutesService} from "@servicesApp/core";
+import {CoreService, MessageDialogService, RoutesService} from "@servicesApp/core";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PrimeIcons} from "primeng/api";
 import {
-  ClassButtonActionEnum, CompanyRegistrationFormEnum, CompanyRegistrationFormEnum2,
+  CatalogueTypeEnum,
+  ClassButtonActionEnum,
+  CompanyRegistrationFormEnum,
   IconButtonActionEnum,
   LabelButtonActionEnum,
   SkeletonEnum
 } from "@shared/enums";
 import {CatalogueModel} from "@models/core";
+import {CataloguesHttpService} from "@servicesHttp/core";
 
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
   styleUrl: './company.component.scss'
 })
-export class CompanyComponent {
-//Services
+export class CompanyComponent implements OnInit {
+  /** Services **/
   protected readonly authService = inject(AuthService);
   private readonly authHttpService = inject(AuthHttpService);
+  protected readonly cataloguesHttpService = inject(CataloguesHttpService);
   protected readonly coreService = inject(CoreService);
   private readonly formBuilder = inject(FormBuilder);
-  public readonly messageService = inject(MessageService);
   public readonly messageDialogService = inject(MessageDialogService);
   private readonly routesService = inject(RoutesService);
 
-  //Form
+  /** Form **/
   protected form!: FormGroup;
   private formErrors: string[] = [];
-  protected personTypes: CatalogueModel[] = [{id: '1', name: 'cat1'}, {id: '2', name: 'cat2'}];
 
-  //Enums
+  /** Foreign Keys **/
+  protected personTypes: CatalogueModel[] = [];
+
+  /** Enums **/
   protected readonly PrimeIcons = PrimeIcons;
   protected readonly SkeletonEnum = SkeletonEnum;
   protected readonly IconButtonActionEnum = IconButtonActionEnum;
@@ -44,9 +49,10 @@ export class CompanyComponent {
   }
 
   ngOnInit(): void {
-    this.form.patchValue({personTypeId:'2'})
+    this.loadPersonTypes();
   }
 
+  /** Form **/
   buildForm() {
     this.form = this.formBuilder.group({
       personTypeId: [null, [Validators.required]],
@@ -65,6 +71,12 @@ export class CompanyComponent {
     return this.form.valid && this.formErrors.length === 0;
   }
 
+  /** Foreign Keys  **/
+  loadPersonTypes() {
+    this.cataloguesHttpService.findByType(CatalogueTypeEnum.COMPANIES_PERSON_TYPE);
+  }
+
+  /** Actions **/
   onSubmit(): void {
     if (this.validateForm()) {
       this.register();
@@ -79,7 +91,7 @@ export class CompanyComponent {
       .subscribe(
         response => {
           if (this.authService.roles.length === 0) {
-            this.messageService.errorCustom('Sin Rol', 'No cuenta con un rol asignado');
+            this.messageDialogService.errorCustom('Sin Rol', 'No cuenta con un rol asignado');
             this.authService.removeLogin();
             return;
           }
@@ -98,7 +110,7 @@ export class CompanyComponent {
     // this.routesService.registration();
   }
 
-  /** Getters **/
+  /** Getters Form**/
   get personTypeIdField(): AbstractControl {
     return this.form.controls['personTypeId'];
   }

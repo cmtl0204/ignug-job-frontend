@@ -46,11 +46,16 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.login();
+      this.loginTemp();
     } else {
       this.form.markAllAsTouched();
       this.messageService.errorsFields();
     }
+  }
+
+  loginTemp(){
+    this.authService.token = 'token123';
+    this.routesService.academicFormationList();
   }
 
   login() {
