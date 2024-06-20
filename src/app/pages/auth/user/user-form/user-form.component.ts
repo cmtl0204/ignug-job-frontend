@@ -16,10 +16,12 @@ import {OnExitInterface} from '@shared/interfaces';
 import {
   BreadcrumbEnum,
   CatalogueTypeEnum,
-  ClassButtonActionEnum,
   IconButtonActionEnum,
-  LabelButtonActionEnum, RoutesEnum,
-  SkeletonEnum, UsersFormEnum,
+  LabelButtonActionEnum,
+  RoutesEnum,
+  SeverityButtonActionEnum,
+  SkeletonEnum,
+  UsersFormEnum,
   UsersIdentificationTypeStateEnum
 } from "@shared/enums";
 
@@ -31,7 +33,7 @@ import {
 })
 export class UserFormComponent implements OnInit, OnExitInterface {
   protected readonly PrimeIcons = PrimeIcons;
-  protected readonly ClassButtonActionEnum = ClassButtonActionEnum;
+  protected readonly SeverityButtonActionEnum = SeverityButtonActionEnum;
   protected readonly IconButtonActionEnum = IconButtonActionEnum;
   protected readonly LabelButtonActionEnum = LabelButtonActionEnum;
   protected readonly UsersFormEnum = UsersFormEnum;

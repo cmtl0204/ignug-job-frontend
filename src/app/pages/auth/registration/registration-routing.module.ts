@@ -20,6 +20,11 @@ const routes: Routes = [
     path: 'companies',
     component: CompanyComponent
   },
+  {
+    title:'Companies Registration',
+    path: 'companies/:id',
+    component: CompanyComponent
+  },
 ];
 
 @NgModule({

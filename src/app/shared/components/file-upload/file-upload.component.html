@@ -1,16 +1,18 @@
-<div *ngIf="types?.length" class="formgrid grid">
-  <div class="field xl:col-12 lg:col-12 md:col-12 sm:col-12">
-    <label appLabel for="type" label="Tipo de Documento:" [required]="type"></label>
-    <p-dropdown
-      id="type"
-      dataKey="id"
-      [formControl]="type"
-      [options]="types"
-      optionLabel="name"
-      placeholder="Seleccione...">
-    </p-dropdown>
+@if (types.length) {
+  <div class="formgrid grid">
+    <div class="field xl:col-12 lg:col-12 md:col-12 sm:col-12">
+      <label appLabel for="type" label="Tipo de Documento:" [required]="type"></label>
+      <p-dropdown
+        id="type"
+        dataKey="id"
+        [formControl]="type"
+        [options]="types"
+        optionLabel="name"
+        placeholder="Seleccione...">
+      </p-dropdown>
+    </div>
   </div>
-</div>
+}
 <p-fileUpload
   #uploadFiles
   chooseLabel="Cargar Archivo"
@@ -30,7 +32,11 @@
     <div class="p-text-center">
       <img src="assets/images/shared/files/upload.png" alt="upload">
       <br>
-      <button pButton label="Browse" [icon]="PrimeIcons.SEARCH" (click)="uploadFiles.choose()"></button>
+      <p-button
+        label="Browse"
+        [icon]="PrimeIcons.SEARCH"
+        (click)="uploadFiles.choose()">
+      </p-button>
       <h6>
         o arrastre aquí sus archivos
       </h6>

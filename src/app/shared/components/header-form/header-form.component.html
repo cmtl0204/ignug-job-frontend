@@ -1,9 +1,9 @@
 <div class="grid formgrid">
   <div class="col-12">
     @if (id === RoutesEnum.NEW) {
-      <button pButton [label]="label" [icon]="icon" class="p-button-success p-button-text p-button-lg"></button>
+      <p-button [label]="label" [icon]="icon" severity="success" [text]="true" size="large"></p-button>
     } @else {
-      <button pButton [label]="label" [icon]="icon" class="p-button-text p-button-lg"></button>
+      <p-button [label]="label" [icon]="icon" [text]="true" size="large"></p-button>
     }
   </div>
 

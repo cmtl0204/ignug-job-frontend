@@ -1,4 +1,4 @@
-<div class="grid mt-8">
+<div class="p-fluid grid mt-8">
   <p-panel class="col-12 xl:col-4 lg:col-4 md:col-4 sm:col-12 xl:col-offset-1 lg:col-offset-1 md:col-offset-1">
     <ng-template pTemplate="header">
       <div class="flex align-items-center gap-2">
@@ -12,24 +12,24 @@
       </div>
 
       <div class="field col-12 text-center">
-        <button pButton pRipple
-                type="button"
-                class="p-button-help p-button-lg p-button-raised w-full"
-                [icon]="PrimeIcons.BUILDING"
-                label="Soy Empresa"
-                (click)="redirectCompanyRegistration()"
-        ></button>
+        <p-button
+          severity="help"
+          size="large"
+          [raised]="true"
+          [icon]="PrimeIcons.BUILDING"
+          label="Soy Empresa"
+          (click)="redirectCompanyRegistration()"
+        ></p-button>
       </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
-      <button pButton pRipple
-              type="button"
-              class="p-button-secondary w-full"
-              [icon]="PrimeIcons.ARROW_LEFT"
-              label="Regresar al Login"
-              (click)="redirectLogin()"
-      ></button>
+      <p-button
+        severity="secondary"
+        [icon]="PrimeIcons.ARROW_LEFT"
+        label="Regresar al Login"
+        (click)="redirectLogin()"
+      ></p-button>
     </ng-template>
   </p-panel>
 
@@ -46,24 +46,23 @@
       </div>
 
       <div class="field col-12 text-center">
-        <button pButton pRipple
-                type="button"
-                class="p-button-info p-button-lg w-full"
-                [icon]="PrimeIcons.USER_PLUS"
-                label="Soy Profesional"
-                (click)="redirectProfessionalRegistration()"
-        ></button>
+        <p-button
+          size="large"
+          severity="info"
+          [icon]="PrimeIcons.USER_PLUS"
+          label="Soy Profesional"
+          (click)="redirectProfessionalRegistration()"
+        ></p-button>
       </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
-      <button pButton pRipple
-              type="button"
-              class="p-button-secondary w-full"
-              [icon]="PrimeIcons.ARROW_LEFT"
-              label="Regresar al Login"
-              (click)="redirectLogin()"
-      ></button>
+      <p-button
+        severity="secondary"
+        [icon]="PrimeIcons.ARROW_LEFT"
+        label="Regresar al Login"
+        (click)="redirectLogin()"
+      ></p-button>
     </ng-template>
   </p-panel>
 </div>

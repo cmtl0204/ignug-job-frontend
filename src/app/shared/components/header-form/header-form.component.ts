@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PrimeIcons} from "primeng/api";
 import {RoutesEnum} from "@shared/enums";
 
@@ -7,16 +7,33 @@ import {RoutesEnum} from "@shared/enums";
   templateUrl: './header-form.component.html',
   styleUrls: ['./header-form.component.scss']
 })
-export class HeaderFormComponent {
-  protected readonly PrimeIcons = PrimeIcons;
+export class HeaderFormComponent implements OnInit{
   @Input() id: string | null = null;
-  @Input() label: string  = 'Crear';
-  @Input() icon: string  = PrimeIcons.PLUS;
-  protected message: string = `Todos los campos con <b class="p-error">*</b> son obligatorios.`;
+  @Input() label: string = '';
+  @Input() icon: string = '';
+
+  protected readonly message: string = `Todos los campos con <b class="p-error">*</b> son obligatorios.`;
+  protected readonly RoutesEnum = RoutesEnum;
+
+  protected readonly PrimeIcons = PrimeIcons;
 
   constructor() {
 
   }
 
-  protected readonly RoutesEnum = RoutesEnum;
+  ngOnInit(): void {
+    if (this.id === RoutesEnum.NEW) {
+      this.icon = PrimeIcons.PLUS;
+    } else {
+      this.icon = PrimeIcons.PENCIL;
+    }
+
+    if (!this.label) {
+      if (this.id === RoutesEnum.NEW) {
+        this.label = "Crear";
+      } else {
+        this.label = "Editar";
+      }
+    }
+  }
 }

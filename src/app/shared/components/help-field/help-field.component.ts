@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {PrimeIcons} from "primeng/api";
 
 @Component({
@@ -7,6 +7,5 @@ import {PrimeIcons} from "primeng/api";
   styleUrls: ['./help-field.component.scss']
 })
 export class HelpFieldComponent {
-
-    protected readonly PrimeIcons = PrimeIcons;
+  protected readonly PrimeIcons = PrimeIcons;
 }

@@ -8,19 +8,19 @@
       <app-header-form [id]="id"></app-header-form>
     </div>
     <div class="p-toolbar-group-right">
-      <button pButton pRipple type="button"
-              (click)="back()"
-              [icon]="IconButtonActionEnum.CANCEL"
-              [label]="LabelButtonActionEnum.CANCEL"
-              [loading]="coreService.isLoading"
-              [ngClass]="[ClassButtonActionEnum.CANCEL]"></button>
+      <p-button
+        (click)="back()"
+        [icon]="IconButtonActionEnum.CANCEL"
+        [label]="LabelButtonActionEnum.CANCEL"
+        [loading]="coreService.isLoading"
+        [severity]="SeverityButtonActionEnum.CANCEL"></p-button>
       <p-divider layout="vertical"></p-divider>
-      <button pButton pRipple type="button"
-              (click)="onSubmit()"
-              [icon]="IconButtonActionEnum.SAVE"
-              [label]="LabelButtonActionEnum.SAVE"
-              [loading]="coreService.isLoading"
-              [ngClass]="[ClassButtonActionEnum.SAVE]"></button>
+      <p-button
+        (click)="onSubmit()"
+        [icon]="IconButtonActionEnum.SAVE"
+        [label]="LabelButtonActionEnum.SAVE"
+        [loading]="coreService.isLoading"
+        [severity]="SeverityButtonActionEnum.SAVE"></p-button>
     </div>
   </p-toolbar>
 
@@ -28,38 +28,38 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="formgrid grid">
         <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
-        <label appLabel for="roles" [label]="UsersFormEnum.roles" [required]="rolesField"></label>
-        <p-multiSelect id="roles"
-                       formControlName="roles"
-                       dataKey="id"
-                       [options]="roles"
-                       display="chip"
-                       optionLabel="name"
-                       placeholder="Seleccione...">
-        </p-multiSelect>
-        <small appErrorMessage
-               [errors]="rolesField.errors"
-               [touched]="rolesField.touched"
-               [dirty]="rolesField.dirty">
-        </small>
-      </div>
-      <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
-        <label appLabel for="units" [label]="UsersFormEnum.unitManagers"
-               [required]="unitsField"></label>
-        <p-multiSelect id="units"
-                       formControlName="units"
-                       dataKey="id"
-                       [options]="units"
-                       display="chip"
-                       optionLabel="name"
-                       placeholder="Seleccione...">
-        </p-multiSelect>
-        <small appErrorMessage
-               [errors]="unitsField.errors"
-               [touched]="unitsField.touched"
-               [dirty]="unitsField.dirty">
-        </small>
-      </div>
+          <label appLabel for="roles" [label]="UsersFormEnum.roles" [required]="rolesField"></label>
+          <p-multiSelect id="roles"
+                         formControlName="roles"
+                         dataKey="id"
+                         [options]="roles"
+                         display="chip"
+                         optionLabel="name"
+                         placeholder="Seleccione...">
+          </p-multiSelect>
+          <small appErrorMessage
+                 [errors]="rolesField.errors"
+                 [touched]="rolesField.touched"
+                 [dirty]="rolesField.dirty">
+          </small>
+        </div>
+        <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="units" [label]="UsersFormEnum.unitManagers"
+                 [required]="unitsField"></label>
+          <p-multiSelect id="units"
+                         formControlName="units"
+                         dataKey="id"
+                         [options]="units"
+                         display="chip"
+                         optionLabel="name"
+                         placeholder="Seleccione...">
+          </p-multiSelect>
+          <small appErrorMessage
+                 [errors]="unitsField.errors"
+                 [touched]="unitsField.touched"
+                 [dirty]="unitsField.dirty">
+          </small>
+        </div>
       </div>
       <div class="formgrid grid">
         <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">

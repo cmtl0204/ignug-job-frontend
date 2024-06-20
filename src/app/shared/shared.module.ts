@@ -59,6 +59,8 @@ import { MenuModule } from 'primeng/menu';
 import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
 import { MessageConfirmDialogComponent } from './components/message-confirm-dialog/message-confirm-dialog.component';
 import {ToastModule} from "primeng/toast";
+import { FormButtonActionComponent } from './components/form-button-action/form-button-action.component';
+import { FormHelpFieldComponent } from './components/form-help-field/form-help-field.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +96,8 @@ import {ToastModule} from "primeng/toast";
     YesNoPipe,
     MessageDialogComponent,
     MessageConfirmDialogComponent,
+    FormButtonActionComponent,
+    FormHelpFieldComponent,
   ],
   exports: [
     SkeletonComponent,
@@ -128,7 +132,9 @@ import {ToastModule} from "primeng/toast";
     YesNoPipe,
     MenuModule,
     MessageDialogComponent,
-    MessageConfirmDialogComponent
+    MessageConfirmDialogComponent,
+    FormButtonActionComponent,
+    FormHelpFieldComponent
   ],
     imports: [
         CommonModule,

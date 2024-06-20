@@ -39,28 +39,27 @@
         }
 
         <div class="field col-12">
-          <button pButton pRipple
-                  label="Continuar"
-                  [icon]="PrimeIcons.SIGN_IN"></button>
+          <p-button
+            type="submit"
+            label="Continuar"
+            [icon]="PrimeIcons.SIGN_IN"></p-button>
         </div>
       </form>
     </ng-template>
 
     <ng-template pTemplate="footer">
       <div class="flex flex-wrap align-items-center justify-content-between gap-3">
-        <button pButton pRipple
-                type="button"
-                class="w-full p-button-info"
-                [icon]="PrimeIcons.KEY"
-                label="Recuperar Contraseña"
-                (click)="redirectPasswordReset()"></button>
+        <p-button
+          severity="info"
+          [icon]="PrimeIcons.KEY"
+          label="Recuperar Contraseña"
+          (click)="redirectPasswordReset()"></p-button>
 
-        <button pButton pRipple
-                type="button"
-                class="w-full p-button-success"
-                [icon]="PrimeIcons.PLUS"
-                label="Crear Cuenta"
-                (click)="redirectRegistration()"></button>
+        <p-button
+          severity="success"
+          [icon]="PrimeIcons.PLUS"
+          label="Crear Cuenta"
+          (click)="redirectRegistration()"></p-button>
       </div>
     </ng-template>
   </p-panel>

@@ -1,18 +1,12 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {AuthHttpService, AuthService} from "@servicesApp/auth";
-import {CoreService, MessageDialogService, RoutesService} from "@servicesApp/core";
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PrimeIcons} from "primeng/api";
-import {
-  CatalogueTypeEnum,
-  ClassButtonActionEnum,
-  CompanyRegistrationFormEnum,
-  IconButtonActionEnum,
-  LabelButtonActionEnum,
-  SkeletonEnum
-} from "@shared/enums";
+
 import {CatalogueModel} from "@models/core";
+import {AuthHttpService, AuthService} from "@servicesApp/auth";
+import {CoreService, MessageDialogService, RoutesService} from "@servicesApp/core";
 import {CataloguesHttpService} from "@servicesHttp/core";
+import {CatalogueTypeEnum, CompanyRegistrationFormEnum, RoutesEnum, SkeletonEnum} from "@shared/enums";
 
 @Component({
   selector: 'app-company',
@@ -30,6 +24,7 @@ export class CompanyComponent implements OnInit {
   private readonly routesService = inject(RoutesService);
 
   /** Form **/
+  @Input({required: true}) id!: string;
   protected form!: FormGroup;
   private formErrors: string[] = [];
 
@@ -37,22 +32,31 @@ export class CompanyComponent implements OnInit {
   protected personTypes: CatalogueModel[] = [];
 
   /** Enums **/
-  protected readonly PrimeIcons = PrimeIcons;
-  protected readonly SkeletonEnum = SkeletonEnum;
-  protected readonly IconButtonActionEnum = IconButtonActionEnum;
-  protected readonly LabelButtonActionEnum = LabelButtonActionEnum;
-  protected readonly ClassButtonActionEnum = ClassButtonActionEnum;
   protected readonly CompanyRegistrationFormEnum = CompanyRegistrationFormEnum;
+  protected readonly SkeletonEnum = SkeletonEnum;
+  protected readonly PrimeIcons = PrimeIcons;
 
   constructor() {
     this.buildForm();
   }
 
   ngOnInit(): void {
+    /** Load Foreign Keys**/
     this.loadPersonTypes();
+
+    if (this.id !== RoutesEnum.NEW) {
+      this.find(this.id);
+    }
   }
 
-  /** Form **/
+  find(id: string) {
+    /*
+    TODO
+    */
+    this.form.patchValue({});
+  }
+
+  /** Form Builder & Validates **/
   buildForm() {
     this.form = this.formBuilder.group({
       personTypeId: [null, [Validators.required]],
@@ -71,12 +75,12 @@ export class CompanyComponent implements OnInit {
     return this.form.valid && this.formErrors.length === 0;
   }
 
-  /** Foreign Keys  **/
+  /** Load Foreign Keys  **/
   loadPersonTypes() {
     this.cataloguesHttpService.findByType(CatalogueTypeEnum.COMPANIES_PERSON_TYPE);
   }
 
-  /** Actions **/
+  /** Form Actions **/
   onSubmit(): void {
     if (this.validateForm()) {
       this.register();
@@ -90,13 +94,9 @@ export class CompanyComponent implements OnInit {
     this.authHttpService.login(this.form.value)
       .subscribe(
         response => {
-          if (this.authService.roles.length === 0) {
-            this.messageDialogService.errorCustom('Sin Rol', 'No cuenta con un rol asignado');
-            this.authService.removeLogin();
-            return;
-          }
-
-          this.routesService.roleSelect();
+          /**
+           * TODO
+           */
         });
   }
 
@@ -122,4 +122,6 @@ export class CompanyComponent implements OnInit {
   get webField(): AbstractControl {
     return this.form.controls['web'];
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

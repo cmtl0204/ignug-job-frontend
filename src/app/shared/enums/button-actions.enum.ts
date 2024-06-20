@@ -73,22 +73,12 @@ export enum IconButtonActionEnum {
   REACTIVATE = 'Reactivar'
 }
 
-export enum ClassButtonActionEnum {
-  CREATE = 'p-button-success',
-  CANCEL = 'p-button-warning',
-  RETURN = 'p-button-warning',
-  SAVE = '',
-  SYNC = 'p-button-info',
-  REDIRECT_SECONDARY = 'p-button-secondary',
-  REDIRECT_HELP = 'p-button-help',
-  UPDATE = 'Editar',
-  DELETE = 'p-button-danger',
-  HIDE = 'Ocultar',
-  SELECT = 'Seleccionar',
-  SHOW_EVENTS = 'Mostar Eventos',
-  OPEN_SCHOOL_PERIOD = 'Abrir Periodo Lectivo',
-  CLOSE_SCHOOL_PERIOD = 'Cerrar Periodo Lectivo',
-  FILE_LIST = 'Lista de Archivos',
-  SUBJECT_REQUIREMENTS = 'Pre y Co Requisitos',
+export enum SeverityButtonActionEnum {
+  CREATE = 'success',
+  CANCEL = 'warning',
+  RETURN = 'warning',
+  SAVE = 'primary',
+  SYNC = 'info',
+  DELETE = 'danger',
 }
 

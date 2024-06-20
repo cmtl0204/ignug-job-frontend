@@ -10,10 +10,11 @@ import {AuthService, UsersHttpService} from '@servicesApp/auth';
 import {BreadcrumbService, CoreService, MessageService} from '@servicesApp/core';
 import {
   BreadcrumbEnum,
-  ClassButtonActionEnum,
+  SeverityButtonActionEnum,
   IconButtonActionEnum,
   IdButtonActionEnum,
-  LabelButtonActionEnum, TableEnum
+  LabelButtonActionEnum,
+  TableEnum
 } from "@shared/enums";
 import {debounceTime} from "rxjs";
 
@@ -26,7 +27,7 @@ import {debounceTime} from "rxjs";
 export class UserListComponent implements OnInit {
   protected readonly PrimeIcons = PrimeIcons;
   protected readonly IconButtonActionEnum = IconButtonActionEnum;
-  protected readonly ClassButtonActionEnum = ClassButtonActionEnum;
+  protected readonly SeverityButtonActionEnum = SeverityButtonActionEnum;
   protected readonly LabelButtonActionEnum = LabelButtonActionEnum;
   protected readonly BreadcrumbEnum = BreadcrumbEnum;
   protected paginator: PaginatorModel;
