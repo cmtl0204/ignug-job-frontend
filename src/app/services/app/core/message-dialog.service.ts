@@ -34,6 +34,7 @@ export class MessageDialogService {
   public modalResult$:Observable<boolean> = this._modalResult.asObservable();
 
   accept(): void {
+    console.log('accept component')
     this._modalResult.next(true);
   }
 

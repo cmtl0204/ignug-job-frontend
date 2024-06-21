@@ -47,10 +47,11 @@ export class CompanyComponent implements OnInit, OnExitInterface {
     this.buildForm();
   }
 
-  onExit() {
-    // const result = await firstValueFrom(this.messageDialogService.questionOnExit());
-    // return await lastValueFrom(this.messageDialogService.questionOnExit().pipe(take(2)));
-    return this.messageDialogService.questionOnExit();
+  async onExit() {
+    const res = await firstValueFrom(this.messageDialogService.questionOnExit());
+    console.log(res);
+    return res;
+    // return this.messageDialogService.questionOnExit();
   }
 
   ngOnInit(): void {

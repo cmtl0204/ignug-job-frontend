@@ -28,7 +28,6 @@ export class MessageConfirmDialogComponent {
   }
 
   accept() {
-    console.log('entro accept');
     this.messageDialogService.modalConfirmVisible = false;
     this.messageDialogService.accept();
     if (this.messageDialogService.toastSummary || this.messageDialogService.toastDetail)
