@@ -1,25 +1,11 @@
-// import {Injectable} from '@angular/core';
-// import {ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree} from '@angular/router';
-// import {Observable} from 'rxjs';
-// import {OnExitInterface} from '@shared/interfaces/on-exit.interface';
-//
-//
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ExitGuard implements CanDeactivate<unknown> {
-//   canDeactivate(
-//     component: OnExitInterface,
-//     currentRoute: ActivatedRouteSnapshot,
-//     currentState: RouterStateSnapshot,
-//     nextState?: RouterStateSnapshot):
-//     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-//     return component.onExit() ? component.onExit() : true;
-//   }
-// }
-
 import {CanDeactivateFn} from "@angular/router";
+import {inject} from "@angular/core";
+import {MessageDialogService} from "@servicesApp/core";
+import {firstValueFrom, lastValueFrom, take} from "rxjs";
 
 export const ExitGuard: CanDeactivateFn<any> = async (component) => {
-  return await component.onExit();
+  console.log("ExitGuard", await lastValueFrom(component.onExit().pipe(take(2))));
+  // console.log("ExitGuard", await firstValueFrom( component.onExit()));
+  return await lastValueFrom(component.onExit().pipe(take(2)));
+  // return await component.onExit();
 }

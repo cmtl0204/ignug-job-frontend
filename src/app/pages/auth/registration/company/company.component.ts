@@ -1,6 +1,6 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {firstValueFrom, lastValueFrom} from "rxjs";
+import {debounceTime, firstValueFrom, lastValueFrom, take} from "rxjs";
 import {PrimeIcons} from "primeng/api";
 
 import {CatalogueModel} from "@models/core";
@@ -47,8 +47,10 @@ export class CompanyComponent implements OnInit, OnExitInterface {
     this.buildForm();
   }
 
-  onExit(): boolean {
-    return this.onLeave;
+  onExit() {
+    // const result = await firstValueFrom(this.messageDialogService.questionOnExit());
+    // return await lastValueFrom(this.messageDialogService.questionOnExit().pipe(take(2)));
+    return this.messageDialogService.questionOnExit();
   }
 
   ngOnInit(): void {
@@ -111,14 +113,16 @@ export class CompanyComponent implements OnInit, OnExitInterface {
 
   /** Redirects **/
   redirectRegistration() {
-    this.messageDialogService.questionOnExit().subscribe(result => {
-      if (result) {
-        this.onLeave = true;
-        this.routesService.registration();
-      } else {
-        this.onLeave = false;
-      }
-    });
+    // this.messageDialogService.questionOnExit().subscribe(result => {
+    //   if (result) {
+    //     this.onLeave = true;
+    //     this.routesService.registration();
+    //   } else {
+    //     this.onLeave = false;
+    //   }
+    // });
+
+    this.routesService.registration();
   }
 
   //Reviewer
