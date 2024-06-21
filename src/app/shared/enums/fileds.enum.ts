@@ -38,3 +38,7 @@ export const CompanyRegistrationFormEnum2 = [{
   tradeName: 'Correo electrónico',
   personTypeId: 'Número de documento',
 }];
+
+export enum CourseFormEnum {
+  AREA = 'Área',
+}

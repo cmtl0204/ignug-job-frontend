@@ -132,29 +132,29 @@ export class UserListComponent implements OnInit {
   }
 
   remove(id: string) {
-    this.messageService.questionDelete()
-      .then((result) => {
-        if (result.isConfirmed) {
-          this.usersHttpService.remove(id).subscribe((user) => {
-            this.items = this.items.filter(item => item.id !== user.id);
-            this.paginator.totalItems--;
-          });
-        }
-      });
+    // this.messageService.questionDelete()
+    //   .then((result) => {
+    //     if (result.isConfirmed) {
+    //       this.usersHttpService.remove(id).subscribe((user) => {
+    //         this.items = this.items.filter(item => item.id !== user.id);
+    //         this.paginator.totalItems--;
+    //       });
+    //     }
+    //   });
   }
 
   removeAll() {
-    this.messageService.questionDelete().then((result) => {
-      if (result.isConfirmed) {
-        this.usersHttpService.removeAll(this.selectedItems).subscribe((users) => {
-          this.selectedItems.forEach(userDeleted => {
-            this.items = this.items.filter(user => user.id !== userDeleted.id);
-            this.paginator.totalItems--;
-          });
-          this.selectedItems = [];
-        });
-      }
-    });
+    // this.messageService.questionDelete().then((result) => {
+    //   if (result.isConfirmed) {
+    //     this.usersHttpService.removeAll(this.selectedItems).subscribe((users) => {
+    //       this.selectedItems.forEach(userDeleted => {
+    //         this.items = this.items.filter(user => user.id !== userDeleted.id);
+    //         this.paginator.totalItems--;
+    //       });
+    //       this.selectedItems = [];
+    //     });
+    //   }
+    // });
   }
 
   suspend(id: string) {

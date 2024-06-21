@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PrimeIcons} from "primeng/api";
 import {FilesHttpService} from "@servicesHttp/core";
-import {MessageService} from "@servicesApp/core";
 import {CatalogueModel} from "@models/core";
 import {FormControl, Validators} from "@angular/forms";
 
@@ -25,7 +24,7 @@ export class FileUploadComponent {
   protected readonly PrimeIcons = PrimeIcons;
   protected type: FormControl = new FormControl<any>(null);
 
-  constructor(private filesHttpService: FilesHttpService, protected messageService: MessageService) {
+  constructor(private filesHttpService: FilesHttpService) {
   }
 
   uploadFile(event: any, uploadFiles: any) {
@@ -46,7 +45,7 @@ export class FileUploadComponent {
         uploadFiles.clear();
       }, error => uploadFiles.clear());
     } else {
-      this.messageService.errorCustom('Seleccione un tipo de documento', 'Intente de nuevo por favor');
+      // this.messageService.errorCustom('Seleccione un tipo de documento', 'Intente de nuevo por favor');
     }
   }
 

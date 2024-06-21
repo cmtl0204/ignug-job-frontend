@@ -3,9 +3,12 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {PrimeIcons} from "primeng/api";
 
 import {CatalogueModel} from "@models/core";
+
 import {AuthHttpService, AuthService} from "@servicesApp/auth";
 import {CoreService, MessageDialogService, RoutesService} from "@servicesApp/core";
+
 import {CataloguesHttpService} from "@servicesHttp/core";
+
 import {CatalogueTypeEnum, CompanyRegistrationFormEnum, RoutesEnum, SkeletonEnum} from "@shared/enums";
 
 @Component({
@@ -34,7 +37,7 @@ export class CompanyComponent implements OnInit {
   /** Enums **/
   protected readonly CompanyRegistrationFormEnum = CompanyRegistrationFormEnum;
   protected readonly SkeletonEnum = SkeletonEnum;
-  protected readonly PrimeIcons = PrimeIcons;
+  protected readonly PrimeIcons = PrimeIcons;//pending
 
   constructor() {
     this.buildForm();
@@ -83,31 +86,37 @@ export class CompanyComponent implements OnInit {
   /** Form Actions **/
   onSubmit(): void {
     if (this.validateForm()) {
-      this.register();
+      this.create();
     } else {
       this.form.markAllAsTouched();
       this.messageDialogService.fieldErrors(this.formErrors);
     }
   }
 
-  register(): void {
-    this.authHttpService.login(this.form.value)
-      .subscribe(
-        response => {
-          /**
-           * TODO
-           */
-        });
+  create(): void {
+
+  }
+
+  update(): void {
+
   }
 
   /** Redirects **/
   redirectRegistration() {
-    this.messageDialogService.questionDelete().subscribe(result => {
+    this.messageDialogService.questionOnExit().subscribe(result => {
       if (result) {
         this.routesService.registration();
       }
     });
-    // this.routesService.registration();
+  }
+
+  //Reviewer
+  showOverlay(event: Event, overlayPanel:any) {
+    overlayPanel.toggle(event);
+  }
+
+  hideOverlay(event: Event, overlayPanel:any) {
+    overlayPanel.hide(event);
   }
 
   /** Getters Form**/
@@ -122,6 +131,4 @@ export class CompanyComponent implements OnInit {
   get webField(): AbstractControl {
     return this.form.controls['web'];
   }
-
-  protected readonly RoutesEnum = RoutesEnum;
 }

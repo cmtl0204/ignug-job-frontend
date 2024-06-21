@@ -1,7 +1,4 @@
 import {Injectable} from '@angular/core';
-import {ValidationErrors} from '@angular/forms';
-import {default as Swal} from 'sweetalert2';
-import {PaginatorModel} from '@models/core';
 import {ServerResponse} from '@models/http-response';
 
 @Injectable({
@@ -13,52 +10,19 @@ export class MessageService {
   }
 
   error(error: ServerResponse) {
-    if (error.statusCode === 422) {
-      // const fields = Object.values(error.message).toString().split('.,');
-      const fields = error.message;
-
-      let html = '<ul>';
-      for (let i = 0; i < fields.length; i++) {
-        html += `<li class="pi pi-times"> ${fields[i]}.</li>`;
-      }
-      html += '</ul>';
-
-      return Swal.fire({
-        title: error.error,
-        html,
-        icon: 'error'
-      });
-    }
-
-    return Swal.fire({
-      title: error.error,
-      text: error.message,
-      icon: 'error'
-    });
+    return {};
   }
 
   success(serverResponse: ServerResponse) {
-    return Swal.fire({
-      title: serverResponse.title,
-      text: serverResponse.message,
-      icon: 'success'
-    });
+    return {};
   }
 
   successCustom(title: string, text: string) {
-    return Swal.fire({
-      title,
-      text,
-      icon: 'info'
-    });
+    return {}
   }
 
   errorCustom(title: string, text: string) {
-    return Swal.fire({
-      title,
-      text,
-      icon: 'error'
-    });
+    return {};
   }
 
   errorsFields(errors: string[] = []) {
@@ -67,63 +31,7 @@ export class MessageService {
       html += `<li>${errors[i]}</li>`;
     }
     html += '</ul>';
-
-    return Swal.fire({
-      title: 'Revise los campos',
-      html,
-      icon: 'error'
-    });
-  }
-
-  questionDelete(title = '¿Está seguro de eliminar?', text = 'No podrá recuperar esta información!') {
-    return Swal.fire({
-      title,
-      text,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: '<i class="pi pi-trash"> Si, eliminar</i>',
-      cancelButtonText: 'Cancelar'
-    });
-  }
-
-  questionOnExit(title = '¿Está seguro de salir?', text = 'Se perderá la información que no haya guardado!') {
-    return Swal.fire({
-      title,
-      text,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: '<i class="pi pi-sign-out"> Si, salir</i>'
-    });
-  }
-
-  questionVersion(version = '') {
-    return Swal.fire({
-      title: `Existe una nueva actualización \n V ${version}`,
-      text: 'Antes de actualizar, guarde lo que esté haciendo!',
-      icon: 'success',
-      showCancelButton: true,
-      confirmButtonColor: '#689F38',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: '<i class="pi pi-sync"> Actualizar</i>',
-      cancelButtonText: 'Cancelar'
-    });
-  }
-
-  questionCustom(title :string, text :string) {
-    return Swal.fire({
-      title,
-      text,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: '<i class="pi pi-check-circle"> Si</i>',
-      cancelButtonText: 'Cancelar'
-    });
+    return null;
   }
 
   get requiredFields(): string {

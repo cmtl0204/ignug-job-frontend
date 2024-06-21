@@ -1,1 +1,12 @@
 <i [ngClass]="[PrimeIcons.QUESTION_CIRCLE,'ml-1']" style="font-size: 1rem"></i>
+<p-overlayPanel #{{key}}>
+  <ng-template pTemplate="content">
+    <h3>Ejemplos:</h3>
+    <p-divider></p-divider>
+    <ul>
+      <li>Universidad</li>
+      <li>Escuela Politécnica</li>
+      <li>Instituto Superior Tecnológico</li>
+    </ul>
+  </ng-template>
+</p-overlayPanel>

@@ -38,8 +38,8 @@ export class FileListComponent implements OnInit {
     private readonly confirmationService: ConfirmationService,
     public readonly coreService: CoreService,
     public readonly filesHttpService: FilesHttpService,
-    public readonly messageService: MessageService,
-    private readonly overlaysService: OverlaysService
+    private readonly overlaysService: OverlaysService,
+    protected readonly messageService: MessageService
   ) {
 
     this.paginator = this.coreService.paginator;

@@ -5,7 +5,7 @@ import {PrimeIcons} from "primeng/api";
 import {UpdateUserDto} from '@models/auth';
 import {CatalogueModel} from '@models/core';
 import {AuthHttpService, AuthService} from '@servicesApp/auth';
-import {BreadcrumbService, CoreService, MessageService} from '@servicesApp/core';
+import {BreadcrumbService, CoreService, MessageDialogService, MessageService} from '@servicesApp/core';
 import {CataloguesHttpService} from '@servicesHttp/core';
 import {OnExitInterface} from '@shared/interfaces';
 import {DateValidators} from '@shared/validators';
@@ -39,6 +39,7 @@ export class UserProfileComponent implements OnInit, OnExitInterface {
     private cataloguesHttpService: CataloguesHttpService,
     protected coreService: CoreService,
     private formBuilder: FormBuilder,
+    public messageDialogService: MessageDialogService,
     public messageService: MessageService,
   ) {
     this.form = this.newForm;
@@ -51,9 +52,9 @@ export class UserProfileComponent implements OnInit, OnExitInterface {
     });
   }
 
-  async onExit(): Promise<boolean> {
+  onExit(): boolean {
     if (this.form.touched && this.form.dirty) {
-      return await this.messageService.questionOnExit().then(result => result.isConfirmed);
+       this.messageDialogService.questionOnExit().subscribe() ;
     }
     return true;
   }

@@ -3,7 +3,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {ActivatedRoute} from '@angular/router';
 import {UpdateUserDto} from '@models/auth';
 import {AuthHttpService, AuthService} from '@servicesApp/auth';
-import {BreadcrumbService, CoreService, MessageService} from '@servicesApp/core';
+import {BreadcrumbService, CoreService, MessageDialogService, MessageService} from '@servicesApp/core';
 import {CataloguesHttpService} from '@servicesHttp/core';
 import {OnExitInterface} from '@shared/interfaces';
 import {SkeletonEnum} from "@shared/enums";
@@ -27,14 +27,14 @@ export class UserInformationComponent implements OnInit, OnExitInterface {
     private cataloguesHttpService: CataloguesHttpService,
     protected coreService: CoreService,
     private formBuilder: FormBuilder,
-    public messageService: MessageService,
+    public messageDialogService: MessageDialogService,
   ) {
     this.form = this.newForm;
   }
 
   async onExit(): Promise<boolean> {
     if (this.form.touched && this.form.dirty) {
-      return await this.messageService.questionOnExit().then(result => result.isConfirmed);
+      // return await this.messageDialogService.questionOnExit().then(result => result.isConfirmed);
     }
     return true;
   }
@@ -58,7 +58,7 @@ export class UserInformationComponent implements OnInit, OnExitInterface {
       this.updateUserInformation(this.form.value);
     } else {
       this.form.markAllAsTouched();
-      this.messageService.errorsFields();
+      // this.messageService.errorsFields();
     }
   }
 
