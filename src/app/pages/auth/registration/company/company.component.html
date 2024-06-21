@@ -21,6 +21,7 @@
             <label appLabel for="tradeName"
                    [label]="CompanyRegistrationFormEnum.tradeName"
                    [required]="tradeNameField"></label>
+            <app-form-help-field title="TradeName" content="Esto es un mensaje de prueba"></app-form-help-field>
             <input pInputText type="text" id="tradeName" formControlName="tradeName"/>
             <small appErrorMessage
                    [errors]="tradeNameField.errors"
@@ -32,6 +33,7 @@
           <!-- web -->
           <div class="field col-12 xl:col-3 lg:col-3 md:col-3 sm:col-12">
             <label appLabel for="web" [label]="CompanyRegistrationFormEnum.web" [required]="webField"></label>
+            <app-form-help-field title="web" [content]="['Esto es un listado 1','Esto es un listado 2','Esto es un listado 3']"></app-form-help-field>
             <input pInputText type="text" id="web" formControlName="web"/>
             <small appErrorMessage
                    [errors]="webField.errors"
@@ -76,9 +78,3 @@
     }
   </div>
 </div>
-
-<!--            <app-help-field (mouseenter)="opDenominationField.toggle($event)"-->
-<!--                            (mouseleave)="opDenominationField.hide()"></app-help-field>-->
-
-<!--            <app-form-help-field (mouseenter)="showOverlay($event,'opDenominationField')"-->
-<!--                            (mouseleave)="hideOverlay($event,'opDenominationField')"></app-form-help-field>-->

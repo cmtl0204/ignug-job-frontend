@@ -5,7 +5,7 @@ import {AbstractControl, Validators} from "@angular/forms";
   selector: '[appLabel]'
 })
 export class LabelDirective implements OnInit {
-  private _required: boolean = false;
+  private _required: boolean | undefined = false;
   private i: any;
   nativeElement: any;
   @Input() label: string = '';
@@ -33,7 +33,6 @@ export class LabelDirective implements OnInit {
     i.innerText = '*';
     this.renderer.addClass(i, 'p-error');
     this.renderer.addClass(i, 'ml-1');
-    this.renderer.addClass(i, 'mr-2');
     this.renderer.appendChild(this.nativeElement, i);
   }
 

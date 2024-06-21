@@ -10,10 +10,10 @@ import {CoreService} from "@servicesApp/core";
 export class FormButtonActionComponent {
   @Output() submit: EventEmitter<any> = new EventEmitter();
   @Output() cancel: EventEmitter<any> = new EventEmitter();
+
   protected readonly coreService = inject(CoreService);
 
   protected readonly IconButtonActionEnum = IconButtonActionEnum;
   protected readonly LabelButtonActionEnum = LabelButtonActionEnum;
   protected readonly SeverityButtonActionEnum = SeverityButtonActionEnum;
-
 }
