@@ -1,5 +1,6 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {firstValueFrom, lastValueFrom} from "rxjs";
 import {PrimeIcons} from "primeng/api";
 
 import {CatalogueModel} from "@models/core";
@@ -10,13 +11,15 @@ import {CoreService, MessageDialogService, RoutesService} from "@servicesApp/cor
 import {CataloguesHttpService} from "@servicesHttp/core";
 
 import {CatalogueTypeEnum, CompanyRegistrationFormEnum, RoutesEnum, SkeletonEnum} from "@shared/enums";
+import {OnExitInterface} from "@shared/interfaces";
+
 
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
   styleUrl: './company.component.scss'
 })
-export class CompanyComponent implements OnInit {
+export class CompanyComponent implements OnInit, OnExitInterface {
   /** Services **/
   protected readonly authService = inject(AuthService);
   private readonly authHttpService = inject(AuthHttpService);
@@ -30,6 +33,7 @@ export class CompanyComponent implements OnInit {
   @Input({required: true}) id!: string;
   protected form!: FormGroup;
   private formErrors: string[] = [];
+  private onLeave: boolean = true;
 
   /** Foreign Keys **/
   protected personTypes: CatalogueModel[] = [];
@@ -41,6 +45,10 @@ export class CompanyComponent implements OnInit {
 
   constructor() {
     this.buildForm();
+  }
+
+  onExit(): boolean {
+    return this.onLeave;
   }
 
   ngOnInit(): void {
@@ -105,17 +113,20 @@ export class CompanyComponent implements OnInit {
   redirectRegistration() {
     this.messageDialogService.questionOnExit().subscribe(result => {
       if (result) {
+        this.onLeave = true;
         this.routesService.registration();
+      } else {
+        this.onLeave = false;
       }
     });
   }
 
   //Reviewer
-  showOverlay(event: Event, overlayPanel:any) {
+  showOverlay(event: Event, overlayPanel: any) {
     overlayPanel.toggle(event);
   }
 
-  hideOverlay(event: Event, overlayPanel:any) {
+  hideOverlay(event: Event, overlayPanel: any) {
     overlayPanel.hide(event);
   }
 

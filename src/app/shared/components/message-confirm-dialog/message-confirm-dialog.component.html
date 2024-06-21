@@ -9,17 +9,22 @@
 
   <ng-template pTemplate="content">
     <div class="text-center">
-      <i [ngClass]="[PrimeIcons.TRASH]" style="font-size: 3rem; color: red"></i>
+      <i [ngClass]="[messageDialogService.modalIcon]"
+         style="font-size: 3rem; color: {{messageDialogService.modalIconColor}}"></i>
       <h2>{{ messageDialogService.modalMessage }}</h2>
     </div>
   </ng-template>
 
   <ng-template pTemplate="footer">
-    <div class="flex justify-content-center gap-2">
+    <div class="p-fluid flex justify-content-center gap-2">
       <p-button label="Sí"
+                size="large"
                 [severity]="messageDialogService.modalAcceptSeverity"
                 (click)="accept()"/>
-      <p-button label="No" [severity]="messageDialogService.modalRejectSeverity"
+
+      <p-button label="No"
+                size="large"
+                [severity]="messageDialogService.modalRejectSeverity"
                 (click)="reject()"/>
     </div>
   </ng-template>

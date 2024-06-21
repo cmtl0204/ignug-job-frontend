@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output, ViewEncapsulation} from '@angular/core';
 import {MessageDialogService} from "@servicesApp/core";
 import {MessageService, PrimeIcons} from "primeng/api";
 
@@ -18,8 +18,8 @@ export class MessageConfirmDialogComponent {
     this.messageService.add({
       key: 'messageConfirm',
       severity: 'success',
-      summary: 'Registro Eliminado',
-      detail: 'El registro fue eliminado correctamente!'
+      summary: this.messageDialogService.toastSummary,
+      detail: this.messageDialogService.toastDetail
     });
   }
 
@@ -30,7 +30,8 @@ export class MessageConfirmDialogComponent {
   accept() {
     this.messageDialogService.modalConfirmVisible = false;
     this.messageDialogService.accept();
-    this.showSuccess();
+    if (this.messageDialogService.toastSummary || this.messageDialogService.toastDetail)
+      this.showSuccess();
   }
 
   reject() {

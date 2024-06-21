@@ -7,7 +7,6 @@ import {PrimeIcons} from "primeng/api";
   styleUrl: './form-help-field.component.scss'
 })
 export class FormHelpFieldComponent {
-  @Input({required: true}) title: string = '';
   @Input({required: true}) content: string | string[]= '';
   protected readonly PrimeIcons = PrimeIcons;
   protected readonly Array = Array;

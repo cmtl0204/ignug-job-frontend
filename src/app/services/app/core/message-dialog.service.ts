@@ -1,7 +1,7 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {ServerResponse} from '@models/http-response';
 import {BehaviorSubject, Observable} from "rxjs";
-import {MessageService} from "primeng/api";
+import {MessageService, PrimeIcons} from "primeng/api";
 
 type Severity =
   | 'success'
@@ -26,6 +26,10 @@ export class MessageDialogService {
   private _modalAcceptSeverity: Severity = null;
   private _modalRejectSeverity: Severity = 'danger';
   private _modalMessage: string | string[] = '';
+  private _modalIcon: string  = '';
+  private _modalIconColor: string  = '';
+  private _toastSummary: string  = '';
+  private _toastDetail: string  = '';
   private _modalResult = new BehaviorSubject<boolean>(false);
   public modalResult$:Observable<boolean> = this._modalResult.asObservable();
 
@@ -34,6 +38,7 @@ export class MessageDialogService {
   }
 
   reject(): void {
+    console.log('reject');
     this._modalResult.next(false);
   }
 
@@ -71,19 +76,40 @@ export class MessageDialogService {
   }
 
   questionOnExit(title = '¿Está seguro de salir?', message = 'Se perderá la información que no haya guardado!') {
-    this._modalResult.next(false);
+    // this._modalResult.next(false);
 
     this._modalConfirmVisible = true;
     this._modalAcceptSeverity = 'primary';
     this._modalRejectSeverity = 'danger';
     this._modalTitle = title;
     this._modalMessage = message;
+    this._modalIcon = PrimeIcons.QUESTION_CIRCLE;
+    this._modalIconColor = '#969696FF';
+
+    this._toastSummary = '';
+    this._toastDetail = '';
 
     return this.modalResult$;
   }
 
   get modalTitle(): string {
     return this._modalTitle;
+  }
+
+  get modalIcon(): string {
+    return this._modalIcon;
+  }
+
+  get modalIconColor(): string {
+    return this._modalIconColor;
+  }
+
+  get toastSummary(): string {
+    return this._toastSummary;
+  }
+
+  get toastDetail(): string {
+    return this._toastDetail;
   }
 
   get modalMessage(): string | string[] {

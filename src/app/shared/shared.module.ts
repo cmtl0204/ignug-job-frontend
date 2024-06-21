@@ -48,7 +48,6 @@ import {SizesPipe} from "@shared/pipes/common/sizes.pipe";
 import {ImageUploadComponent} from "@shared/components/image-upload/image-upload.component";
 import {HeaderFormComponent} from './components/header-form/header-form.component';
 import {ConfirmDialogModule} from "primeng/confirmdialog";
-import {HelpFieldComponent} from './components/help-field/help-field.component';
 import {ErrorsFieldComponent} from './components/errors-field/errors-field.component';
 import {PanelModule} from "primeng/panel";
 import {VisibleComponent} from './components/visible/visible.component';
@@ -83,7 +82,6 @@ import { FormHelpFieldComponent } from './components/form-help-field/form-help-f
     ImageUploadComponent,
     HeaderFormComponent,
     StatePipe,
-    HelpFieldComponent,
     ErrorsFieldComponent,
     SelecetedPipe,
     VisibleComponent,
@@ -119,7 +117,6 @@ import { FormHelpFieldComponent } from './components/form-help-field/form-help-f
     ImageUploadComponent,
     HeaderFormComponent,
     StatePipe,
-    HelpFieldComponent,
     ErrorsFieldComponent,
     SelecetedPipe,
     VisibleComponent,
