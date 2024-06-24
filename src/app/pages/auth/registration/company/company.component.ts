@@ -1,7 +1,9 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {debounceTime, firstValueFrom, lastValueFrom, take} from "rxjs";
+import {firstValueFrom} from "rxjs";
 import {PrimeIcons} from "primeng/api";
+
+import {OnExitInterface} from "@shared/interfaces";
 
 import {CatalogueModel} from "@models/core";
 
@@ -11,7 +13,6 @@ import {CoreService, MessageDialogService, RoutesService} from "@servicesApp/cor
 import {CataloguesHttpService} from "@servicesHttp/core";
 
 import {CatalogueTypeEnum, CompanyRegistrationFormEnum, RoutesEnum, SkeletonEnum} from "@shared/enums";
-import {OnExitInterface} from "@shared/interfaces";
 
 
 @Component({
@@ -33,7 +34,7 @@ export class CompanyComponent implements OnInit, OnExitInterface {
   @Input({required: true}) id!: string;
   protected form!: FormGroup;
   private formErrors: string[] = [];
-  private onLeave: boolean = true;
+  //private onLeave: boolean = true;
 
   /** Foreign Keys **/
   protected personTypes: CatalogueModel[] = [];
@@ -41,7 +42,7 @@ export class CompanyComponent implements OnInit, OnExitInterface {
   /** Enums **/
   protected readonly CompanyRegistrationFormEnum = CompanyRegistrationFormEnum;
   protected readonly SkeletonEnum = SkeletonEnum;
-  protected readonly PrimeIcons = PrimeIcons;//pending
+  protected readonly PrimeIcons = PrimeIcons; //pending
 
   constructor() {
     this.buildForm();
@@ -58,12 +59,13 @@ export class CompanyComponent implements OnInit, OnExitInterface {
     /** Load Foreign Keys**/
     this.loadPersonTypes();
 
+    //pending
     if (this.id !== RoutesEnum.NEW) {
-      this.find(this.id);
+      this.findCompany(this.id);
     }
   }
 
-  find(id: string) {
+  findCompany(id: string) {
     /*
     TODO
     */
@@ -98,6 +100,9 @@ export class CompanyComponent implements OnInit, OnExitInterface {
   onSubmit(): void {
     if (this.validateForm()) {
       this.create();
+      /*
+     TODO
+     */
     } else {
       this.form.markAllAsTouched();
       this.messageDialogService.fieldErrors(this.formErrors);
@@ -105,11 +110,15 @@ export class CompanyComponent implements OnInit, OnExitInterface {
   }
 
   create(): void {
-
+    /*
+        TODO
+    */
   }
 
   update(): void {
-
+    /*
+        TODO
+        */
   }
 
   /** Redirects **/
@@ -124,15 +133,6 @@ export class CompanyComponent implements OnInit, OnExitInterface {
     // });
 
     this.routesService.registration();
-  }
-
-  //Reviewer
-  showOverlay(event: Event, overlayPanel: any) {
-    overlayPanel.toggle(event);
-  }
-
-  hideOverlay(event: Event, overlayPanel: any) {
-    overlayPanel.hide(event);
   }
 
   /** Getters Form**/

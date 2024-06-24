@@ -7,8 +7,8 @@ import {RoutesEnum} from "@shared/enums";
   templateUrl: './header-form.component.html',
   styleUrls: ['./header-form.component.scss']
 })
-export class HeaderFormComponent implements OnInit{
-  @Input() id: string | null = null;
+export class HeaderFormComponent implements OnInit {
+  @Input({required:true}) id: string | null = null;
   @Input() label: string = '';
   @Input() icon: string = '';
 
@@ -17,15 +17,13 @@ export class HeaderFormComponent implements OnInit{
 
   protected readonly PrimeIcons = PrimeIcons;
 
-  constructor() {
-
-  }
-
   ngOnInit(): void {
-    if (this.id === RoutesEnum.NEW) {
-      this.icon = PrimeIcons.PLUS;
-    } else {
-      this.icon = PrimeIcons.PENCIL;
+    if (!this.icon) {
+      if (this.id === RoutesEnum.NEW) {
+        this.icon = PrimeIcons.PLUS;
+      } else {
+        this.icon = PrimeIcons.PENCIL;
+      }
     }
 
     if (!this.label) {
