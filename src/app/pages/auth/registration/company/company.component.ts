@@ -93,7 +93,22 @@ export class CompanyComponent implements OnInit, OnExitInterface {
 
   /** Load Foreign Keys  **/
   loadPersonTypes() {
-    this.cataloguesHttpService.findByType(CatalogueTypeEnum.COMPANIES_PERSON_TYPE);
+    // this.personTypes = this.cataloguesHttpService.findByType(CatalogueTypeEnum.COMPANIES_PERSON_TYPE);
+    this.personTypes = [{
+      id: '123abc',
+      name: 'Natural',
+      type: 'Persona Natural',
+      obj: {
+        description: 'otro obj'
+      }
+    }, {
+      id: '456def',
+      name: 'Juridica',
+      type: 'Persona Juridica',
+      obj: {
+        description: 'algo'
+      }
+    }]
   }
 
   /** Form Actions **/

@@ -60,19 +60,18 @@
               id="personTypeId"
               formControlName="personTypeId"
               [options]="personTypes"
-              optionLabel="name"
               optionValue="id"
               [filter]="true"
-              filterBy="name"
+              filterBy="name,type,obj.description"
               placeholder="Seleccione">
               <ng-template pTemplate="selectedItem" let-selectedOption>
                 <div class="flex align-items-center gap-2">
-                  <div>{{ selectedOption.name }}</div>
+                  <div>{{ selectedOption.name }} - {{ selectedOption.type }}</div>
                 </div>
               </ng-template>
-              <ng-template let-item pTemplate="item">
+              <ng-template pTemplate="item" let-item>
                 <div class="flex align-items-center gap-2">
-                  <div>{{ item.name }}</div>
+                  <div>{{ item.name }} - {{ item.type }}</div>
                 </div>
               </ng-template>
             </p-dropdown>
