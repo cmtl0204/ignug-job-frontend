@@ -60,16 +60,16 @@ export class AuthHttpService {
   }
 
   login(credentials: LoginModel): Observable<LoginResponse> {
-    const url = `${this.API_URL}/login`;
+    const url = `${environment.API_URL}/login`;
 
-    this.findCatalogues();
-    this.findLocations();
+    // this.findCatalogues();
+    // this.findLocations();
 
     return this.httpClient.post<LoginResponse>(url, credentials)
       .pipe(
         map(response => {
           this.authService.token = response.data.token;
-          this.authService.auth = response.data.user;
+          // this.authService.auth = response.data.user;
           return response;
         })
       );

@@ -1,17 +1,18 @@
 import { ExpenseGroupModel} from '@models/core';
 
 export interface BudgetItemModel {
-  id: string;
-  createAt: Date;
-  updateAt: Date;
-  deleteAt: Date;
+  id?: string;
+  createAt?: Date;
+  updateAt?: Date;
+  deleteAt?: Date;
 
-  code: string;
-  name: string;
-  enabled: boolean;
-  sort: number;
+  code?: string;
+  name?: string;
+  enabled?: boolean;
+  sort?: number;
 
-  expenseGroup: ExpenseGroupModel;
+  expenseGroup?: ExpenseGroupModel;
+  expenseGroupId?: string;
 }
 
 export interface CreateBudgetItemDto extends Omit<BudgetItemModel, 'id'> {}
