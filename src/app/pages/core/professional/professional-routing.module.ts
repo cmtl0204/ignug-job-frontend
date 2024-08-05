@@ -35,6 +35,7 @@ const routes: Routes = [
     path: ':id/skills',
     loadChildren: () => import('./skill/skill.module').then(m => m.SkillModule),
   },
+  
 ];
 
 @NgModule({

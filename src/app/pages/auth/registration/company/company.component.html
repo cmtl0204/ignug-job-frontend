@@ -1,80 +1,190 @@
 <div class="grid">
   <div class="col-12 xl:col-8 lg:col-8 md:col-10 sm:col-12 xl:col-offset-2 lg:col-offset-2 md:col-offset-1">
     @if (coreService.isLoading) {
-      <app-skeleton [type]="SkeletonEnum.CARD"></app-skeleton>
+    <app-skeleton [type]="SkeletonEnum.CARD"></app-skeleton>
     }
 
     @if (!coreService.isLoading) {
-      <p-toolbar>
-        <div class="p-toolbar-group-left">
-          <app-header-form [id]="id"></app-header-form>
+    <p-toolbar>
+      <div class="p-toolbar-group-left">
+        <app-header-form label="Crear" [icon]="PrimeIcons.SAVE"></app-header-form>
+      </div>
+      <div class="p-toolbar-group-right">
+        <app-form-button-action (submit)="onSubmit()" (cancel)="redirectRegistration()"></app-form-button-action>
+      </div>
+    </p-toolbar>
+
+    <p-panel>
+
+
+      <form [formGroup]="form" class="p-fluid grid">
+
+        <!-- Usuario -->
+        <div formGroupName="user" class=" col-12">
+          <div class="grid">
+            <!-- identificationTypeId -->
+            <div class="field col-12 xl:col-6 lg:col-4 md:col-4 sm:col-12">
+              <label appLabel for="identificationTypeId" [label]="UsersFormEnum.identificationType"
+                [required]="identificationTypeIdField"></label>
+              <p-dropdown id="identificationTypeId" [options]="identificationTypes"
+                formControlName="identificationTypeId" optionLabel="name" optionValue="id" [filter]="true"
+                filterBy="name" placeholder="Seleccione">
+                <ng-template pTemplate="selectedItem" let-selectedOption>
+                  <div class="flex align-items-center gap-2">
+                    <div>{{ selectedOption.name }}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-item pTemplate="item">
+                  <div class="flex align-items-center gap-2">
+                    <div>{{ item.name }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+              <small appErrorMessage [errors]="identificationTypeIdField.errors"
+                [touched]="identificationTypeIdField.touched" [dirty]="identificationTypeIdField.dirty">
+              </small>
+            </div>
+            <!-- username/ nroDoc -->
+            <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="username" [label]="UsersFormEnum.username" [required]="usernameField"></label>
+              <app-form-help-field title="username"
+                [content]="['Esto es un listado 1','Esto es un listado 2','Esto es un listado 3']"></app-form-help-field>
+              <input pInputText type="text" id="username" formControluserName="username" />
+              <small appErrorMessage [errors]="usernameField.errors" [touched]="usernameField.touched"
+                [dirty]="usernameField.dirty">
+              </small>
+            </div>
+            <!-- email -->
+            <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="email" [label]="UsersFormEnum.email" [required]="emailField"></label>
+              <app-form-help-field title="email" content="Esto es un mensaje de prueba"></app-form-help-field>
+              <input pInputText type="text" id="email" formControlName="email" />
+              <small appErrorMessage [errors]="emailField.errors" [touched]="emailField.touched"
+                [dirty]="emailField.dirty">
+              </small>
+            </div>
+            <!-- password -->
+            <div class="field col-12 xl:col-3 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="password" [label]="UsersFormEnum.password" [required]="passwordField"></label>
+              <app-form-help-field title="password"
+                [content]="['Esto es un listado 1','Esto es un listado 2','Esto es un listado 3']"></app-form-help-field>
+              <input pInputText type="text" id="password" formControlName="password" />
+              <small appErrorMessage [errors]="passwordField.errors" [touched]="passwordField.touched"
+                [dirty]="passwordField.dirty">
+              </small>
+            </div>
+            <!-- phone -->
+            <div class="field col-12 xl:col-3 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="phone" [label]="UsersFormEnum.phone" [required]="phoneField"></label>
+              <app-form-help-field title="phone"
+                [content]="['Esto es un listado 1','Esto es un listado 2','Esto es un listado 3']"></app-form-help-field>
+              <input pInputText type="text" id="phone" formControlName="phone" />
+              <small appErrorMessage [errors]="phoneField.errors" [touched]="phoneField.touched"
+                [dirty]="phoneField.dirty">
+              </small>
+            </div>
+
+          </div>
         </div>
-        <div class="p-toolbar-group-right">
-          <app-form-button-action (submit)="onSubmit()" (cancel)="redirectRegistration()"></app-form-button-action>
+
+
+        <!-- tradeName -->
+        <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="tradeName" [label]="CompanyRegistrationFormEnum.tradeName"
+            [required]="tradeNameField"></label>
+          <app-form-help-field content="Esto es un mensaje de prueba"></app-form-help-field>
+          <input pInputText type="text" id="tradeName" formControlName="tradeName" />
+          <small appErrorMessage [errors]="tradeNameField.errors" [touched]="tradeNameField.touched"
+            [dirty]="tradeNameField.dirty">
+          </small>
+        </div>  
+        <!-- typeId -->
+        <div class="field col-12 xl:col-3 lg:col-4 md:col-4 sm:col-12">
+          <label appLabel for="typeId" [label]="CompanyRegistrationFormEnum.type" [required]="typeIdField"></label>
+          <p-dropdown id="typeId" [options]="types" formControlName="typeId" optionLabel="name" optionValue="id"
+            [filter]="true" filterBy="name" placeholder="Seleccione">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center gap-2">
+                <div>{{ selectedOption.name }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                <div>{{ item.name }}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          <small appErrorMessage [errors]="typeIdField.errors" [touched]="typeIdField.touched"
+            [dirty]="typeIdField.dirty">
+          </small>
         </div>
-      </p-toolbar>
+        <!-- personTypeId -->
+        <div class="field col-12 xl:col-3 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="personTypeId" [label]="CompanyRegistrationFormEnum.personType"
+            [required]="personTypeIdField"></label>
+          <p-dropdown id="personTypeId" [options]="personTypes" formControlName="personTypeId" optionLabel="name"
+            optionValue="id" [filter]="true" filterBy="name" placeholder="Seleccione">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center gap-2">
+                <div>{{ selectedOption.name }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                <div>{{ item.name }}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          <small appErrorMessage [errors]="personTypeIdField.errors" [touched]="personTypeIdField.touched"
+            [dirty]="personTypeIdField.dirty">
+          </small>
+        </div>
+        <!-- activityTypeId -->
+        <div class="field col-12 xl:col-3 lg:col-4 md:col-4 sm:col-12">
+          <label appLabel for="activityTypeId" [label]="CompanyRegistrationFormEnum.activityType"
+            [required]="activityTypeIdField"></label>
+          <p-dropdown id="activityTypeId" [options]="activityTypes" formControlName="activityTypeId" optionLabel="name"
+            optionValue="id" [filter]="true" filterBy="name" placeholder="Seleccione">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center gap-2">
+                <div>{{ selectedOption.name }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                <div>{{ item.name }}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          <small appErrorMessage [errors]="activityTypeIdField.errors" [touched]="activityTypeIdField.touched"
+            [dirty]="activityTypeIdField.dirty">
+          </small>
+        </div>
+        <!-- comercialActivities -->
+        <div class="field col-12 xl:col-5 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="comercialActivities" [label]="CompanyRegistrationFormEnum.comercialActivities"
+            [required]="comercialActivitiesField"></label>
+          <app-form-help-field title="comercialActivities" content="Esto es un mensaje de prueba"></app-form-help-field>
+          <input pInputText type="text" id="comercialActivities" formControlName="comercialActivities" />
+          <small appErrorMessage [errors]="comercialActivitiesField.errors" [touched]="comercialActivitiesField.touched"
+            [dirty]="comercialActivitiesField.dirty">
+          </small>
+        </div>
 
-      <p-panel>
-        <form [formGroup]="form" class="p-fluid grid">
-          <!-- tradeName -->
-          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
-            <label appLabel for="tradeName"
-                   [label]="CompanyRegistrationFormEnum.tradeName"
-                   [required]="tradeNameField"></label>
-            <app-form-help-field title="TradeName" content="Esto es un mensaje de prueba"></app-form-help-field>
-            <input pInputText type="text" id="tradeName" formControlName="tradeName"/>
-            <small appErrorMessage
-                   [errors]="tradeNameField.errors"
-                   [touched]="tradeNameField.touched"
-                   [dirty]="tradeNameField.dirty">
-            </small>
-          </div>
+        <!-- web -->
+        <div class="field col-12 xl:col-4 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="web" [label]="CompanyRegistrationFormEnum.web" [required]="webField"></label>
+          <app-form-help-field title="web"
+            [content]="['Esto es un listado 1','Esto es un listado 2','Esto es un listado 3']"></app-form-help-field>
+          <input pInputText type="text" id="web" formControlName="web" />
+          <small appErrorMessage [errors]="webField.errors" [touched]="webField.touched" [dirty]="webField.dirty">
+          </small>
+        </div>
 
-          <!-- web -->
-          <div class="field col-12 xl:col-3 lg:col-6 md:col-6 sm:col-12">
-            <label appLabel for="web" [label]="CompanyRegistrationFormEnum.web" [required]="webField"></label>
-            <app-form-help-field title="web" [content]="['Esto es un listado 1','Esto es un listado 2','Esto es un listado 3']"></app-form-help-field>
-            <input pInputText type="text" id="web" formControlName="web"/>
-            <small appErrorMessage
-                   [errors]="webField.errors"
-                   [touched]="webField.touched"
-                   [dirty]="webField.dirty">
-            </small>
-          </div>
+        
+      </form>
 
-          <!-- personTypeId -->
-          <div class="field col-12 xl:col-3 lg:col-6 md:col-6 sm:col-12">
-            <label appLabel for="personTypeId"
-                   [label]="CompanyRegistrationFormEnum.personType"
-                   [required]="personTypeIdField"></label>
-            <p-dropdown
-              id="personTypeId"
-              [options]="personTypes"
-              formControlName="personTypeId"
-              optionLabel="name"
-              optionValue="id"
-              [filter]="true"
-              filterBy="name"
-              placeholder="Seleccione">
-              <ng-template pTemplate="selectedItem" let-selectedOption>
-                <div class="flex align-items-center gap-2">
-                  <div>{{ selectedOption.name }}</div>
-                </div>
-              </ng-template>
-              <ng-template let-item pTemplate="item">
-                <div class="flex align-items-center gap-2">
-                  <div>{{ item.name }}</div>
-                </div>
-              </ng-template>
-            </p-dropdown>
-            <small appErrorMessage
-                   [errors]="personTypeIdField.errors"
-                   [touched]="personTypeIdField.touched"
-                   [dirty]="personTypeIdField.dirty">
-            </small>
-          </div>
-        </form>
-      </p-panel>
+    </p-panel>
     }
   </div>
 </div>

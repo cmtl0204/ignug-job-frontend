@@ -22,7 +22,8 @@ import {CompanyComponent} from './company/company.component';
 import {RegistrationComponent} from './registration.component';
 import {ToolbarModule} from "primeng/toolbar";
 import {OverlayPanelModule} from "primeng/overlaypanel";
-
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @NgModule({
   declarations: [ProfessionalComponent, CompanyComponent, RegistrationComponent],
@@ -37,6 +38,8 @@ import {OverlayPanelModule} from "primeng/overlaypanel";
     CheckboxModule,
     DividerModule,
     InputTextModule,
+    InputSwitchModule,
+    InputTextareaModule,
     PasswordModule,
     RippleModule,
     DropdownModule,

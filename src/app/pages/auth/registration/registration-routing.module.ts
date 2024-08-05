@@ -14,6 +14,12 @@ const routes: Routes = [
   {
     title: 'Professionals Registration',
     path: 'professionals',
+    component: ProfessionalComponent,
+    canDeactivate: [ExitGuard]
+  },
+  {
+    title: 'Professionals Registration',
+    path: 'professionals/:id',
     component: ProfessionalComponent
   },
   {

@@ -8,7 +8,8 @@ import { CompanyRoutingModule } from './company-routing.module';
   ],
   imports: [
     CommonModule,
-    CompanyRoutingModule
+    CompanyRoutingModule,
+    
   ]
 })
 export class CompanyModule { }

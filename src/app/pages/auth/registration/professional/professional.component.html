@@ -1,1 +1,183 @@
-<p>professional works!</p>
+<div class="grid">
+  <div class="col-12 xl:col-8 lg:col-8 md:col-10 sm:col-12 xl:col-offset-2 lg:col-offset-2 md:col-offset-1">
+    @if (coreService.isLoading) {
+    <app-skeleton [type]="SkeletonEnum.CARD"></app-skeleton>
+    }
+
+    @if (!coreService.isLoading) {
+    <p-toolbar>
+      <div class="p-toolbar-group-left">
+        <app-header-form label="Crear" [icon]="PrimeIcons.SAVE"></app-header-form>
+      </div>
+      <div class="p-toolbar-group-right">
+        <app-form-button-action (submit)="onSubmit()" (cancel)="redirectRegistration()"></app-form-button-action>
+      </div>
+    </p-toolbar>
+
+    <p-panel>
+      <form [formGroup]="form" class="p-fluid grid">
+
+        <!-- campos de usuario -->
+        <div formGroupName="user" class=" col-12">
+          <div class="grid">
+            <!-- identificationTypeId -->
+            <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="identificationTypeId" [label]="UsersFormEnum.identificationType"
+                [required]="identificationTypeIdField"></label>
+              <p-dropdown id="identificationTypeId" [options]="identificationTypes"
+                formControlName="identificationTypeId" optionLabel="name" optionValue="id" [filter]="true"
+                filterBy="name" placeholder="Seleccione">
+                <ng-template pTemplate="selectedItem" let-selectedOption>
+                  <div class="flex align-items-center gap-2">
+                    <div>{{ selectedOption.name }}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-item pTemplate="item">
+                  <div class="flex align-items-center gap-2">
+                    <div>{{ item.name }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+              <small appErrorMessage [errors]="identificationTypeIdField.errors"
+                [touched]="identificationTypeIdField.touched" [dirty]="identificationTypeIdField.dirty">
+              </small>
+            </div>
+            <!-- username/ nroDoc -->
+            <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="username" [label]="UsersFormEnum.username" [required]="usernameField"></label>
+              <app-form-help-field title="Username" content="Esto es un mensaje de prueba"></app-form-help-field>
+              <input pInputText type="text" id="username" formControlName="username" />
+              <small appErrorMessage [errors]="usernameField.errors" [touched]="usernameField.touched"
+                [dirty]="usernameField.dirty">
+              </small>
+            </div>
+            <!-- lastname -->
+            <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="lastname" [label]="UsersFormEnum.lastname" [required]="lastnameField"></label>
+              <app-form-help-field title="Lastname" content="Esto es un mensaje de prueba"></app-form-help-field>
+              <input pInputText type="text" id="lastname" formControlName="lastname" />
+              <small appErrorMessage [errors]="lastnameField.errors" [touched]="lastnameField.touched"
+                [dirty]="lastnameField.dirty">
+              </small>
+            </div>
+            <!-- name -->
+            <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="name" [label]="UsersFormEnum.name" [required]="nameField"></label>
+              <app-form-help-field title="Name" content="Esto es un mensaje de prueba"></app-form-help-field>
+              <input pInputText type="text" id="name" formControlName="name" />
+              <small appErrorMessage [errors]="nameField.errors" [touched]="nameField.touched"
+                [dirty]="nameField.dirty">
+              </small>
+            </div>
+            <!-- password -->
+            <div class="field col-12 xl:col-4 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="password" [label]="UsersFormEnum.password" [required]="passwordField"></label>
+              <app-form-help-field title="Password" content="Esto es un mensaje de prueba"></app-form-help-field>
+              <input pInputText type="text" id="password" formControlName="password" />
+              <small appErrorMessage [errors]="passwordField.errors" [touched]="passwordField.touched"
+                [dirty]="passwordField.dirty">
+              </small>
+            </div>
+            <!-- email -->
+            <div class="field col-12 xl:col-4 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="email" [label]="UsersFormEnum.email" [required]="emailField"></label>
+              <app-form-help-field title="Email" content="Esto es un mensaje de prueba"></app-form-help-field>
+              <input pInputText type="text" id="email" formControlName="email" />
+              <small appErrorMessage [errors]="emailField.errors" [touched]="emailField.touched"
+                [dirty]="emailField.dirty">
+              </small>
+            </div>
+            <!-- phone -->
+            <div class="field col-12 xl:col-4 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="phone" [label]="UsersFormEnum.phone" [required]="phoneField"></label>
+              <app-form-help-field title="Phone" content="Esto es un mensaje de prueba"></app-form-help-field>
+              <input pInputText type="text" id="phone" formControlName="phone" />
+              <small appErrorMessage [errors]="phoneField.errors" [touched]="phoneField.touched"
+                [dirty]="phoneField.dirty">
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- campos de profesional -->
+        <!-- aboutMe -->
+        <div class="field col-12 xl:col-12 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="aboutMe" [label]="ProfessionalsFormEnum.aboutMe"></label>
+          <app-form-help-field title="AboutMe" content="Esto es un mensaje de prueba"></app-form-help-field>
+          <textarea rows="5" cols="30" pInputTextarea id="aboutMe" formControlName="aboutMe" maxlength="100"></textarea>
+          <small appErrorMessage [errors]="aboutMeField.errors" [touched]="aboutMeField.touched"
+            [dirty]="aboutMeField.dirty"></small>
+        </div>
+
+
+        <!-- traveled -->
+        <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="traveled" [label]="ProfessionalsFormEnum.traveled"></label>
+          <app-form-help-field title="Traveled" content="Esto es un mensaje de prueba"></app-form-help-field>
+          <p-inputSwitch formControlName="traveled" inputId="traveled"></p-inputSwitch>
+          <small appErrorMessage [errors]="traveledField.errors" [touched]="traveledField.touched"
+            [dirty]="traveledField.dirty"></small>
+        </div>
+
+        <!-- disabled -->
+        <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="disabled" [label]="ProfessionalsFormEnum.disabled"></label>
+          <app-form-help-field title="Disabled" content="Esto es un mensaje de prueba"></app-form-help-field>
+          <p-inputSwitch formControlName="disabled" inputId="disabled"></p-inputSwitch>
+          <small appErrorMessage [errors]="disabledField.errors" [touched]="disabledField.touched"
+            [dirty]="disabledField.dirty"></small>
+        </div>
+
+        <!-- catastrophicDiseased -->
+        <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="catastrophicDiseased" [label]="ProfessionalsFormEnum.catastrophicDiseased"></label>
+          <app-form-help-field title="CatastrophicDiseased"
+            content="Esto es un mensaje de prueba"></app-form-help-field>
+          <p-inputSwitch formControlName="catastrophicDiseased" inputId="catastrophicDiseased"></p-inputSwitch>
+          <small appErrorMessage [errors]="catastrophicDiseasedField.errors"
+            [touched]="catastrophicDiseasedField.touched" [dirty]="catastrophicDiseasedField.dirty"></small>
+        </div>
+
+        <!-- familiarDisabled -->
+        <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="familiarDisabled" [label]="ProfessionalsFormEnum.familiarDisabled"></label>
+          <app-form-help-field title="FamiliarDisabled" content="Esto es un mensaje de prueba"></app-form-help-field>
+          <p-inputSwitch formControlName="familiarDisabled" inputId="familiarDisabled"></p-inputSwitch>
+          <small appErrorMessage [errors]="familiarDisabledField.errors" [touched]="familiarDisabledField.touched"
+            [dirty]="familiarDisabledField.dirty"></small>
+        </div>
+
+        <!-- familiarCatastrophicDiseased -->
+        <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="familiarCatastrophicDiseased"
+            [label]="ProfessionalsFormEnum.familiarCatastrophicDiseased"></label>
+          <app-form-help-field title="FamiliarCatastrophicDiseased"
+            content="Esto es un mensaje de prueba"></app-form-help-field>
+          <p-inputSwitch formControlName="familiarCatastrophicDiseased"
+            inputId="familiarCatastrophicDiseased"></p-inputSwitch>
+          <small appErrorMessage [errors]="familiarCatastrophicDiseasedField.errors"
+            [touched]="familiarCatastrophicDiseasedField.touched"
+            [dirty]="familiarCatastrophicDiseasedField.dirty"></small>
+        </div>
+
+
+        <!-- identificationFamiliarDisabled -->
+        <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+          <label appLabel for="identificationFamiliarDisabled"
+            [label]="ProfessionalsFormEnum.identificationFamiliarDisabled"></label>
+          <app-form-help-field title="IdentificationFamiliarDisabled"
+            content="Esto es un mensaje de prueba"></app-form-help-field>
+          <input pInputText type="text" id="identificationFamiliarDisabled"
+            formControlName="identificationFamiliarDisabled" />
+          <small appErrorMessage [errors]="identificationFamiliarDisabledField.errors"
+            [touched]="identificationFamiliarDisabledField.touched" [dirty]="identificationFamiliarDisabledField.dirty">
+          </small>
+        </div>
+
+
+
+      </form>
+    </p-panel>
+    }
+  </div>
+</div>

@@ -11,13 +11,18 @@ export enum CompanyRegistrationFormEnum {
   identification = 'Número de documento',
   identificationType = 'Tipo de documento',
   lastname = 'Apellidos',
-  tradeName = 'Nombres',
+  //cambio de contenido en tradeName
+  tradeName = 'Nombre de la empresa',
   password = 'Contraseña',
   web = 'Página web',
   personType = 'Tipo de personería jurídica',
   unitManagers = 'Unidades ejecutoras',
   bloodType = 'Tipo de sangre',
   ethnicOrigin = 'Etnia',
+  //datos nuevos
+  activityType = 'Tipo de Actividad',
+  type = 'Tipo de empresa',
+  comercialActivities = 'Actividades Comerciales',
 }
 
 export enum UsersFormEnum {
@@ -32,6 +37,20 @@ export enum UsersFormEnum {
   unitManagers = 'Unidades ejecutoras',
   bloodType = 'Tipo de sangre',
   ethnicOrigin = 'Etnia',
+  //datos nuevos
+  phone = 'Teléfono',
+  username = 'Numero de Documento',
+}
+
+//nuevo enum professional
+export enum ProfessionalsFormEnum {
+  aboutMe = 'Presentación personal',
+  catastrophicDiseased = 'Cuenta con alguna condición de enfermedad catastrófica',
+  disabled = 'Cuenta con alguna condición de discapacidad',
+  familiarCatastrophicDiseased = 'Cuenta con algun familiar con condición de enfermedad catastrófica',
+  familiarDisabled = 'Cuenta con algun familiar con condición de discapacidad',
+  identificationFamiliarDisabled = 'Documento de identidad de familiar con discapacidad',
+  traveled = 'Puede viajar',
 }
 
 export const CompanyRegistrationFormEnum2 = [{
