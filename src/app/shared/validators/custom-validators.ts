@@ -11,8 +11,8 @@ export class CustomValidators {
   }
 
   static passwordMatchValidator(control: AbstractControl) {
-    const passwordNew: string = control.get('passwordNew')?.value;
-    const passwordConfirmation: string = control.get('passwordConfirmation')?.value;
+    const passwordNew: string |undefined= control.get('passwordNew')?.value;
+    const passwordConfirmation: string|undefined = control.get('passwordConfirmation')?.value;
 
     if (passwordNew !== passwordConfirmation) {
       control.get('passwordConfirmation')?.setErrors({noPasswordMatch: true});

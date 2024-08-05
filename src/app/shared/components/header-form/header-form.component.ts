@@ -8,7 +8,11 @@ import {RoutesEnum} from "@shared/enums";
   styleUrls: ['./header-form.component.scss']
 })
 export class HeaderFormComponent implements OnInit {
+<<<<<<< HEAD
   @Input() id: string | null = null;
+=======
+  @Input({required:true}) id: string | null = null;
+>>>>>>> 0cd3bd10077ca61eb387b3c65c416da980c6526a
   @Input() label: string = '';
   @Input() icon: string = '';
 

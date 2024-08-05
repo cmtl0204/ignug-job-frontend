@@ -38,7 +38,11 @@ export * from './application-status.model';
 export * from './transaction.model';
 export * from './unit-manager.model';
 export * from './transaction-detail.model';
+<<<<<<< HEAD
 export * from './company.model';
 export * from './professional.model';
 
 
+=======
+export * from './course.model';
+>>>>>>> 0cd3bd10077ca61eb387b3c65c416da980c6526a

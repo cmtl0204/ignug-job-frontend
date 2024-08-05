@@ -3,6 +3,8 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {firstValueFrom} from "rxjs";
 import {PrimeIcons} from "primeng/api";
 
+import {OnExitInterface} from "@shared/interfaces";
+
 import {CatalogueModel, CompanyModel} from "@models/core";
 
 import {AuthHttpService, AuthService} from "@servicesApp/auth";
@@ -10,11 +12,9 @@ import {CoreService, MessageDialogService, RoutesService} from "@servicesApp/cor
 
 import {CataloguesHttpService} from "@servicesHttp/core";
 
-import {CatalogueTypeEnum, CompanyRegistrationFormEnum, RoutesEnum, SkeletonEnum, UsersFormEnum} from "@shared/enums";
-import {OnExitInterface} from "@shared/interfaces";
-import { UserModel } from '@models/auth';
+import {CatalogueTypeEnum, CompanyRegistrationFormEnum, RoutesEnum, SkeletonEnum} from "@shared/enums";
 import { CompanyHttpService } from '@servicesHttp/core/company-http.service';
-import { Router } from '@angular/router';
+import { UserModel } from '@models/auth/user.model';
 
 
 
@@ -37,6 +37,7 @@ export class CompanyComponent implements OnInit, OnExitInterface {
   @Input({required: true}) id!: string;
   protected form!: FormGroup;
   private formErrors: string[] = [];
+  private onLeave: boolean = true;
 
   /** Foreign Keys **/
   protected personTypes: CatalogueModel[] = [];
@@ -49,10 +50,6 @@ export class CompanyComponent implements OnInit, OnExitInterface {
   protected readonly SkeletonEnum = SkeletonEnum;
   protected readonly PrimeIcons = PrimeIcons;//pending
 
-  protected readonly  UsersFormEnum = UsersFormEnum;
-  protected items: CompanyModel[] = [];
-  private readonly router = inject(Router);
-  
   constructor() {
     this.buildForm();
   }
@@ -68,20 +65,16 @@ export class CompanyComponent implements OnInit, OnExitInterface {
     /** Load Foreign Keys**/
     this.loadPersonTypes();
 
-    this.findAll();
-
+    if (this.id !== RoutesEnum.NEW) {
+      this.find(this.id);
+    }
   }
 
-  findAll() {
-    this.companyHttpService.findAll().subscribe((response) => {
-      this.items = response;
-    });
-  }
-  
-  redirectCreateForm() {
-    // this.router.navigate(['/core/professionals', this.authService.auth.professional.id, 'courses/new']);
-    // this.router.navigate([`/core/professionals/${this.authService.auth.professional.id}/courses/new`]);
-    this.router.navigate([`/auth/companies/`]);
+  find(id: string) {
+    /*
+    TODO
+    */
+    this.form.patchValue({});
   }
 
   /** Form Builder & Validates **/
@@ -129,23 +122,26 @@ export class CompanyComponent implements OnInit, OnExitInterface {
 
   /** Load Foreign Keys  **/
   loadPersonTypes() {
-    this.personTypes = this.cataloguesHttpService.findByType(CatalogueTypeEnum.COMPANIES_PERSON_TYPE);
+    this.cataloguesHttpService.findByType(CatalogueTypeEnum.COMPANIES_PERSON_TYPE);
   }
 
   /** Form Actions **/
   onSubmit(): void {
     if (this.validateForm()) {
-      this.register();
+      this.create();
     } else {
       this.form.markAllAsTouched();
       this.messageDialogService.fieldErrors(this.formErrors);
     }
   }
 
-  register(): void {
+  create(): void {
 
   }
 
+  update(): void {
+
+  }
 
   /** Redirects **/
   redirectRegistration() {

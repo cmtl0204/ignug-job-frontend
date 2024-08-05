@@ -27,6 +27,9 @@ export interface UserModel {
   phone: string;
   suspendedAt: Date;
   username: string;
+
+  professional: any;
+  company: any;
 }
 
 export interface CreateUserDto extends Omit<UserModel, 'id'> {
