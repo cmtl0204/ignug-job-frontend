@@ -1,1 +1,72 @@
-<p>category-form works!</p>
+<div class="grid">
+    <div class="col-12 xl:col-8 lg:col-8 md:col-10 sm:col-12 xl:col-offset-2 lg:col-offset-2 md:col-offset-1">
+        @if (coreService.isLoading) {
+          <app-skeleton [type]="SkeletonEnum.CARD"></app-skeleton>
+        }
+    
+        @if (!coreService.isLoading) {
+          <p-toolbar>
+            <div class="p-toolbar-group-left">
+              <app-header-form [id]="id"></app-header-form>
+            </div>
+            <div class="p-toolbar-group-right">
+              <app-form-button-action (submit)="onSubmit()" (cancel)="redirectRegistration()"></app-form-button-action>
+            </div>
+          </p-toolbar>
+      
+          <p-panel>
+            <form [formGroup]="form" class="p-fluid grid">
+              <!-- code -->
+              <div class="field col-12 xl:col-3 lg:col-6 md:col-6 sm:col-12">
+                <label appLabel for="code"
+                       [label]="CategoryFormEnum.code"
+                       [required]="codeField">
+                </label>
+                <app-form-help-field title="code" content="Ingrese el código de la categoría"></app-form-help-field>
+                <input pInputText type="text" id="code" formControlName="code"/>
+                <br>
+                <small appErrorMessage
+                       [errors]="codeField.errors"
+                       [touched]="codeField.touched"
+                       [dirty]="codeField.dirty">
+                </small>
+              </div>
+
+              <!-- name -->
+              <div class="field col-12 xl:col-3 lg:col-6 md:col-6 sm:col-12">
+                <label appLabel for="name"
+                       [label]="CategoryFormEnum.name"
+                       [required]="codeField">
+                </label>
+                <app-form-help-field title="name" content="Ingrese el nombre de la categoría"></app-form-help-field>
+                <input pInputText type="text" id="name" formControlName="name"/>
+                <br>
+                <small appErrorMessage
+                       [errors]="nameField.errors"
+                       [touched]="nameField.touched"
+                       [dirty]="nameField.dirty">
+                </small>
+              </div>
+                       <!-- icon -->
+                       <div class="field col-12 xl:col-3 lg:col-6 md:col-6 sm:col-12">
+                        <label appLabel for="icon"
+                          [label]="CategoryFormEnum.icon"
+                          [required]="iconField"></label>
+                       <app-form-help-field title="icon" content="Ingrese un ícono"></app-form-help-field>          
+                        <p-fileUpload 
+                        id="icon" 
+                        formControlName="icon"
+                        mode="basic" 
+                        name="demo[]" 
+                        chooseIcon="pi pi-upload" 
+                        url="https://www.primefaces.org/cdn/api/upload.php" 
+                        accept="image/*" maxFileSize="1000000" 
+                        
+                        chooseLabel="Browse" />
+                        
+                      </div>
+            </form>
+          </p-panel>
+        }
+      </div>
+  </div>

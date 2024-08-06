@@ -100,6 +100,7 @@ export class CompanyComponent implements OnInit, OnExitInterface {
      
     });
   }
+  
 
   validateForm(): boolean {
     this.formErrors = [];

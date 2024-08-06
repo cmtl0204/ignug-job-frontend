@@ -1,1 +1,276 @@
-<p>offer-form works!</p>
+<div class="grid">
+       <div class="col-12 xl:col-8 lg:col-8 md:col-10 sm:col-12 xl:col-offset-2 lg:col-offset-2 md:col-offset-1">
+         @if (coreService.isLoading) {
+           <app-skeleton [type]="SkeletonEnum.CARD"></app-skeleton>
+         }
+     
+         @if (!coreService.isLoading) {
+           <p-toolbar>
+             <div class="p-toolbar-group-left">
+               <app-header-form [id]="id"></app-header-form>
+             </div>
+             <div class="p-toolbar-group-right">
+               <app-form-button-action (submit)="onSubmit()" (cancel)="redirectRegistration()"></app-form-button-action>
+             </div>
+           </p-toolbar>
+
+      <p-panel>
+        <form [formGroup]="form" class="p-fluid grid">
+
+          <!-- Contract Type -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="contractTypeId"
+                   [label]="OfferFormEnum.contractTypeId"
+                   [required]="contractTypeIdField"></label>
+            <p-dropdown id="contractTypeId" formControlName="contractTypeId" 
+                        optionLabel="name" optionValue="id" placeholder="Seleccione"></p-dropdown>
+            <small appErrorMessage
+                   [errors]="contractTypeIdField.errors"
+                   [touched]="contractTypeIdField.touched"
+                   [dirty]="contractTypeIdField.dirty"></small>
+          </div>
+
+          <!-- Company ID -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="companyId"
+                   [label]="OfferFormEnum.companyId"
+                   [required]="companyIdField"></label>
+            <input pInputText type="text" id="companyId" formControlName="companyId"/>
+            <small appErrorMessage
+                   [errors]="companyIdField.errors"
+                   [touched]="companyIdField.touched"
+                   [dirty]="companyIdField.dirty"></small>
+          </div>
+
+          <!-- Experience Time -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="experienceTimeId"
+                   [label]="OfferFormEnum.experienceTimeId"
+                   [required]="experienceTimeIdField"></label>
+            <p-dropdown id="experienceTimeId" formControlName="experienceTimeId" 
+                        optionLabel="name" optionValue="id" placeholder="Seleccione"></p-dropdown>
+            <small appErrorMessage
+                   [errors]="experienceTimeIdField.errors"
+                   [touched]="experienceTimeIdField.touched"
+                   [dirty]="experienceTimeIdField.dirty"></small>
+          </div>
+
+          <!-- Location -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="locationId"
+                   [label]="OfferFormEnum.locationId"
+                   [required]="locationIdField"></label>
+            <p-dropdown id="locationId" formControlName="locationId" 
+                        optionLabel="name" optionValue="id" placeholder="Seleccione"></p-dropdown>
+            <small appErrorMessage
+                   [errors]="locationIdField.errors"
+                   [touched]="locationIdField.touched"
+                   [dirty]="locationIdField.dirty"></small>
+          </div>
+
+          <!-- Sector -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="sectorId"
+                   [label]="OfferFormEnum.sectorId"
+                   [required]="sectorIdField"></label>
+            <p-dropdown id="sectorId" formControlName="sectorId" 
+                        optionLabel="name" optionValue="id" placeholder="Seleccione"></p-dropdown>
+            <small appErrorMessage
+                   [errors]="sectorIdField.errors"
+                   [touched]="sectorIdField.touched"
+                   [dirty]="sectorIdField.dirty"></small>
+          </div>
+
+          <!-- State -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="stateId"
+                   [label]="OfferFormEnum.stateId"
+                   [required]="stateIdField"></label>
+            <p-dropdown id="stateId" formControlName="stateId" 
+                        optionLabel="name" optionValue="id" placeholder="Seleccione"></p-dropdown>
+            <small appErrorMessage
+                   [errors]="stateIdField.errors"
+                   [touched]="stateIdField.touched"
+                   [dirty]="stateIdField.dirty"></small>
+          </div>
+
+          <!-- Training Hours -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="trainingHoursId"
+                   [label]="OfferFormEnum.trainingHoursId"
+                   [required]="trainingHoursIdField"></label>
+            <p-dropdown id="trainingHoursId" formControlName="trainingHoursId" 
+                        optionLabel="name" optionValue="id" placeholder="Seleccione"></p-dropdown>
+            <small appErrorMessage
+                   [errors]="trainingHoursIdField.errors"
+                   [touched]="trainingHoursIdField.touched"
+                   [dirty]="trainingHoursIdField.dirty"></small>
+          </div>
+
+          <!-- Working Day -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="workingDayId"
+                   [label]="OfferFormEnum.workingDayId"
+                   [required]="workingDayIdField"></label>
+            <p-dropdown id="workingDayId" formControlName="workingDayId" 
+                        optionLabel="name" optionValue="id" placeholder="Seleccione"></p-dropdown>
+            <small appErrorMessage
+                   [errors]="workingDayIdField.errors"
+                   [touched]="workingDayIdField.touched"
+                   [dirty]="workingDayIdField.dirty"></small>
+          </div>
+
+          <!-- Activities -->
+          <div class="field col-12">
+            <label appLabel for="activities"
+                   [label]="OfferFormEnum.activities"
+                   [required]="activitiesField"></label>
+            <textarea pInputTextarea id="activities" formControlName="activities"></textarea>
+            <small appErrorMessage
+                   [errors]="activitiesField.errors"
+                   [touched]="activitiesField.touched"
+                   [dirty]="activitiesField.dirty"></small>
+          </div>
+
+          <!-- Additional Information -->
+          <div class="field col-12">
+            <label appLabel for="additionalInformation"
+                   [label]="OfferFormEnum.additionalInformation"></label>
+            <textarea pInputTextarea id="additionalInformation" formControlName="additionalInformation"></textarea>
+          </div>
+
+          <!-- Code -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="code"
+                   [label]="OfferFormEnum.code"
+                   [required]="codeField"></label>
+            <input pInputText type="text" id="code" formControlName="code"/>
+            <small appErrorMessage
+                   [errors]="codeField.errors"
+                   [touched]="codeField.touched"
+                   [dirty]="codeField.dirty"></small>
+          </div>
+
+          <!-- Contact Cellphone -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="contactCellphone"
+                   [label]="OfferFormEnum.contactCellphone"
+                   [required]="contactCellphoneField"></label>
+            <input pInputText type="text" id="contactCellphone" formControlName="contactCellphone"/>
+            <small appErrorMessage
+                   [errors]="contactCellphoneField.errors"
+                   [touched]="contactCellphoneField.touched"
+                   [dirty]="contactCellphoneField.dirty"></small>
+          </div>
+
+          <!-- Contact Email -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="contactEmail"
+                   [label]="OfferFormEnum.contactEmail"
+                   [required]="contactEmailField"></label>
+            <input pInputText type="email" id="contactEmail" formControlName="contactEmail"/>
+            <small appErrorMessage
+                   [errors]="contactEmailField.errors"
+                   [touched]="contactEmailField.touched"
+                   [dirty]="contactEmailField.dirty"></small>
+          </div>
+
+          <!-- Contact Name -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="contactName"
+                   [label]="OfferFormEnum.contactName"
+                   [required]="contactNameField"></label>
+            <input pInputText type="text" id="contactName" formControlName="contactName"/>
+            <small appErrorMessage
+                   [errors]="contactNameField.errors"
+                   [touched]="contactNameField.touched"
+                   [dirty]="contactNameField.dirty"></small>
+          </div>
+
+          <!-- Contact Phone -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="contactPhone"
+                   [label]="OfferFormEnum.contactPhone"
+                   [required]="contactPhoneField"></label>
+            <input pInputText type="text" id="contactPhone" formControlName="contactPhone"/>
+            <small appErrorMessage
+                   [errors]="contactPhoneField.errors"
+                   [touched]="contactPhoneField.touched"
+                   [dirty]="contactPhoneField.dirty"></small>
+          </div>
+
+          <!-- Ended At -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="endedAt"
+                   [label]="OfferFormEnum.endedAt"
+                   [required]="endedAtField"></label>
+            <p-calendar id="endedAt" formControlName="endedAt" dateFormat="yy-mm-dd"></p-calendar>
+            <small appErrorMessage
+                   [errors]="endedAtField.errors"
+                   [touched]="endedAtField.touched"
+                   [dirty]="endedAtField.dirty"></small>
+          </div>
+
+          <!-- Position -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="position"
+                   [label]="OfferFormEnum.position"
+                   [required]="positionField"></label>
+            <input pInputText type="text" id="position" formControlName="position"/>
+            <small appErrorMessage
+                   [errors]="positionField.errors"
+                   [touched]="positionField.touched"
+                   [dirty]="positionField.dirty"></small>
+          </div>
+
+          <!-- Remuneration -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="remuneration"
+                   [label]="OfferFormEnum.remuneration"
+                   [required]="remunerationField"></label>
+            <input pInputText type="number" id="remuneration" formControlName="remuneration"/>
+            <small appErrorMessage
+                   [errors]="remunerationField.errors"
+                   [touched]="remunerationField.touched"
+                   [dirty]="remunerationField.dirty"></small>
+          </div>
+
+          <!-- Started At -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="startedAt"
+                   [label]="OfferFormEnum.startedAt"
+                   [required]="startedAtField"></label>
+            <p-calendar id="startedAt" formControlName="startedAt" dateFormat="yy-mm-dd"></p-calendar>
+            <small appErrorMessage
+                   [errors]="startedAtField.errors"
+                   [touched]="startedAtField.touched"
+                   [dirty]="startedAtField.dirty"></small>
+          </div>
+
+          <!-- Requirements -->
+          <div class="field col-12">
+            <label appLabel for="requirements"
+                   [label]="OfferFormEnum.requirements"
+                   [required]="requirementsField"></label>
+            <textarea pInputTextarea id="requirements" formControlName="requirements"></textarea>
+            <small appErrorMessage
+                   [errors]="requirementsField.errors"
+                   [touched]="requirementsField.touched"
+                   [dirty]="requirementsField.dirty"></small>
+          </div>
+                 <!-- Vacancies -->
+                 <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+                     <label appLabel for="vacancies"
+                            [label]="OfferFormEnum.vacancies"
+                            [required]="vacanciesField"></label>
+                            <textarea pInputTextarea id="vacancies" formControlName="vacancies"></textarea>
+              <small appErrorMessage
+                            [errors]="vacanciesField.errors"
+                            [touched]="vacanciesField.touched"
+                            [dirty]="vacanciesField.dirty"></small>
+                   </div>
+        </form>
+      </p-panel>
+    }
+     </div>
+</div>
