@@ -53,6 +53,38 @@ export enum ProfessionalsFormEnum {
   traveled = 'Puede viajar',
 }
 
+export enum OffersFormEnum{
+  contractTypeId = 'Tipo Contrato',
+  companyId = 'Compania',
+  experienceTimeId = 'Tiempo de Experiencia',
+  locationId = 'Ubicación',
+  sectorId = 'Sector',
+  stateId = 'Estado',
+  trainingHoursId = 'Horas de Entrenamiento',
+  workingDayId = 'Día de Trabajo',
+  activities = 'Actividades',
+  additionalInformation = 'Información Adicional',
+  code = 'Código',
+  contactCellphone = 'Contacto del Celular',
+  contactEmail = 'Contacto del Email',
+  contactName = 'Nombre de Contacto',
+  contactPhone = 'Teléfono de Contacto',
+  endedAt = 'Termino en',
+  position = 'Posición',
+  remuneration = 'Remuneración',
+  startedAt = 'Empezo a las',
+  requirements = 'Requisitos',
+  vacancies = 'Vacantes'
+}
+
+export enum CategoryFormEnum{
+
+code = 'Codigo',
+icon ='Icono',
+name ='Nombre Categoria',
+
+}
+
 export const CompanyRegistrationFormEnum2 = [{
   tradeName: 'Correo electrónico',
   personTypeId: 'Número de documento',

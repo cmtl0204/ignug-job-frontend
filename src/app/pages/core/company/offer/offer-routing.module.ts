@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {OfferListComponent} from "../../../../../../../../../Users/cesar/Downloads/michael vivanco/offer/offer-list/offer-list.component";
-import {OfferFormComponent} from "../../../../../../../../../Users/cesar/Downloads/michael vivanco/offer/offer-form/offer-form.component";
+import {OfferFormComponent} from "./offer-form/offer-form.component";
+import { OfferListComponent } from './offer-list/offer-list.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: OfferListComponent
-  },
-  {
     path: ':id',
     component: OfferFormComponent
+  },
+  {
+    path: '',
+    component: OfferListComponent
   }
 ];
 
@@ -18,5 +18,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CourseRoutingModule {
+export class OfferRoutingModule {
 }

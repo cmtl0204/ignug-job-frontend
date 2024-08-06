@@ -3,21 +3,21 @@ import {FormControl} from "@angular/forms";
 import {Router} from '@angular/router';
 import {MenuItem, PrimeIcons} from "primeng/api";
 import {SelectUserDto, UserModel} from '@models/auth';
-import {ColumnModel, CourseModel, CompanyProfessionalModel} from '@models/core';
+import {ColumnModel, OfferModule} from '@models/core';
 import {AuthService} from '@servicesApp/auth';
 import {BreadcrumbService, CoreService, MessageService} from '@servicesApp/core';
 import {BreadcrumbEnum, IconButtonActionEnum, LabelButtonActionEnum} from "@shared/enums";
 import {debounceTime} from "rxjs";
-import {CompanyProfessionalHttpService,} from "@servicesHttp/core";
+import {OfferHttpService} from "@servicesHttp/core";
 
 @Component({
-  selector: 'app-course-list',
+  selector: 'app-offer-list',
   templateUrl: './offer-list.component.html',
   styleUrl: './offer-list.component.scss'
 })
 export class OfferListComponent implements OnInit {
   protected readonly authService = inject(AuthService);
-  private readonly CompanyProfessionalHttpService = inject(CompanyProfessionalHttpService);
+  private readonly offerHttpServices = inject(OfferHttpService);
   protected readonly coreService = inject(CoreService);
   private readonly breadcrumbService = inject(BreadcrumbService);
   protected readonly messageService = inject(MessageService);
@@ -27,8 +27,8 @@ export class OfferListComponent implements OnInit {
   protected buttonActions: MenuItem[] = this.buildButtonActions;
   protected columns: ColumnModel[] = this.buildColumns;
   protected isButtonActions: boolean = false;
-  protected selectedItem: CompanyProfessionalModel = {};
-  protected items: CompanyProfessionalModel[] = [];
+  protected selectedItem: OfferModule = {};
+  protected items: OfferModule[] = [];
 
   constructor() {
     this.breadcrumbService.setItems([{label: BreadcrumbEnum.USERS}]);
@@ -39,19 +39,35 @@ export class OfferListComponent implements OnInit {
   }
 
   findAll() {
-    this.CompanyProfessionalHttpService.findAll().subscribe((response) => {
+    this.offerHttpServices.findAll().subscribe((response) => {
       this.items = response;
     });
   }
 
   get buildColumns(): ColumnModel[] {
     return [
-      {field: 'name', header: 'Nombre del Curso'},
-      {field: 'lastname', header: 'Apellidos'},
-      {field: 'name', header: 'Nombres'},
-      {field: 'email', header: 'Correo'},
-      {field: 'roles', header: 'Roles'},
-      {field: 'suspendedAt', header: 'Estado'}
+      {field: 'contractTypeId', header: 'Tipo de contrato'},
+      {field: 'companyId', header: 'Compania'},
+      {field: 'experienceTimeId', header: 'Tiempo de Experiencia'},
+      {field: 'locationId', header: 'Ubicación'},
+      {field: 'sectorId', header: 'Sector '},
+      {field: 'stateId', header: 'Estado'},
+      {field: 'trainingHoursId', header: 'Horas de Entrenamiento'},
+      {field: 'workingDayId', header: 'Día de Trabajo'},
+      {field: 'activities', header: 'Actividades'},
+      {field: 'code', header: 'Codigo'},
+      {field: 'contactCellphone', header: 'Contacto Telefono Celular'},
+      {field: 'contactEmail', header: 'Email'},
+      {field: 'contactName', header: 'Nombre de Contacto'},
+      {field: 'contactPhone', header: 'Contacto Celular'},
+      {field: 'endedAt', header: 'Termino'},
+      {field: 'position', header: 'Position'},
+      {field: 'remuneration', header: 'Remuneración'},
+      {field: 'startedAt', header: 'Inicio'},
+      {field: 'requirements', header: 'Requisitos'},
+      {field: 'additionalInformation', header: 'Información Adicional'},
+      {field: 'vacancies', header: 'Vacantes'},
+
     ];
   }
 
@@ -75,20 +91,20 @@ export class OfferListComponent implements OnInit {
   }
 
   redirectCreateForm() {
-    // this.router.navigate(['/core/company', this.authService.auth.professional.id, 'courses/new']);
-    // this.router.navigate([`/core/company/${this.authService.auth.professional.id}/courses/new`]);
-    this.router.navigate([`/core/company/1/offer/new`]);
+    // this.router.navigate(['/core/professionals', this.authService.auth.professional.id, 'courses/new']);
+    // this.router.navigate([`/core/professionals/${this.authService.auth.professional.id}/courses/new`]);
+    this.router.navigate([`/core/companies/offers/new`]);
   }
 
   redirectEditForm(id: string) {
-    this.router.navigate(['/core/company', this.authService.auth.professional.id, 'courses', id]);
+   // this.router.navigate(['/core/professionals', this.authService.auth.professional.id, 'courses', id]);
   }
 
   remove(id: string) {
     // this.messageService.questionDelete()
     //   .then((result) => {
     //     if (result.isConfirmed) {
-    //       this.CompanyProfessionalHattpService.remove(id).subscribe((user) => {
+    //       this.courseHttpServices.remove(id).subscribe((user) => {
     //         this.users = this.users.filter(item => item.id !== user.id);
     //         this.paginator.totalItems--;
     //       });
@@ -96,7 +112,7 @@ export class OfferListComponent implements OnInit {
     //   });
   }
 
-  selectItem(item: CompanyProfessionalModel) {
+  selectItem(item: OfferModule) {
     this.isButtonActions = true;
     this.selectedItem = item;
   }

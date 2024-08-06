@@ -79,7 +79,7 @@ registerLocaleData(localEs, 'es');
     InputTextModule,
     SidebarModule,
     BadgeModule,
-    PanelMenuModule,
+    PanelMenuModule   
   ],
   providers: [
     // {
