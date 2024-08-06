@@ -4,8 +4,7 @@ import {PrimeIcons} from "primeng/api";
 import {RoleModel} from "@models/auth";
 import {AuthService} from '@servicesApp/auth';
 import {CoreService, MessageService, RoutesService} from '@servicesApp/core';
-import {FiscalYearModel, UnitModel} from "@models/core";
-import {LoginFormEnum, RoleEnum} from "@shared/enums";
+import {LoginFormEnum} from "@shared/enums";
 
 @Component({
   selector: 'app-role-select',
@@ -38,9 +37,7 @@ export class RoleSelectComponent implements OnInit {
 
   buildForm(): void {
     this.form = this.formBuilder.group({
-        role: [null, [Validators.required]],
-        fiscalYear: [null],
-        unit: [null],
+        role: [null, [Validators.required]]
       }
     );
   }
@@ -66,14 +63,6 @@ export class RoleSelectComponent implements OnInit {
 
   get roleField() {
     return this.form.controls['role'];
-  }
-
-  get fiscalYearField() {
-    return this.form.controls['fiscalYear'];
-  }
-
-  get unitField() {
-    return this.form.controls['unit'];
   }
 
   protected readonly LoginFormEnum = LoginFormEnum;

@@ -1,4 +1,4 @@
-export interface OfferModule{
+export interface OfferModel{
 
     id?: string;
     createAt?: Date;
@@ -6,7 +6,7 @@ export interface OfferModule{
     deleteAT?: Date;
 
     //contractType:
-    contractTypeId?: string; 
+    contractTypeId?: string;
     //company:
     companyId?: string;
     //experienceTime:

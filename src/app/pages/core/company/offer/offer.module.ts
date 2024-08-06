@@ -44,7 +44,7 @@ import { OfferFormComponent } from './offer-form/offer-form.component';
     InputTextModule,
     ToolbarModule,
     PanelModule,
-    ButtonModule,     
+    ButtonModule,
     SharedModule,
     CardModule,
     CheckboxModule,
@@ -56,7 +56,7 @@ import { OfferFormComponent } from './offer-form/offer-form.component';
     TableModule,
     SidebarModule,
     PanelMenuModule
-   
+
   ]
 })
-export class OfferModule { }
+export class OfferModel { }

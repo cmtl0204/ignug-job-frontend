@@ -53,7 +53,7 @@ export enum ProfessionalsFormEnum {
   traveled = 'Puede viajar',
 }
 
-export enum OffersFormEnum{
+export enum OffersFormEnum {
   contractTypeId = 'Tipo Contrato',
   companyId = 'Compania',
   experienceTimeId = 'Tiempo de Experiencia',
@@ -77,11 +77,11 @@ export enum OffersFormEnum{
   vacancies = 'Vacantes'
 }
 
-export enum CategoryFormEnum{
+export enum CategoryFormEnum {
 
-code = 'Codigo',
-icon ='Icono',
-name ='Nombre Categoria',
+  code = 'Codigo',
+  icon = 'Icono',
+  name = 'Nombre Categoria',
 
 }
 
@@ -91,5 +91,59 @@ export const CompanyRegistrationFormEnum2 = [{
 }];
 
 export enum CourseFormEnum {
-  AREA = 'Área',
+  areaId = 'Area',
+  certificationTypeId = 'Tipo de Certificados',
+  typeId = 'Tipo de Evento',
+  description = 'Descripción',
+  hour = 'Duración del Evento',
+  endedAt = 'Fecha final del evento',
+  institution = 'Nombre de la   Institucion',
+  name = 'Nombre del Evento',
+  startedAt = 'Fecha de inicio del evento',
+
+
+}
+
+export enum AcademicFormationFormEnum {
+  careerId = 'Carreras',
+  professionalDegreeId = 'Titulos Profesionales',
+  certificated = 'Certificado',
+  registeredAt = 'Fecha de Registro',
+  senescytCode = 'Codigo Senescyt',
+  institution = 'Institución'
+
+
+}
+
+export enum ExperienceFormEnum {
+  areaId = 'Areas',
+  activities = 'Actividades',
+  employer = 'Empleador',
+  endedAt = 'Fecha final',
+  startedAt = 'Fecha inicial',
+  position = 'Posición',
+  worked = 'Se encuentra trabajando?',
+  reasonLeave = 'Motivo de la renuncia',
+
+}
+
+export enum LanguageFormEnum {
+  idiomId = 'Idioma',
+  readLevelId = 'Nivel de lectura',
+  spokenLevelId = 'Nivel hablado',
+  writtenLevelId = 'Nivel escrito',
+  get = "get"
+}
+
+export enum referenceFormEnum {
+  contactEmail = 'Email de Contacto',
+  contactName = ' Nombre de contacto',
+  contactPhone = 'Telefono de contacto',
+  institution = 'Institución',
+  position = 'Posición',
+}
+
+export enum skillFormEnum {
+  typeId = 'Tipo',
+  description = 'Descripción'
 }

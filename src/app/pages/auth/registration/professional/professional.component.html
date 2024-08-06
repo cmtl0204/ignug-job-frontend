@@ -7,7 +7,7 @@
     @if (!coreService.isLoading) {
     <p-toolbar>
       <div class="p-toolbar-group-left">
-        <app-header-form label="Crear" [icon]="PrimeIcons.SAVE"></app-header-form>
+        <app-header-form [id]="'new'" label="Crear" [icon]="PrimeIcons.SAVE"></app-header-form>
       </div>
       <div class="p-toolbar-group-right">
         <app-form-button-action (submit)="onSubmit()" (cancel)="redirectRegistration()"></app-form-button-action>

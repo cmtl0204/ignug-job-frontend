@@ -3,7 +3,7 @@ import {FormControl} from "@angular/forms";
 import {Router} from '@angular/router';
 import {MenuItem, PrimeIcons} from "primeng/api";
 import {SelectUserDto, UserModel} from '@models/auth';
-import {ColumnModel, OfferModule} from '@models/core';
+import {ColumnModel, OfferModel} from '@models/core';
 import {AuthService} from '@servicesApp/auth';
 import {BreadcrumbService, CoreService, MessageService} from '@servicesApp/core';
 import {BreadcrumbEnum, IconButtonActionEnum, LabelButtonActionEnum} from "@shared/enums";
@@ -27,8 +27,8 @@ export class OfferListComponent implements OnInit {
   protected buttonActions: MenuItem[] = this.buildButtonActions;
   protected columns: ColumnModel[] = this.buildColumns;
   protected isButtonActions: boolean = false;
-  protected selectedItem: OfferModule = {};
-  protected items: OfferModule[] = [];
+  protected selectedItem: OfferModel = {};
+  protected items: OfferModel[] = [];
 
   constructor() {
     this.breadcrumbService.setItems([{label: BreadcrumbEnum.USERS}]);
@@ -112,7 +112,7 @@ export class OfferListComponent implements OnInit {
     //   });
   }
 
-  selectItem(item: OfferModule) {
+  selectItem(item: OfferModel) {
     this.isButtonActions = true;
     this.selectedItem = item;
   }

@@ -7,7 +7,7 @@
     @if (!coreService.isLoading) {
     <p-toolbar>
       <div class="p-toolbar-group-left">
-        <app-header-form label="Crear" [icon]="PrimeIcons.SAVE"></app-header-form>
+        <app-header-form [id]="''" label="Crear" [icon]="PrimeIcons.SAVE"></app-header-form>
       </div>
       <div class="p-toolbar-group-right">
         <app-form-button-action (submit)="onSubmit()" (cancel)="redirectRegistration()"></app-form-button-action>
@@ -97,7 +97,7 @@
           <small appErrorMessage [errors]="tradeNameField.errors" [touched]="tradeNameField.touched"
             [dirty]="tradeNameField.dirty">
           </small>
-        </div>  
+        </div>
         <!-- typeId -->
         <div class="field col-12 xl:col-3 lg:col-4 md:col-4 sm:col-12">
           <label appLabel for="typeId" [label]="CompanyRegistrationFormEnum.type" [required]="typeIdField"></label>
@@ -181,7 +181,7 @@
           </small>
         </div>
 
-        
+
       </form>
 
     </p-panel>

@@ -62,7 +62,7 @@ export class SkillFormComponent implements OnInit, OnExitInterface {
   }
 
   findReference(id: string) {
-   
+
     this.form.patchValue({});
   }
 
@@ -84,11 +84,7 @@ export class SkillFormComponent implements OnInit, OnExitInterface {
 
   /* Load Foreign Keys */
   loadTypeIdTypes() {
-    this.cataloguesHttpService.findByType(CatalogueTypeEnum.TYPE_ID);
-  }
-
-  loadDescriptionTypes() {
-    this.cataloguesHttpService.findByType(CatalogueTypeEnum.DESCRIPTION)
+    this.cataloguesHttpService.findByType(CatalogueTypeEnum.SKILLS_TYPE);
   }
 
   /* Form Actions */
@@ -105,7 +101,7 @@ export class SkillFormComponent implements OnInit, OnExitInterface {
   }
 
   update(): void {
-  
+
   }
 
   /* Redirects */

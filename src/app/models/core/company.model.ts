@@ -1,5 +1,5 @@
-import { UserModel } from "@models/auth";
-import { ActivityModel , CatalogueModel} from "@models/core";
+import {UserModel} from "@models/auth";
+import {CatalogueModel} from "@models/core";
 
 
 export interface CompanyModel {
@@ -12,7 +12,7 @@ export interface CompanyModel {
   tradeName?: string;
   web?: string;
 
-  activityType?: ActivityModel;
+  activityType?: CatalogueModel;
   activityTypeId?: string;
 
   personType?: CatalogueModel;

@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ServerResponse} from '@models/http-response';
 import {MessageService} from '@servicesApp/core';
-import { OfferModule } from '@models/core';
+import { OfferModel } from '@models/core';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class OfferHttpService {
   constructor() {
   }
 
-  create(payload: OfferModule): Observable<OfferModule> {
+  create(payload: OfferModel): Observable<OfferModel> {
     const url = `${this.API_URL}`;
 
     return this.httpClient.post<ServerResponse>(url, payload).pipe(
@@ -42,7 +42,7 @@ export class OfferHttpService {
     );
   }
 
-  findOne(id: string): Observable<OfferModule> {
+  findOne(id: string): Observable<OfferModel> {
     const url = `${this.API_URL}/${id}`;
 
     return this.httpClient.get<ServerResponse>(url).pipe(
@@ -50,7 +50,7 @@ export class OfferHttpService {
     );
   }
 
-  update(id: string, payload: OfferModule): Observable<OfferModule> {
+  update(id: string, payload: OfferModel): Observable<OfferModel> {
     const url = `${this.API_URL}/${id}`;
 
     return this.httpClient.put<ServerResponse>(url, payload).pipe(

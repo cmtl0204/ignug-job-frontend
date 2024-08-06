@@ -12,7 +12,7 @@ import {CoreService, MessageDialogService, RoutesService} from "@servicesApp/cor
 
 import {CataloguesHttpService} from "@servicesHttp/core";
 
-import {CatalogueTypeEnum, CompanyRegistrationFormEnum, RoutesEnum, SkeletonEnum} from "@shared/enums";
+import {CatalogueTypeEnum, CompanyRegistrationFormEnum, RoutesEnum, SkeletonEnum, UsersFormEnum} from "@shared/enums";
 import { CompanyHttpService } from '@servicesHttp/core/company-http.service';
 import { UserModel } from '@models/auth/user.model';
 
@@ -49,6 +49,7 @@ export class CompanyComponent implements OnInit, OnExitInterface {
   protected readonly CompanyRegistrationFormEnum = CompanyRegistrationFormEnum;
   protected readonly SkeletonEnum = SkeletonEnum;
   protected readonly PrimeIcons = PrimeIcons;//pending
+  protected readonly UsersFormEnum = UsersFormEnum;
 
   constructor() {
     this.buildForm();
@@ -97,10 +98,10 @@ export class CompanyComponent implements OnInit, OnExitInterface {
       password: [null, [Validators.required]],
       phone: [null, [Validators.required]],
       username: [null, [Validators.required]],
-     
+
     });
   }
-  
+
 
   validateForm(): boolean {
     this.formErrors = [];
@@ -117,7 +118,7 @@ export class CompanyComponent implements OnInit, OnExitInterface {
     if (this.passwordField.invalid) this.formErrors.push(UsersFormEnum.password);
     if (this.phoneField.invalid) this.formErrors.push(UsersFormEnum.phone);
     if (this.usernameField.invalid) this.formErrors.push(UsersFormEnum.username);
-    
+
     return this.form.valid && this.formErrors.length === 0;
   }
 
@@ -188,7 +189,7 @@ export class CompanyComponent implements OnInit, OnExitInterface {
   get userFormField(): FormGroup {
     return this.form.controls['user'] as FormGroup;
   }
-  
+
   get identificationTypeIdField(): AbstractControl {
     return this.userFormField.controls['identificationTypeId'];
   }
@@ -210,5 +211,4 @@ export class CompanyComponent implements OnInit, OnExitInterface {
   get usernameField(): AbstractControl {
     return this.userFormField.controls['username'];
   }
-
 }

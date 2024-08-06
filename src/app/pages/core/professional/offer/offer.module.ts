@@ -42,5 +42,5 @@ import { MessageService } from 'primeng/api';
     FormsModule,
   ]
 })
-export class OfferModule {
+export class OfferModel {
 }
