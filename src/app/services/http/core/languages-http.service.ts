@@ -1,28 +1,27 @@
-import {Injectable, inject} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {environment} from '@env/environment';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {ServerResponse} from '@models/http-response';
-import {MessageService} from '@servicesApp/core';
-import {CourseModel} from "@models/core";
+import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from '@env/environment';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ServerResponse } from '@models/http-response';
+import { MessageService } from '@servicesApp/core';
+import { LanguageModule } from '@models/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CoursesHttpService {
-  /** Services **/
+export class LanguageHttpService {
+  /* Services */
   private readonly httpClient = inject(HttpClient);
   private readonly messageService = inject(MessageService);
 
-  /** API URL **/
-  private API_URL = `${environment.API_URL}/courses`;
+  /* API URL */
+  private API_URL = `${environment.API_URL}/language`;
 
-  constructor() {
-  }
+  constructor() {}
 
-  create(payload: CourseModel): Observable<CourseModel> {
-    const url = `${this.API_URL}`;
+  create(payload: LanguageModule): Observable<LanguageModule> {
+    const url = this.API_URL;
 
     return this.httpClient.post<ServerResponse>(url, payload).pipe(
       map(response => {
@@ -32,7 +31,7 @@ export class CoursesHttpService {
     );
   }
 
-  findAll(): Observable<any[]> {
+  findAll(): Observable<LanguageModule[]> {
     const url = this.API_URL;
 
     return this.httpClient.get<ServerResponse>(url).pipe(
@@ -42,7 +41,7 @@ export class CoursesHttpService {
     );
   }
 
-  findOne(id: string): Observable<CourseModel> {
+  findOne(id: string): Observable<LanguageModule> {
     const url = `${this.API_URL}/${id}`;
 
     return this.httpClient.get<ServerResponse>(url).pipe(
@@ -50,7 +49,7 @@ export class CoursesHttpService {
     );
   }
 
-  update(id: string, payload: CourseModel): Observable<CourseModel> {
+  update(id: string, payload: LanguageModule): Observable<LanguageModule> {
     const url = `${this.API_URL}/${id}`;
 
     return this.httpClient.put<ServerResponse>(url, payload).pipe(
@@ -78,7 +77,7 @@ export class CoursesHttpService {
     const headers = new HttpHeaders().append('pagination', 'true');
     const params = new HttpParams().append('page', page).append('search', search);
 
-    return this.httpClient.get<ServerResponse>(url, {headers, params}).pipe(
+    return this.httpClient.get<ServerResponse>(url, { headers, params }).pipe(
       map(response => {
         return response;
       })

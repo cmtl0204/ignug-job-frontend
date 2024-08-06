@@ -1,1 +1,150 @@
-<p>experience-form works!</p>
+<div class="grid">
+    <div class="col-12 xl:col-8 lg:col-8 md:col-10 sm:col-12 xl:col-offset-2 lg:col-offset-2 md:col-offset-1">
+      @if (coreService.isLoading) {
+      <app-skeleton [type]="SkeletonEnum.CARD"></app-skeleton>
+      }
+    
+      @if (!coreService.isLoading) {
+        <p-toolbar>
+          <div class="p-toolbar-group-left">
+            <app-header-form [id]="id"></app-header-form>
+          </div>
+          <div class="p-toolbar-group-right">
+            <app-form-button-action (submit)="onSubmit()" (cancel)="redirectRegistration()"></app-form-button-action>
+          </div>
+        </p-toolbar>
+      <p-panel>
+        <form [formGroup]="form" class="p-fluid grid">
+          <!-- AREA-->
+           <div class="field col-16 xl:col-6 lg:col-6 md:col-6 sm:col-16">
+                <label appLabel for="areaId"
+                       [label]="ExperienceFormEnum.areaId"
+                       [required]="areaIdField"></label>
+                <p-dropdown
+                  id="areaId"
+                  [options]="areas"
+                  formControlName="areaId"
+                  optionLabel="name"
+                  optionValue="id"
+                  [filter]="true"
+                  filterBy="name"
+                  placeholder="Seleccione">
+                  <ng-template pTemplate="selectedItem" let-selectedOption>
+                    <div class="flex align-items-center gap-2">
+                      <div>{{ selectedOption.name }}</div>
+                    </div>
+                  </ng-template>
+                  <ng-template let-item pTemplate="item">
+                    <div class="flex align-items-center gap-2">
+                      <div>{{ item.name }}</div>
+                    </div>
+                  </ng-template>
+                </p-dropdown>
+                <small appErrorMessage
+                       [errors]="areaIdField.errors"
+                       [touched]="areaIdField.touched"
+                       [dirty]="areaIdField.dirty">
+                </small>
+            </div>        
+            
+          <!-- ACTIVITIES-->
+          <div class="field col-16 xl:col-6 lg:col-6 md:col-6 sm:col-16">
+            <label appLabel for="activities"
+                   [label]="ExperienceFormEnum.activities"
+                   [required]="activitiesField"></label>
+            <app-form-help-field title="actividades" content="activities"></app-form-help-field>
+            <input pInputText type="text" id="activities" formControlName="activities"/>
+            <small appErrorMessage
+                   [errors]="activitiesField.errors"
+                   [touched]="activitiesField.touched"
+                   [dirty]="activitiesField.dirty">
+            </small>
+          </div>
+          <!-- employer-->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="employer"
+                   [label]="ExperienceFormEnum.employer"
+                   [required]="employerField"></label>
+            <app-form-help-field title="employer" content="empleador"></app-form-help-field>
+            <input pInputText type="text" id="employer" formControlName="employer"/>
+            <small appErrorMessage
+                   [errors]="employerField.errors"
+                   [touched]="employerField.touched"
+                   [dirty]="employerField.dirty">
+            </small>
+          </div>
+          <!-- position-->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="position"
+                   [label]="ExperienceFormEnum.position"
+                   [required]="positionField"></label>
+            <app-form-help-field title="position" content="posicion"></app-form-help-field>
+            <input pInputText type="text" id="position" formControlName="position"/>
+            <small appErrorMessage
+                   [errors]="positionField.errors"
+                   [touched]="positionField.touched"
+                   [dirty]="positionField.dirty">
+            </small>
+          </div>
+          <!--worked-->
+          <div class="field col-18 xl:col-6 lg:col-6 md:col-6 sm:col-18">
+            <label appLabel for="worked"
+                   [label]="ExperienceFormEnum.worked"
+                   [required]="workedField"></label>
+            <app-form-help-field title="worked" content="worked"></app-form-help-field>
+            <div>
+              <p-inputSwitch id="worked" formControlName="worked" />
+            </div>
+            <small appErrorMessage
+                   [errors]="workedField.errors"
+                   [touched]="workedField.touched"
+                   [dirty]="workedField.dirty">
+            </small>
+          </div>
+            <!-- startedAt-->
+            <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="startedAt"
+                     [label]="ExperienceFormEnum.startedAt"
+                     [required]="startedAtField"></label>
+              <app-form-help-field title="startedAt" content="fecha de inicio "></app-form-help-field>
+              <p-calendar formControlName="startedAt" />
+              <small appErrorMessage
+                     [errors]="startedAtField.errors"
+                     [touched]="startedAtField.touched"
+                     [dirty]="startedAtField.dirty">
+              </small>
+            </div>
+            @if (workedField.value) {
+             <!--reasonLeave -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="reasonLeave"
+                   [label]="ExperienceFormEnum.reasonLeave"
+                   [required]="reasonLeaveField"></label>
+            <app-form-help-field  content="Motivo de renuncia"></app-form-help-field>
+            <input pInputText type="text" id="reasonLeave" formControlName="reasonLeave"/>
+            <small appErrorMessage
+                   [errors]="reasonLeaveField.errors"
+                   [touched]="reasonLeaveField.touched"
+                   [dirty]="reasonLeaveField.dirty">
+            </small>
+          </div>
+          <!-- endedAT-->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="endedAt"
+                   [label]="ExperienceFormEnum.endedAt"
+                   [required]="endedAtField"></label>
+            <app-form-help-field title="endedAt" content="fecha de finalización"></app-form-help-field>
+            <p-calendar formControlName="endedAt" />
+            <small appErrorMessage
+                   [errors]="endedAtField.errors"
+                   [touched]="endedAtField.touched"
+                   [dirty]="endedAtField.dirty">
+            </small>
+          </div>
+        }
+          </form>
+        </p-panel>
+      }
+    </div>
+  </div>
+

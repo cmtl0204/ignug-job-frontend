@@ -1,1 +1,77 @@
-<p>skill-list works!</p>
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <p-button
+      label="Crear"
+      severity="success"
+      [icon]="PrimeIcons.PLUS"
+      [loading]="coreService.isLoading"
+      (click)="redirectCreateForm()"></p-button>
+
+    <p-button
+      label="Refrescar"
+      severity="info"
+      class="ml-2"
+      [icon]="PrimeIcons.REFRESH"
+      [loading]="coreService.isLoading"
+      (click)="findAll()"></p-button>
+  </div>
+  <div class="p-toolbar-group-right">
+
+  </div>
+</p-toolbar>
+
+<p-table
+  dataKey="id"
+  styleClass="p-datatable-striped"
+  [value]="items"
+  [columns]="columns"
+  [loading]="coreService.isLoading"
+  [paginator]="true">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+        {{ col.header }}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+      <th class="text-center">
+        Acciones
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+    <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+      <td *ngFor="let col of columns">
+        <!--Objects-->
+        <div *ngIf="rowData[col.field]?.id" [ngSwitch]="col.field">
+          <div *ngSwitchCase="'object'">
+            {{ rowData[col.field].name }}
+          </div>
+        </div>
+        <!--Fields-->
+        <div *ngIf="!rowData[col.field]?.id" [ngSwitch]="col.field">
+          <div *ngSwitchCase="'updatedAt'">{{ rowData[col.field]|date }}</div>
+          <div *ngSwitchDefault>{{ rowData[col.field] }}</div>
+        </div>
+      </td>
+      <td class="text-center">
+        <p-button
+          [icon]="PrimeIcons.ELLIPSIS_V"
+          (click)="selectItem(rowData)"/>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage" let-columns>
+    <tr>
+      <td [attr.colspan]="columns.length">
+        {{ messageService.paginatorNoRecordsFound }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    {{ messageService.paginatorTotalRegisters(items.length) }}
+  </ng-template>
+</p-table>
+
+<p-sidebar [(visible)]="isButtonActions" position="right">
+  <p-panelMenu [model]="buttonActions" [style]="{'width':'300px'}" (click)="isButtonActions=false"></p-panelMenu>
+</p-sidebar>

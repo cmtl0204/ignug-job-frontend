@@ -5,23 +5,23 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ServerResponse} from '@models/http-response';
 import {MessageService} from '@servicesApp/core';
-import {CourseModel} from "@models/core";
+import { OfferProfessionalModel } from '@models/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CoursesHttpService {
+export class OfferProfessionalHttpService {
   /** Services **/
   private readonly httpClient = inject(HttpClient);
   private readonly messageService = inject(MessageService);
 
   /** API URL **/
-  private API_URL = `${environment.API_URL}/courses`;
+  private API_URL = `${environment.API_URL}/offer-professionals`;
 
   constructor() {
   }
 
-  create(payload: CourseModel): Observable<CourseModel> {
+  create(payload: OfferProfessionalModel): Observable<OfferProfessionalModel> {
     const url = `${this.API_URL}`;
 
     return this.httpClient.post<ServerResponse>(url, payload).pipe(
@@ -42,7 +42,7 @@ export class CoursesHttpService {
     );
   }
 
-  findOne(id: string): Observable<CourseModel> {
+  findOne(id: string): Observable<OfferProfessionalModel> {
     const url = `${this.API_URL}/${id}`;
 
     return this.httpClient.get<ServerResponse>(url).pipe(
@@ -50,10 +50,29 @@ export class CoursesHttpService {
     );
   }
 
-  update(id: string, payload: CourseModel): Observable<CourseModel> {
+  findOffersByProfessional(profesionalId: string): Observable<OfferProfessionalModel []>  {
+    const url = `${this.API_URL}/${profesionalId}`;
+
+    return this.httpClient.get<ServerResponse>(url).pipe(
+      map(response => response.data)
+    );
+  }
+
+  update(id: string, payload: OfferProfessionalModel): Observable<OfferProfessionalModel> {
     const url = `${this.API_URL}/${id}`;
 
     return this.httpClient.put<ServerResponse>(url, payload).pipe(
+      map(response => {
+        this.messageService.success(response);
+        return response.data;
+      })
+    );
+  }
+/** Patch  **/
+  patchstate(id: string, changedload: OfferProfessionalModel): Observable<OfferProfessionalModel[]> {
+    const url = `${this.API_URL}/${id}`;
+
+    return this.httpClient.patch<ServerResponse>(url, changedload).pipe(
       map(response => {
         this.messageService.success(response);
         return response.data;

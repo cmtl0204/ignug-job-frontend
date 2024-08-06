@@ -4,15 +4,30 @@ import {CommonModule} from '@angular/common';
 import {CourseRoutingModule} from './course-routing.module';
 import {CourseFormComponent} from "./course-form/course-form.component";
 import {CourseListComponent} from "./course-list/course-list.component";
-import {ToolbarModule} from "primeng/toolbar";
+
+import {DividerModule} from "primeng/divider";
 import {ButtonModule} from "primeng/button";
-import {InputGroupModule} from "primeng/inputgroup";
-import {InputGroupAddonModule} from "primeng/inputgroupaddon";
-import {TableModule} from "primeng/table";
-import {SidebarModule} from "primeng/sidebar";
-import {PanelMenuModule} from "primeng/panelmenu";
-import {ReactiveFormsModule} from "@angular/forms";
+import {CardModule} from "primeng/card";
+import {CheckboxModule} from "primeng/checkbox";
 import {InputTextModule} from "primeng/inputtext";
+import {PasswordModule} from "primeng/password";
+import {RippleModule} from "primeng/ripple";
+import {ReactiveFormsModule} from "@angular/forms";
+
+import {SharedModule} from "@shared/shared.module";
+
+import {DropdownModule} from "primeng/dropdown";
+import {MessageModule} from "primeng/message";
+import {PanelModule} from "primeng/panel";
+import {AvatarModule} from "primeng/avatar";
+import {ToolbarModule} from "primeng/toolbar";
+import {OverlayPanelModule} from "primeng/overlaypanel";
+import { CalendarModule } from 'primeng/calendar';
+
+import {PanelMenuModule} from 'primeng/panelmenu';
+import {SidebarModule} from 'primeng/sidebar';
+import { TableModule } from 'primeng/table';
+
 
 
 @NgModule({
@@ -20,15 +35,27 @@ import {InputTextModule} from "primeng/inputtext";
   imports: [
     CommonModule,
     CourseRoutingModule,
-    ToolbarModule,
+    SharedModule,
+    CommonModule,
+    SharedModule,
     ButtonModule,
-    InputGroupModule,
-    InputGroupAddonModule,
-    TableModule,
-    SidebarModule,
-    PanelMenuModule,
+    CardModule,
+    CheckboxModule,
+    DividerModule,
+    InputTextModule,
+    PasswordModule,
+    RippleModule,
+    DropdownModule,
+    MessageModule,
+    PanelModule,
+    AvatarModule,
+    ToolbarModule,
+    OverlayPanelModule,
     ReactiveFormsModule,
-    InputTextModule
+    CalendarModule,
+    PanelMenuModule,
+    SidebarModule,
+    TableModule
   ]
 })
 export class CourseModule {

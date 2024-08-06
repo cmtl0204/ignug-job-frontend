@@ -1,1 +1,188 @@
-<p>course-form works!</p>
+<div class="grid">
+    <div class="col-12 xl:col-8 lg:col-8 md:col-10 sm:col-12 xl:col-offset-2 lg:col-offset-2 md:col-offset-1">
+      @if (coreService.isLoading) {
+      <app-skeleton [type]="SkeletonEnum.CARD"></app-skeleton>
+      }
+    
+      @if (!coreService.isLoading) {
+        <p-toolbar>
+          <div class="p-toolbar-group-left">
+            <app-header-form [id]="id"></app-header-form>
+          </div>
+          <div class="p-toolbar-group-right">
+            <app-form-button-action (submit)="onSubmit()" (cancel)="redirectRegistration()"></app-form-button-action>
+          </div>
+        </p-toolbar>
+      <p-panel>
+        <form [formGroup]="form" class="p-fluid grid">
+          <!-- AREA-->
+           <div class="field col-15 xl:col-4 lg:col-4 md:col-4 sm:col-15">
+                <label appLabel for="areaId"
+                       [label]="CourseFormEnum.areaId"
+                       [required]="areaIdField">
+                </label>
+                <p-dropdown
+                  id="areaId"
+                  [options]="areas"
+                  formControlName="areaId"
+                  optionLabel="name"
+                  optionValue="id"
+                  [filter]="true"
+                  filterBy="name"
+                  placeholder="Seleccione">
+                  <ng-template pTemplate="selectedItem" let-selectedOption>
+                    <div class="flex align-items-center gap-2">
+                      <div>{{ selectedOption.name }}</div>
+                    </div>
+                  </ng-template>
+                  <ng-template let-item pTemplate="item">
+                    <div class="flex align-items-center gap-2">
+                      <div>{{ item.name }}</div>
+                    </div>
+                  </ng-template>
+                </p-dropdown>
+                <small appErrorMessage
+                       [errors]="areaIdField.errors"
+                       [touched]="areaIdField.touched"
+                       [dirty]="areaIdField.dirty">
+                </small>
+            </div>        
+            
+            <!-- TIPO -->
+            <div class="field col-15 xl:col-4 lg:col-4 md:col-4 sm:col-15">
+              <label appLabel for="TypeId"
+                     [label]="CourseFormEnum.typeId"
+                     [required]="typeIdField">
+              </label>
+              <p-dropdown
+                id="typeId"
+                [options]="types"
+                formControlName="typeId"
+                optionLabel="tipo"
+                optionValue="id"
+                [filter]="true"
+                filterBy="name"
+                placeholder="Seleccione">
+                <ng-template pTemplate="selectedItem" let-selectedOption>
+                  <div class="flex align-items-center gap-2">
+                    <div>{{ selectedOption.tipo }}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-item pTemplate="item">
+                  <div class="flex align-items-center gap-2">
+                    <div>{{ item.tipo }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+              <small appErrorMessage
+                     [errors]="typeIdField.errors"
+                     [touched]="typeIdField.touched"
+                     [dirty]="typeIdField.dirty">
+              </small>
+            </div>
+          <!-- CERTIFICADO-->
+          <div class="field col-15 xl:col-4 lg:col-4 md:col-4 sm:col-15">
+            <label appLabel for="certificationTypeId"
+                   [label]="CourseFormEnum.certificationTypeId"
+                   [required]="certificationTypeIdField">
+            </label>
+            <p-dropdown
+              id="certificationTypeId"
+              [options]="certificationTypes"
+              formControlName="certificationTypeId" 
+              optionLabel="certificado"
+              optionValue="id"
+              [filter]="true"
+              filterBy="name"
+              placeholder="Seleccione">
+              <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-2">
+                  <div>{{ selectedOption.certificado }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-item pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                  <div>{{ item.certificado }}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+            <small appErrorMessage
+                   [errors]="certificationTypeIdField.errors"
+                   [touched]="certificationTypeIdField.touched"
+                   [dirty]="certificationTypeIdField.dirty">
+            </small>
+          </div>
+          <!-- institution-->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for=" Intitucion"
+                   [label]="CourseFormEnum.institution"
+                   [required]="institutionField"></label>
+            <app-form-help-field title="Intitucion" content="Nombre de la instituación"></app-form-help-field>
+            <input pInputText type="text" id="Institution" formControlName="institution"/>
+            <small appErrorMessage
+                   [errors]="institutionField.errors"
+                   [touched]="institutionField.touched"
+                   [dirty]="institutionField.dirty">
+            </small>
+          </div>
+          <!-- name-->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="name"
+                   [label]="CourseFormEnum.name"
+                   [required]="nameField"></label>
+            <app-form-help-field title="name" content="Nombre del curso"></app-form-help-field>
+            <input pInputText type="text" id="name" formControlName="name"/>
+            <small appErrorMessage
+                   [errors]="nameField.errors"
+                   [touched]="nameField.touched"
+                   [dirty]="nameField.dirty">
+            </small>
+          </div>
+            <!-- startedAt-->
+            <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="startedAt"
+                     [label]="CourseFormEnum.startedAt"
+                     [required]="startedAtField"></label>
+              <app-form-help-field title="startedAt" content="fecha de inicio del curso"></app-form-help-field>
+              <p-calendar formControlName="startedAt" />
+              <small appErrorMessage
+                     [errors]="startedAtField.errors"
+                     [touched]="startedAtField.touched"
+                     [dirty]="startedAtField.dirty">
+              </small>
+            </div>
+          <!-- endedAT-->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="endedAt"
+                   [label]="CourseFormEnum.endedAt"
+                   [required]="endedAtField"></label>
+            <app-form-help-field  content="fecha de finalización del curso"></app-form-help-field>
+            <p-calendar formControlName="endedAt" />
+            <small appErrorMessage
+                   [errors]="endedAtField.errors"
+                   [touched]="endedAtField.touched"
+                   [dirty]="endedAtField.dirty">
+            </small>
+          </div>
+          <!-- hours -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="hour"
+                   [label]="CourseFormEnum.hour"
+                   [required]="hourField"></label>
+            <app-form-help-field  content="Tiempo de duración del curso en horas"></app-form-help-field>
+            <input pInputText type="text" id="hour" formControlName="hour"/>
+            <small appErrorMessage
+                   [errors]="hourField.errors"
+                   [touched]="hourField.touched"
+                   [dirty]="hourField.dirty">
+            </small>
+          </div>
+          </form>
+        </p-panel>
+      }
+    </div>
+  </div>
+
+
+  
+      

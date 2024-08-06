@@ -10,7 +10,11 @@ export interface CourseModel {
   areaId?: string;
   // professional:ProfessionalModel
   professionalId?: string;
-
-  description?: string;
-  name?: string;
+  activities?:string;
+  employer?:string;
+  endedAt?:Date;
+  position?:string;
+  reasonLeave?:string;
+  startedAt?:string;
+  worked?:string;
 }

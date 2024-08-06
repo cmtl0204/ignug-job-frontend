@@ -3,21 +3,21 @@ import {FormControl} from "@angular/forms";
 import {Router} from '@angular/router';
 import {MenuItem, PrimeIcons} from "primeng/api";
 import {SelectUserDto, UserModel} from '@models/auth';
-import {ColumnModel, SkillModule} from '@models/core';
+import {ColumnModel, CourseModel, OfferProfessionalModel} from '@models/core';
 import {AuthService} from '@servicesApp/auth';
 import {BreadcrumbService, CoreService, MessageService} from '@servicesApp/core';
 import {BreadcrumbEnum, IconButtonActionEnum, LabelButtonActionEnum} from "@shared/enums";
 import {debounceTime} from "rxjs";
-import {SkillHttpService} from "@servicesHttp/core";
+import {OfferProfessionalHttpService,} from "@servicesHttp/core";
 
 @Component({
-  selector: 'app-skill-list',
-  templateUrl: './skill-list.component.html',
-  styleUrl: './skill-list.component.scss'
+  selector: 'app-course-list',
+  templateUrl: './offer-list.component.html',
+  styleUrl: './offer-list.component.scss'
 })
-export class SkillListComponent implements OnInit {
+export class OfferListComponent implements OnInit {
   protected readonly authService = inject(AuthService);
-  private readonly skillHttpService = inject(SkillHttpService);
+  private readonly offerProfessionalHttpService = inject(OfferProfessionalHttpService);
   protected readonly coreService = inject(CoreService);
   private readonly breadcrumbService = inject(BreadcrumbService);
   protected readonly messageService = inject(MessageService);
@@ -27,28 +27,33 @@ export class SkillListComponent implements OnInit {
   protected buttonActions: MenuItem[] = this.buildButtonActions;
   protected columns: ColumnModel[] = this.buildColumns;
   protected isButtonActions: boolean = false;
-  protected selectedItem: SkillModule = {};
-  protected items: SkillModule[] = [];
+  protected selectedItem: OfferProfessionalModel = {};
+  protected items: OfferProfessionalModel[] = [];
+
+  titulo: string = 'Oferta Laboral'
 
   constructor() {
     this.breadcrumbService.setItems([{label: BreadcrumbEnum.USERS}]);
   }
 
   ngOnInit() {
-    this.findAll();
+    this.findOffersByProfessional();
   }
 
-  findAll() {
-    this.skillHttpService.findAll().subscribe((response) => {
+  findOffersByProfessional() {
+    this.offerProfessionalHttpService.findOffersByProfessional(this. authService.auth.professional.id).subscribe((response) => {
       this.items = response;
     });
   }
 
   get buildColumns(): ColumnModel[] {
     return [
-      {field: 'typeId', header: ' Tipo '},
-      {field: 'description', header: ' Descripción '},
-      
+      {field: 'name', header: 'Nombre del Curso'},
+      {field: 'lastname', header: 'Apellidos'},
+      {field: 'name', header: 'Nombres'},
+      {field: 'email', header: 'Correo'},
+      {field: 'roles', header: 'Roles'},
+      {field: 'suspendedAt', header: 'Estado'}
     ];
   }
 
@@ -68,17 +73,18 @@ export class SkillListComponent implements OnInit {
           if (this.selectedItem?.id) this.remove(this.selectedItem.id);
         },
       },
+
     ];
   }
 
   redirectCreateForm() {
     // this.router.navigate(['/core/professionals', this.authService.auth.professional.id, 'courses/new']);
-    // this.router.navigate([/core/professionals/${this.authService.auth.professional.id}/courses/new]);
-    this.router.navigate([`/core/professionals/1/skills/new`]);
+    // this.router.navigate([`/core/professionals/${this.authService.auth.professional.id}/courses/new`]);
+    this.router.navigate([`/core/professionals/1/courses/new`]);
   }
 
   redirectEditForm(id: string) {
-   // this.router.navigate(['/core/professionals', this.authService.auth.professional.id, 'courses', id]);
+    this.router.navigate(['/core/professionals', this.authService.auth.professional.id, 'courses', id]);
   }
 
   remove(id: string) {
@@ -93,8 +99,25 @@ export class SkillListComponent implements OnInit {
     //   });
   }
 
-  selectItem(item: SkillModule) {
+  selectItem(item: CourseModel) {
     this.isButtonActions = true;
     this.selectedItem = item;
   }
+
+  updateOffer(id: string, changedload: OfferProfessionalModel) {
+    this.offerProfessionalHttpService.patchstate(id, changedload).subscribe(
+      (updatedItems) => {
+        // Actualizar tu lista de items con los datos recibidos
+        this.items = updatedItems;
+        console.log('Offer updated successfully');
+      },
+      (error) => {
+        console.error('Error updating offer:', error);
+      }
+    );
+  }
+
+
+
+
 }

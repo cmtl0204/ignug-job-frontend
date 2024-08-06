@@ -5,23 +5,23 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ServerResponse} from '@models/http-response';
 import {MessageService} from '@servicesApp/core';
-import {CourseModel} from "@models/core";
+import { CompanyProfessionalModel } from '@models/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CoursesHttpService {
+export class CompanyProfessionalHttpService {
   /** Services **/
   private readonly httpClient = inject(HttpClient);
   private readonly messageService = inject(MessageService);
 
   /** API URL **/
-  private API_URL = `${environment.API_URL}/courses`;
+  private API_URL = `${environment.API_URL}/company-professionals`;
 
   constructor() {
   }
 
-  create(payload: CourseModel): Observable<CourseModel> {
+  create(payload: CompanyProfessionalModel): Observable<CompanyProfessionalModel> {
     const url = `${this.API_URL}`;
 
     return this.httpClient.post<ServerResponse>(url, payload).pipe(
@@ -42,7 +42,7 @@ export class CoursesHttpService {
     );
   }
 
-  findOne(id: string): Observable<CourseModel> {
+  findOne(id: string): Observable<CompanyProfessionalModel> {
     const url = `${this.API_URL}/${id}`;
 
     return this.httpClient.get<ServerResponse>(url).pipe(
@@ -50,7 +50,7 @@ export class CoursesHttpService {
     );
   }
 
-  update(id: string, payload: CourseModel): Observable<CourseModel> {
+  update(id: string, payload: CompanyProfessionalModel): Observable<CompanyProfessionalModel> {
     const url = `${this.API_URL}/${id}`;
 
     return this.httpClient.put<ServerResponse>(url, payload).pipe(

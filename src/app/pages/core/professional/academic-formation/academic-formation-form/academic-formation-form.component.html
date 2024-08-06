@@ -1,1 +1,160 @@
-<p>academic-formation-form works!</p>
+<div class="grid">
+    <div class="col-12 xl:col-8 lg:col-8 md:col-10 sm:col-12 xl:col-offset-2 lg:col-offset-2 md:col-offset-1">
+      @if (coreService.isLoading) {
+      <app-skeleton [type]="SkeletonEnum.CARD"></app-skeleton>
+      }
+    
+      @if (!coreService.isLoading) {
+        <p-toolbar>
+          <div class="p-toolbar-group-left">
+            <app-header-form [id]="id"></app-header-form>
+          </div>
+          <div class="p-toolbar-group-right">
+            <app-form-button-action (submit)="onSubmit()" (cancel)="redirectRegistration()"></app-form-button-action>
+          </div>
+        </p-toolbar>
+      <p-panel>
+        <form [formGroup]="form" class="p-fluid grid">
+          <!--institution-->
+          <div class="field col-18 xl:col-6 lg:col-6 md:col-6 sm:col-18">
+            <label appLabel for="institution"
+                   [label]="AcademicFormationFormEnum.institution"
+                   [required]="selectedInstitution"></label>
+            <p-dropdown
+              id="institution"
+              [options]="institutions"
+              [formControl]="selectedInstitution" 
+              optionValue="id"
+              [filter]="true"
+              filterBy="name"
+              placeholder="Seleccione">
+              <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-2">
+                  <div>{{ selectedOption.name }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-item pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                  <div>{{ item.name }}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+            <small appErrorMessage
+                   [errors]="selectedInstitution.errors"
+                   [touched]="selectedInstitution.touched"
+                   [dirty]="selectedInstitution.dirty">
+            </small>
+          </div>
+         
+          <!-- Career-->
+           <div class="field col-18 xl:col-6 lg:col-6 md:col-6 sm:col-18">
+                <label appLabel for="careerId"
+                       [label]="AcademicFormationFormEnum.careerId"
+                       [required]="careerIdField"></label>
+                <p-dropdown
+                  id="careerId"
+                  [options]="careers"
+                  formControlName="careerId"
+                  optionLabel="name"
+                  optionValue="id"
+                  [filter]="true"
+                  filterBy="name"
+                  placeholder="Seleccione">
+                  <ng-template pTemplate="selectedItem" let-selectedOption>
+                    <div class="flex align-items-center gap-2">
+                      <div>{{ selectedOption.name }}</div>
+                    </div>
+                  </ng-template>
+                  <ng-template let-item pTemplate="item">
+                    <div class="flex align-items-center gap-2">
+                      <div>{{ item.name }}</div>
+                    </div>
+                  </ng-template>
+                </p-dropdown>
+                <small appErrorMessage
+                       [errors]="careerIdField.errors"
+                       [touched]="careerIdField.touched"
+                       [dirty]="careerIdField.dirty">
+                </small>
+            </div>        
+          <!-- Certificated-->
+          <div class="field col-18 xl:col-6 lg:col-6 md:col-6 sm:col-18">
+            <label appLabel for="certificated"
+                   [label]="AcademicFormationFormEnum.certificated"
+                   [required]="certificatedField"></label>
+            <app-form-help-field title="Certificado" content="Certificado"></app-form-help-field>
+            <div>
+              <p-inputSwitch id="certificated" formControlName="certificated" />
+            </div>
+            <small appErrorMessage
+                   [errors]="certificatedField.errors"
+                   [touched]="certificatedField.touched"
+                   [dirty]="certificatedField.dirty">
+            </small>
+          </div>
+          <!--ProfessionalDegree -->
+          <div class="field col-18 xl:col-6 lg:col-6 md:col-6 sm:col-18">
+            <label appLabel for="professionalDegreeId"
+                   [label]="AcademicFormationFormEnum.professionalDegreeId"
+                   [required]="professionalDegreeIdField"></label>
+            <p-dropdown
+              id="professionalDegreeId"
+              [options]="professionalDegrees"
+              formControlName="professionalDegreeId"
+              optionLabel="name"
+              optionValue="id"
+              [filter]="true"
+              filterBy="name"
+              placeholder="Seleccione">
+              <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-2">
+                  <div>{{ selectedOption.name }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-item pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                  <div>{{ item.name }}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+            <small appErrorMessage
+                   [errors]="professionalDegreeIdField.errors"
+                   [touched]="professionalDegreeIdField.touched"
+                   [dirty]="professionalDegreeIdField.dirty">
+            </small>
+          </div>
+          
+          @if (certificatedField.value) {
+            <!-- registeredAt-->
+            <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+              <label appLabel for="registeredAt"
+                     [label]="AcademicFormationFormEnum.registeredAt"
+                     [required]="registeredAtField"></label>
+              <app-form-help-field content="fecha del registro"></app-form-help-field>
+              <p-calendar formControlName="registeredAt" />
+              <small appErrorMessage
+                     [errors]="registeredAtField.errors"
+                     [touched]="registeredAtField.touched"
+                     [dirty]="registeredAtField.dirty">
+              </small>
+            </div>
+            <!-- senescytCode-->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="senescytCode"
+                   [label]="AcademicFormationFormEnum.senescytCode"
+                   [required]="senescytCodeField"></label>
+            <app-form-help-field  content="senescytCode"></app-form-help-field>
+            <input pInputText type="text" id="senescytCode" formControlName="senescytCode"/>
+            <small appErrorMessage
+                   [errors]="senescytCodeField.errors"
+                   [touched]="senescytCodeField.touched"
+                   [dirty]="senescytCodeField.dirty">
+            </small>
+          </div>
+        }
+          </form>
+        </p-panel>
+      }
+    </div>
+  </div>
+

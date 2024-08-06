@@ -11,8 +11,14 @@ import {SidebarModule} from "primeng/sidebar";
 import {PanelMenuModule} from "primeng/panelmenu";
 import {ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
-import { OfferListComponent } from '../../../../../../../../../Users/cesar/Downloads/michael vivanco/offer/offer-list/offer-list.component';
-import { OfferFormComponent } from '../../../../../../../../../Users/cesar/Downloads/michael vivanco/offer/offer-form/offer-form.component';
+import { OfferListComponent } from './offer-list/offer-list.component';
+import { OfferFormComponent } from './offer-form/offer-form.component';
+import { CardModule } from 'primeng/card';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { FormsModule } from '@angular/forms';
+import { CoreService } from '@servicesApp/core';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -29,7 +35,11 @@ import { OfferFormComponent } from '../../../../../../../../../Users/cesar/Downl
     SidebarModule,
     PanelMenuModule,
     ReactiveFormsModule,
-    InputTextModule
+    InputTextModule,
+    CardModule,
+    InputSwitchModule,
+    ToggleButtonModule,
+    FormsModule,
   ]
 })
 export class OfferModule {

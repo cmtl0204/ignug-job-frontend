@@ -1,1 +1,71 @@
-<p>language-form works!</p>
+<div class="grid">
+  <div class="col-12 xl:col-8 lg:col-8 md:col-10 sm:col-12 xl:col-offset-2 lg:col-offset-2 md:col-offset-1">
+    <ng-container *ngIf="coreService.isLoading">
+      <app-skeleton [type]="SkeletonEnum.CARD"></app-skeleton>
+    </ng-container>
+
+    <ng-container *ngIf="!coreService.isLoading">
+      <p-toolbar>
+        <div class="p-toolbar-group-left">
+          <app-header-form [id]="id"></app-header-form>
+        </div>
+        <div class="p-toolbar-group-right">
+          <app-form-button-action (submit)="onSubmit()" (cancel)="redirectRegistration()"></app-form-button-action>
+        </div>
+      </p-toolbar>
+
+      <p-panel>
+        <form [formGroup]="form" class="p-fluid grid">
+
+          <!-- Idioma -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="idiomId"
+                   [label]="LanguageFormEnum.idiomId"
+                   [required]="idiomIdField"></label>
+            <input pInputText type="text" id="idiomId" formControlName="idiomId"/>
+            <small appErrorMessage
+                   [errors]="idiomIdField.errors"
+                   [touched]="idiomIdField.touched"
+                   [dirty]="idiomIdField.dirty"></small>
+          </div>
+
+          <!-- Nivel de lectura -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="readLevelId"
+                   [label]="LanguageFormEnum.readLevelId"
+                   [required]="readLevelIdField"></label>
+            <input pInputText type="number" id="readLevelId" formControlName="readLevelId"/>
+            <small appErrorMessage
+                   [errors]="readLevelIdField.errors"
+                   [touched]="readLevelIdField.touched"
+                   [dirty]="readLevelIdField.dirty"></small>
+          </div>
+
+          <!-- Nivel hablado  -->
+          <div class="field col-12 xl:col-6 lg:col-6 md:col-6 sm:col-12">
+            <label appLabel for="spokenLevelId"
+                   [label]="LanguageFormEnum.spokenLevelId"
+                   [required]="spokenLevelIdField"></label>
+                   <input pInputText type="number" id="spokenLevelId" formControlName="spokenLevelId"/>
+            <small appErrorMessage
+                   [errors]="spokenLevelIdField.errors"
+                   [touched]="spokenLevelIdField.touched"
+                   [dirty]="spokenLevelIdField.dirty"></small>
+          </div>
+
+          <!--  Nivel escrito -->
+          <div class="field col-12">
+            <label appLabel for="writtenLevelId"
+                   [label]="LanguageFormEnum.writtenLevelId"
+                   [required]="writtenLevelIdField"></label>
+                   <input pInputText type="number" id="writtenLevelId" formControlName="writtenLevelId"/>
+            <small appErrorMessage
+                   [errors]="writtenLevelIdField.errors"
+                   [touched]="writtenLevelIdField.touched"
+                   [dirty]="writtenLevelIdField.dirty"></small>
+          </div>
+        </form>
+      </p-panel>
+    </ng-container>
+  </div>
+</div>
