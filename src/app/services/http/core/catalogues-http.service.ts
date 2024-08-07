@@ -81,14 +81,12 @@ export class CataloguesHttpService {
     );
   }
 
-  findCache(): Observable<boolean> {
-    const url = `${this.API_URL}/cache/get`;
-    return this.httpClient.get<ServerResponse>(url).pipe(
-      map(response => {
-        sessionStorage.setItem('catalogues', JSON.stringify(response.data));
-        return true;
-      })
-    );
+  loadCache(): void {
+    const url = `${this.API_URL}/catalogue`;
+
+    this.httpClient.get<ServerResponse>(url).subscribe(response => {
+      sessionStorage.setItem('catalogues', JSON.stringify(response.data));
+    });
   }
 
   findByType(type: CatalogueTypeEnum): CatalogueModel[] {

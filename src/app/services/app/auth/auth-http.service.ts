@@ -62,7 +62,7 @@ export class AuthHttpService {
   login(credentials: LoginModel): Observable<LoginResponse> {
     const url = `${environment.API_URL}/login`;
 
-    // this.findCatalogues();
+    this.cataloguesHttpService.loadCache();
     // this.findLocations();
 
     return this.httpClient.post<LoginResponse>(url, credentials)
@@ -75,15 +75,7 @@ export class AuthHttpService {
       );
   }
 
-  findCatalogues() {
-    let catalogues = sessionStorage.getItem('catalogues');
-
-    if (!catalogues || this.coreService.version !== this.coreService.newVersion) {
-      this.cataloguesHttpService.findCache().subscribe();
-    }
-  }
-
-  findLocations() {
+    findLocations() {
     let locations = sessionStorage.getItem('locations');
 
     if (!locations || this.coreService.version !== this.coreService.newVersion) {
