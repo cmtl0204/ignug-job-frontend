@@ -12,7 +12,7 @@ import {CatalogueTypeEnum} from "@shared/enums";
   providedIn: 'root'
 })
 export class CataloguesHttpService {
-  private readonly API_URL = `${environment.API_URL}/catalogues`;
+  private readonly API_URL = `${environment.API_URL}/catalogue`;
   private readonly httpClient = inject(HttpClient);
   private readonly messageService = inject(MessageService);
 
@@ -82,7 +82,7 @@ export class CataloguesHttpService {
   }
 
   loadCache(): void {
-    const url = `${this.API_URL}/catalogue`;
+    const url = `${this.API_URL}`;
 
     this.httpClient.get<ServerResponse>(url).subscribe(response => {
       sessionStorage.setItem('catalogues', JSON.stringify(response.data));
