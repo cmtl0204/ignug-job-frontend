@@ -30,7 +30,7 @@ export class LanguageFormComponent implements OnInit, OnExitInterface {
   private readonly formBuilder = inject(FormBuilder);
   public readonly messageDialogService = inject(MessageDialogService);
   private readonly routesService = inject(RoutesService);
-  
+
 
   /* Form */
   @Input({required: true}) id!: string;
@@ -39,8 +39,8 @@ export class LanguageFormComponent implements OnInit, OnExitInterface {
   //private onLeave: boolean = true;
 
   /* Foreign Keys */
-  protected idiomTypes: CatalogueModel[] = [];
-  protected  readLevelTypes: CatalogueModel[] = [];
+  protected idioms: CatalogueModel[] = [];
+  protected readLevels: CatalogueModel[] = [];
   protected spokenLevelTypes: CatalogueModel[] = [];
   protected writtenLevelTypes: CatalogueModel[] = [];
 
@@ -67,9 +67,7 @@ export class LanguageFormComponent implements OnInit, OnExitInterface {
     this.loadReadLevelTypes();
     this.loadSpokenLevelTypes();
     this.loadWrittenLevelTypes();
-    
 
-    
 
     //pending
     if (this.id !== RoutesEnum.NEW) {
@@ -106,12 +104,12 @@ export class LanguageFormComponent implements OnInit, OnExitInterface {
   }
 
   /* Load Foreign Keys  */
-  loadIdiomTypes() {
-    this.cataloguesHttpService.findByType(CatalogueTypeEnum.LANGUAGE_IDIOM);
+  loadIdioms() {
+    this.idioms= this.cataloguesHttpService.findByType(CatalogueTypeEnum.LANGUAGES_IDIOM);
   }
 
   loadReadLevelTypes() {
-    this.cataloguesHttpService.findByType(CatalogueTypeEnum.LANGUAGE_READ_LEVEL);
+    this.readLevels = this.cataloguesHttpService.findByType(CatalogueTypeEnum.LANGUAGES_READ_LEVEL);
   }
 
   loadSpokenLevelTypes() {
