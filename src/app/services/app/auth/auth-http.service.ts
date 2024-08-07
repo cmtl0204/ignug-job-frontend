@@ -62,7 +62,7 @@ export class AuthHttpService {
   login(credentials: LoginModel): Observable<LoginResponse> {
     const url = `${environment.API_URL}/login`;
 
-    this.cataloguesHttpService.loadCache();
+
     // this.findLocations();
 
     return this.httpClient.post<LoginResponse>(url, credentials)
@@ -70,6 +70,7 @@ export class AuthHttpService {
         map(response => {
           this.authService.token = response.data.token;
           // this.authService.auth = response.data.user;
+          this.cataloguesHttpService.loadCache();
           return response;
         })
       );
