@@ -8,13 +8,19 @@ import {ApplyQrProfessionalComponent} from "./apply-qr-professional/apply-qr-pro
 import {MenubarModule} from "primeng/menubar";
 import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
+import { ApplyOfferComponent } from './apply-offer/apply-offer.component';
+import { OfferDetailsComponent } from './apply-offer/offer-details/offer-details.component';
+import { ToastModule } from 'primeng/toast';
+import { AvatarModule } from 'primeng/avatar';
 //import { ApplyQrOfferComponent } from './apply-qr-offer/apply-qr-offer.component';
 
 @NgModule({
   declarations: [
     ProfessionalComponent,
     ApplyQrOfferComponent,
-    ApplyQrProfessionalComponent
+    ApplyQrProfessionalComponent,
+    ApplyOfferComponent,
+    OfferDetailsComponent
     //ApplyQrOfferComponent,
   ],
   imports: [
@@ -22,7 +28,9 @@ import {ButtonModule} from "primeng/button";
     ProfessionalRoutingModule,
     MenubarModule,
     CardModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule,
+    AvatarModule
   ]
 })
 export class ProfessionalModule { }

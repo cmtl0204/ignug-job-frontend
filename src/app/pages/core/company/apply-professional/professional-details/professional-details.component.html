@@ -1,0 +1,41 @@
+<div *ngIf="professional" class="professional-details">
+    <div class="header">
+      <h2>{{ professional.name }}</h2>
+      <h4>{{ professional.profession }}</h4>
+    </div>
+    <div class="content">
+      <div class="avatar-container">
+        <p-avatar 
+          icon="pi pi-user" 
+          styleClass="mr-2" 
+          size="xlarge" 
+          shape="circle" 
+        ></p-avatar>
+      </div>
+      <div class="detail-section">
+        <p><strong>Formación:</strong> {{ professional.formation }}</p>
+      </div>
+      <div class="divider"></div>
+      <div class="detail-section">
+        <p><strong>Experiencia:</strong> {{ professional.experience }}</p>
+      </div>
+      <div class="divider"></div>
+      <div class="detail-section">
+        <p><strong>Habilidades:</strong> {{ professional.skills.join(', ') }}</p>
+      </div>
+      <div class="divider"></div>
+      <div class="detail-section">
+        <p><strong>Resumen:</strong> {{ professional.summary }}</p>
+      </div>
+      <div class="divider"></div>
+      <div class="detail-section">
+        <p><strong>Contacto:</strong> {{ professional.contact }}</p>
+      </div>
+      <div class="divider"></div>
+      <div class="detail-section">
+        <p><strong>Ubicación:</strong> {{ professional.location }}</p>
+      </div>
+    </div>
+    <p-button label="Contactar" icon="pi pi-envelope" (click)="contactProfessional()"></p-button>
+  </div>
+  <p-toast></p-toast>

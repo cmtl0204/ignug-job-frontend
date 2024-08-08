@@ -31,7 +31,7 @@ export interface OfferModel{
     contactPhone?: string;
     endedAt?: string;
     position?: string;
-    renumeration?: string;
+    remuneration?: string;
     startedAt?: string;
     requirements?: string;
     vacancies?: string;

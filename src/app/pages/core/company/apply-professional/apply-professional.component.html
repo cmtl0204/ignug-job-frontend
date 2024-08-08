@@ -1,0 +1,22 @@
+<p-menubar [model]="items">
+    <div class="logo">
+      <i class="pi pi-user"></i>
+    </div>
+  </p-menubar>
+  
+  <div class="grid justify-content-center">
+    <div class="col-12 xl:col-5 lg:col-8 md:col-10 sm:col-12">
+      <h1 class="p-text-uppercase">Profesionales Disponibles <i class="pi pi-users" style="font-size: 2rem;"></i></h1>
+      <p-card *ngFor="let professional of professionals" [header]="professional.name" [subheader]="professional.profession">
+        <ng-template pTemplate="content">
+          <p><strong>Formación Profesional:</strong> {{ professional.formation }}</p>
+          <p><strong>Habilidades:</strong> {{ professional.skills.join(', ') }}</p>
+          <p><strong>Resumen:</strong> {{ professional.summary }}</p>
+          <p-button label="Seleccionar" (click)="selectProfessional(professional)"></p-button>
+        </ng-template>
+      </p-card>
+    </div>
+    <div class="col-12 xl:col-5 lg:col-8 md:col-10 sm:col-12">
+      <app-professional-details [professional]="selectedProfessional" *ngIf="selectedProfessional"></app-professional-details>
+    </div>
+  </div>

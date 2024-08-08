@@ -60,6 +60,10 @@ export class SkillFormComponent implements OnInit, OnExitInterface {
       this.findReference(this.id);
     }
   }
+  
+  loadDescriptionTypes() {
+    throw new Error('Method not implemented.');
+  }
 
   findReference(id: string) {
 

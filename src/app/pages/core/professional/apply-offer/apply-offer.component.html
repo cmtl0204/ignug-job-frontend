@@ -1,0 +1,23 @@
+<p-menubar [model]="Items">
+  <div class="logo">
+    <i class="pi pi-user"></i>
+  </div>
+</p-menubar>
+
+<div class="details-container">
+  <div class="col-12 xl:col-5 lg:col-8 md:col-10 sm:col-12 card-container">
+    <h1 class="p-text-uppercase">Ofertas Disponibles <i class="pi pi-tags" style="font-size: 2rem;"></i></h1>
+    <p-card *ngFor="let offer of offers" [header]="offer.contractTypeId" [subheader]="offer.companyId" class="p-card">
+      <ng-template pTemplate="content">
+        <p><strong>Descripción:</strong> {{ offer.activities }}</p>
+        <p><strong>Requisitos:</strong> {{ offer.requirements }}</p>
+        <p><strong>Detalles:</strong> {{ offer.additionalInformation }}</p>
+        <p-button label="Ver Detalles" (click)="selectedOffer = offer"></p-button>
+      </ng-template>
+    </p-card>
+  </div>
+  
+  <div class="col-12 xl:col-5 lg:col-8 md:col-10 sm:col-12 details-container__inner">
+    <app-offer-details [offer]="selectedOffer" *ngIf="selectedOffer"></app-offer-details>
+  </div>
+</div>

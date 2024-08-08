@@ -1,0 +1,65 @@
+body {
+    background-color: #f4f4f4; /* Color de fondo suave */
+  }
+  
+  .grid {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    height: 100vh; /* Ajusta el tamaño para que ocupe toda la altura de la pantalla */
+    flex-wrap: wrap;
+  }
+  
+  .p-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+    margin-bottom: 20px; 
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(78, 65, 65, 0.1); /* Sombra suave para efecto de elevación */
+  }
+  
+  ::ng-deep .p-card {
+    margin-bottom: 1em;  // Añade un margen inferior para crear espacio entre las tarjetas
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo img {
+    width: 50px; /* Ajusta el tamaño del logo según sea necesario */
+    margin-right: 10px;
+  }
+  
+  .logo h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333; /* Color de texto */
+  }
+  
+  .card-content {
+    margin-top: 10px;
+  }
+  
+  .card-content p {
+    margin-bottom: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  
+  .col-12.xl\:col-5, .col-12.lg\:col-8, .col-12.md\:col-10, .col-12.sm\:col-12 {
+    margin: 10px;
+  }
+  
+  .professional-details {
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave para efecto de elevación */
+    background-color: #fff;
+  }

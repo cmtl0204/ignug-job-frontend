@@ -1,0 +1,31 @@
+.offer-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.header h2, .header h4 {
+  margin: 0;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.detail-section {
+  margin-bottom: 1rem;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ccc;
+  margin: 1rem 0;
+}
+
+@media (max-width: 1024px) {
+  .offer-details {
+    flex-direction: column;
+  }
+}

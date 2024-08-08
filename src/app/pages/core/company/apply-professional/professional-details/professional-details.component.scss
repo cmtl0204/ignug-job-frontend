@@ -1,0 +1,53 @@
+.professional-details {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .header h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #777;
+  }
+  
+  .content {
+    margin-bottom: 20px;
+  }
+  
+  .avatar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .detail-section {
+    padding: 10px 0;
+  }
+  
+  .divider {
+    border-bottom: 1px solid #ddd;
+    margin: 10px 0;
+  }
+  
+  .p-button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .p-avatar .pi {
+    font-size: 2rem; /* Ajusta el tamaño del ícono dentro del avatar */
+  }

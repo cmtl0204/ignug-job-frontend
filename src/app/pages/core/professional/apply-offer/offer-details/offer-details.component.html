@@ -1,0 +1,37 @@
+<div *ngIf="offer" class="professional-details">
+    <div class="header">
+      <h2>{{ offer.contractTypeId }}</h2>
+      <h4>{{ offer.companyId }}</h4>
+    </div>
+    <div class="content">
+      <div class="avatar-container">
+        <p-avatar 
+          icon="pi pi-user" 
+          styleClass="mr-2" 
+          size="xlarge" 
+          shape="circle" 
+        ></p-avatar>
+      </div>
+      <div class="detail-section">
+        <p><strong>Descripción de la oferta:</strong> {{ offer.activities }}</p>
+      </div>
+      <div class="divider"></div>
+      <div class="detail-section">
+        <p><strong>Remuneración:</strong> {{ offer.remuneration }}</p>
+      </div>
+      <div class="divider"></div>
+      <div class="detail-section">
+        <p><strong>Habilidades requeridas:</strong> {{ offer.requirements }}</p>
+      </div>
+      <div class="divider"></div>
+      <div class="detail-section">
+        <p><strong>Resumen:</strong> {{ offer.additionalInformation }}</p>
+      </div>
+      <div class="divider"></div>
+      <div class="detail-section">
+        <p><strong>Puesto:</strong> {{ offer.position }}</p>
+      </div>
+    </div>
+    <p-button label="Aplicar" icon="pi pi-envelope" (click)="applyOffer()"></p-button>
+  </div>
+  <p-toast></p-toast>

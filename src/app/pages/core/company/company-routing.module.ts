@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import { ApplyProfessionalComponent } from './apply-professional/apply-professional.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,12 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
   },
+
+  {
+    path: 'apply-curriculum/:id',
+    component: ApplyProfessionalComponent
+    
+  }
 ];
 
 @NgModule({

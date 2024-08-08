@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ProfessionalComponent} from "./professional.component";
+import { ApplyOfferComponent } from './apply-offer/apply-offer.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
     path: ':id/skills',
     loadChildren: () => import('./skill/skill.module').then(m => m.SkillModule),
   },
+  {
+    path: 'apply-offer/:id',
+    component: ApplyOfferComponent
+  }
   
 ];
 

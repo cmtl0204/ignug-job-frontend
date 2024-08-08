@@ -1,4 +1,4 @@
-import {OfferModel} from "@models/core";
+import {OfferModel, ProfessionalModel} from "@models/core";
 
 
 export interface OfferProfessionalModel {
@@ -9,7 +9,8 @@ export interface OfferProfessionalModel {
 
   offer?: OfferModel;
   offerId?: string;
-  //professionalId?: string;
+  professional?: ProfessionalModel;
+  professionalId?: string;
   //state:CatalogueModel;
   stateId?: string;
 

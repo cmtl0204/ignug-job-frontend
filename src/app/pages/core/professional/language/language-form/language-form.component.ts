@@ -63,7 +63,7 @@ export class LanguageFormComponent implements OnInit, OnExitInterface {
 
   ngOnInit(): void {
     /* Load Foreign Keys*/
-    this.loadIdiomTypes();
+    this.loadIdioms();
     this.loadReadLevelTypes();
     this.loadSpokenLevelTypes();
     this.loadWrittenLevelTypes();
@@ -105,11 +105,11 @@ export class LanguageFormComponent implements OnInit, OnExitInterface {
 
   /* Load Foreign Keys  */
   loadIdioms() {
-    this.idioms= this.cataloguesHttpService.findByType(CatalogueTypeEnum.LANGUAGES_IDIOM);
+    this.idioms= this.cataloguesHttpService.findByType(CatalogueTypeEnum.LANGUAGE_IDIOM);
   }
 
   loadReadLevelTypes() {
-    this.readLevels = this.cataloguesHttpService.findByType(CatalogueTypeEnum.LANGUAGES_READ_LEVEL);
+    this.readLevels = this.cataloguesHttpService.findByType(CatalogueTypeEnum.LANGUAGE_READ_LEVEL);
   }
 
   loadSpokenLevelTypes() {
